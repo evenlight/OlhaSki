@@ -8,6 +8,7 @@
 
     <!-- Bootstrap -->
     <link href="../content/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.css" rel="stylesheet">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -18,52 +19,61 @@
   </head>
   <body>
     <div class="container">
-      <h3>Сезон 2016-2017</h3>
-      <hr>
+      <!-- Seasons -->
+      <p class="lead">Сезон 2018</p>
       <div class="row">
-          <div class="col-md-3">
-              <a href="#">
-                <img class="img img-thumbnail" src="../content/gallery/1.jpg" style="max-height: 200px;">
-              </a>
-          </div>
-          <div class="col-md-3">
-              <a href="#">
-                <img class="img img-thumbnail" src="../content/gallery/2.jpg" style="max-height: 200px;">
-              </a>
-          </div>
-          <div class="col-md-3">
-              <a href="#">
-                <img class="img img-thumbnail" src="../content/gallery/2.jpg" style="max-height: 200px;">
-              </a>
-          </div>
-          <div class="col-md-3">
-              <a href="#">
-                <img class="img img-thumbnail" src="../content/gallery/2.jpg" style="max-height: 200px; max-width: 260px;">
-              </a>
+          <div class="col-md-12 col-sm-12 col-lg-12">
+              <div class="row">
+                <!-- data-max-width="100" -->
+                <div class="col-md-3 col-sm-6 col-xs-12 col-lg-3">
+                  <a href="https://unsplash.it/1200/768.jpg?image=504" data-toggle="lightbox" data-gallery="example-gallery">
+                      <img src="https://unsplash.it/600.jpg?image=504" class="img-thumbnail">
+                  </a>
+                  </div>
+                  <div class="col-md-3 col-sm-6 col-xs-12 col-lg-3">
+                    <a href="https://unsplash.it/1200/768.jpg?image=500" data-toggle="lightbox" data-gallery="example-gallery" >
+                        <img src="https://unsplash.it/600.jpg?image=500" class="img-thumbnail">
+                    </a>
+                  </div>
+                  <div class="col-md-3 col-sm-6 col-xs-12 col-lg-3">
+                    <a href="https://unsplash.it/1200/768.jpg?image=234" data-toggle="lightbox" data-gallery="example-gallery">
+                        <img src="https://unsplash.it/600.jpg?image=234" class="img-thumbnail">
+                    </a>
+                  </div>
+                  <div class="col-md-3 col-sm-6 col-xs-12 col-lg-3">
+                      <a href="https://unsplash.it/1200/768.jpg?image=235" data-toggle="lightbox" data-gallery="example-gallery">
+                          <img src="https://unsplash.it/600.jpg?image=235" class="img-thumbnail">
+                      </a>
+                  </div>
+              </div>
           </div>
       </div>
-      <h3>Сезон 2017-2018</h3>
-      <hr>
+      <p class="lead" style="padding-top: 30px;">Сезон 2016-2017</p>
       <div class="row">
-          <div class="col-md-3">
-              <a href="#">
-                <img class="img img-thumbnail" src="../content/gallery/1.jpg" style="max-height: 200px;">
-              </a>
-          </div>
-          <div class="col-md-3">
-              <a href="#">
-                <img class="img img-thumbnail" src="../content/gallery/3.jpg" style="max-height: 200px;">
-              </a>
-          </div>
-          <div class="col-md-3">
-              <a href="#">
-                  <img class="img img-thumbnail" src="../content/gallery/4.png" style="max-height: 200px; max-width: 220px;">
-              </a>
-          </div>
-          <div class="col-md-3">
-              <a href="#">
-                <img class="img img-thumbnail" src="../content/gallery/2.jpg" style="max-height: 200px;">
-              </a>
+          <div class="col-md-12 col-sm-12 col-lg-12">
+              <div class="row">
+                <!-- data-max-width="100" -->
+                <div class="col-md-3 col-sm-6 col-xs-12 col-lg-3">
+                  <a href="https://unsplash.it/1200/768.jpg?image=301" data-toggle="lightbox" data-gallery="example-gallery">
+                      <img src="https://unsplash.it/600.jpg?image=301" class="img-thumbnail">
+                  </a>
+                  </div>
+                  <div class="col-md-3 col-sm-6 col-xs-12 col-lg-3">
+                    <a href="https://unsplash.it/1200/768.jpg?image=302" data-toggle="lightbox" data-gallery="example-gallery" >
+                        <img src="https://unsplash.it/600.jpg?image=302" class="img-thumbnail">
+                    </a>
+                  </div>
+                  <div class="col-md-3 col-sm-6 col-xs-12 col-lg-3">
+                    <a href="https://unsplash.it/1200/768.jpg?image=214" data-toggle="lightbox" data-gallery="example-gallery">
+                        <img src="https://unsplash.it/600.jpg?image=214" class="img-thumbnail">
+                    </a>
+                  </div>
+                  <div class="col-md-3 col-sm-6 col-xs-12 col-lg-3">
+                      <a href="https://unsplash.it/1200/768.jpg?image=304" data-toggle="lightbox" data-gallery="example-gallery">
+                          <img src="https://unsplash.it/600.jpg?image=304" class="img-thumbnail">
+                      </a>
+                  </div>
+              </div>
           </div>
       </div>
     </div>
@@ -74,6 +84,13 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
   <!-- Include all compiled plugins (below), or include individual files as needed -->
   <script src="../content/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.js"></script>
+  <script>
+      $(document).on('click', '[data-toggle="lightbox"]', function(event) {
+                event.preventDefault();
+                $(this).ekkoLightbox();
+            });
+  </script>
   </body>
 </html>
 
