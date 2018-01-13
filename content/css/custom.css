@@ -30,3 +30,11 @@ body {
 .nav-pills>li>a {
     border-radius: 0;
 }
+.footer-padding
+{
+    padding-top: 60px;
+}
+.container-heigth
+{
+    min-height: 1080px;
+}
