@@ -7,3 +7,17 @@ body {
 .container {
     background: #fff;
 }
+
+.logo {
+    width: 100px;
+    margin-top: -10px;
+}
+
+.navbar {
+    margin-bottom: 0;
+}
+
+.block-header {
+    padding-top: 10px;
+    font-weight: bold;
+}
