@@ -30,6 +30,11 @@ body {
 .nav-pills>li>a {
     border-radius: 0;
 }
+
+.glyphicon {
+    margin-right: 10px;
+}
+
 .footer-padding
 {
     padding-top: 60px;
