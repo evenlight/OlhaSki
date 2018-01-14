@@ -43,3 +43,7 @@ body {
 {
     min-height: 1080px;
 }
+.margin-top-none
+{
+    margin-top: 0px;
+}
