@@ -58,16 +58,25 @@ html,body {
 .news-img
 {
     float:left;
-    margin-right: 10px;
-    margin-bottom: 10px;
+    margin-right: 0px;
+    margin-bottom: 0px;
     margin-left: 0px;
     margin-top: 0px;
 }
 .news-img-text
 {
     float: right;
-    margin-right: 10px;
-    margin-bottom: 10px;
+    margin-right: 0px;
+    margin-bottom: 0px;
     margin-left: 0px;
-    margin-top: 10px;
+    margin-top: 0px;
+}
+.padding-top-40
+{
+    padding-top: 40px;
+}
+.news-left 
+{
+    float: left;
+    margin: 0 1em 1em 0;
 }
