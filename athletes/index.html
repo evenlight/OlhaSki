@@ -78,41 +78,55 @@
             </ul>
         </div>
         <div class="col-md-9 col-lg-9">
-          <p class="text-center block-header">Наши спортсмены</p>
-          <div class="row">
-              <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">                 
-                  <div class="panel panel-default">
-                    <div class="panel-heading">
-                      <h3 class="panel-title text-center">Коноплянка Светлана Иосифна</h3>
+            <p class="text-center block-header">НАШИ СПОРТСМЕНЫ</p>
+            <div class="row">
+                <div class="col-sm-12 col-xs-12 col-md-6 col-lg-6">
+                    <div class="thumbnail fixed-height-children">
+                        <img class="fixed-img-children" src="http://img.7ya.ru/pub/img/18032/179286662.jpg" alt="..." style="width: 400px; height: 250px;">
+                        <div class="caption">
+                            <h3 class="text-center">Гайшинец Алексей</h3>
+                            <hr>
+                            <p><h4>Год рождения: 2000</h4></p>
+                            <p><h4>Разряд: I</h4></p>
+                        </div>
                     </div>
-                    <div class="panel-body">
-                        <p class="text-justify">
-                            <img class="news-left img-responsive img-thumnail" src="https://xage.ru/media/uploads/2012/5/eti-emotsionalnyie-sportsmenyi/eti-emotsionalnyie-sportsmenyi_1.jpg" style="height: 150px">
-                            Lorem, ipsum dolor sit amet 
-                            consectetur adipisicing elit. Quae reprehenderit maiores quibusdam obcaecati quasi autem maxime 
-                            debitis! Unde pariatur ipsam eius voluptate quas. Ad doloremque ex eaque id voluptatibus quam sit quos pariatur minima quas e
-                            sse incidunt beatae assumenda voluptatem quaerat a dolorem cum ipsa necessitatibus molestias, exercitationem delectus dicta.
-                        </p>
+                </div>
+                <div class="col-sm-12 col-xs-12 col-md-6 col-lg-6">
+                    <div class="thumbnail fixed-height-children">
+                            <img class="fixed-img-children" src="https://www.passion.ru/imgs/2017/05/12/12/723398/1d1386c3c92299077ce6bd9aea02e50b93cde6f3.jpg" alt="..." style="width: 400px; height: 250px;">
+                        <div class="caption">
+                            <h3 class="text-center">Масленникова Анна</h3>
+                            <hr>
+                            <p><h4>Год рождения: 2003</h4></p>
+                            <p><h4>Разряд: II</h4></p>
+                        </div>
                     </div>
-                  </div>                  
-              </div>
-              <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">                 
-                <div class="panel panel-default">
-                  <div class="panel-heading">
-                    <h3 class="panel-title text-center">Свинцов Сергей Геннальевич</h3>
-                  </div>
-                  <div class="panel-body">
-                    <p class="text-justify">
-                        <img class="news-left img-responsive img-thumnail" src="http://24.kz/media/k2/items/cache/7e830012fcd9280eebf8d8e301b2458e_XL.jpg" style="height: 150px">
-                        Lorem, ipsum dolor sit amet 
-                        consectetur adipisicing elit. Quae reprehenderit maiores quibusdam obcaecati quasi autem maxime 
-                        debitis! Unde pariatur ipsam eius voluptate quas. Ad doloremque ex eaque id voluptatibus quam sit quos pariatur minima quas e
-                        sse incidunt beatae assumenda voluptatem quaerat a dolorem cum ipsa necessitatibus molestias, exercitationem delectus dicta.
-                    </p>
-                  </div>
-                </div>                  
+                </div>
             </div>
-          </div>
+            <div class="row">
+                <div class="col-sm-12 col-xs-12 col-md-6 col-lg-6">
+                    <div class="thumbnail fixed-height-children">
+                        <img class="fixed-img-children" src="https://www.passion.ru/imgs/2017/05/12/12/723398/1d1386c3c92299077ce6bd9aea02e50b93cde6f3.jpg" alt="..." style="width: 400px; height: 250px;">
+                        <div class="caption">
+                            <h3 class="text-center">Гайшинец Алексей</h3>
+                            <hr>
+                            <p><h4>Год рождения: 2000</h4></p>
+                            <p><h4>Разряд: I</h4></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-xs-12 col-md-6 col-lg-6">
+                    <div class="thumbnail fixed-height-children">
+                        <img class="fixed-img-children" src="http://udoktora.net/wp-content/uploads/2012/01/51737/samyie-bolshie-trudnosti-v-period-polovogo-sozrevaniya-malchika-podrostka.jpg" alt="..." style="width: 400px; height: 250px;">
+                        <div class="caption">
+                            <h3 class="text-center">Масленникова Анна</h3>
+                            <hr>
+                            <p><h4>Год рождения: 2003</h4></p>
+                            <p><h4>Разряд: II</h4></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <footer class="footer">
             <p class="text-muted text-center">2017 &copy; <a href="evenlight.team" class="copylink">evenlight</a></p>
@@ -122,5 +136,11 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="content/js/bootstrap.min.js"></script>
+    <script>
+            $(document).on('click', '[data-toggle="lightbox"]', function(event) {
+                      event.preventDefault();
+                      $(this).ekkoLightbox();
+                  });
+        </script>
     </body>
   </html>
