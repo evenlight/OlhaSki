@@ -3,69 +3,33 @@
 ?>
         <div class="col-md-9 col-lg-9">
           <p class="text-center block-header">НОВОСТИ</p>
-          <!--Новости-->
-          <div class="row">
-            <div class="col-md-12">
-              <p class="text-justify">
-                <img class="news-left" src="http://www.skiline.ru/file/img/ski/ski_select/skate_foto_1.jpg" style="height: 150px">
-                <h4 class="margin-top-none"><a href="#"> Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolorum, laudantium?</a></h4>
-                Lorem, ipsum dolor sit amet 
-                consectetur adipisicing elit. Quae reprehenderit maiores quibusdam obcaecati quasi autem maxime 
-                debitis! Unde pariatur ipsam eius voluptate quas. Ad doloremque ex eaque id voluptatibus quam sit quos pariatur minima quas e
-                sse incidunt beatae assumenda voluptatem quaerat a dolorem cum ipsa necessitatibus molestias, exercitationem delectus dicta.
-              </p>
-              <p class="pull-right ">
-                  <i>Опубликовано 10.01.2017</i>
-              </p>
-            </div>
-          </div>
-          <hr>
-          <div class="row">
-            <div class="col-md-12">
-              <p class="text-justify">
-                <h4 class="margin-top-none"><a href="#"> Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolorum, laudantium?</a></h4>
-                Lorem, ipsum dolor sit amet 
-                consectetur adipisicing elit. Quae reprehenderit maiores quibusdam obcaecati quasi autem maxime 
-                debitis! Unde pariatur ipsam eius voluptate quas. Ad doloremque ex eaque id voluptatibus quam sit quos pariatur minima quas e
-                sse incidunt beatae assumenda voluptatem quaerat a dolorem cum ipsa necessitatibus molestias, exercitationem delectus dicta.
-              </p>
-              <p class="pull-right ">
-                  <i>Опубликовано 10.01.2017</i>
-              </p>
-            </div>
-          </div>
-          <hr>
-          <div class="row">
-            <div class="col-md-12">
-              <p class="text-justify">
-                <img class="news-left" src="http://www.skiline.ru/file/img/ski/ski_select/skate_foto_1.jpg" style="height: 150px">
-                <h4 class="margin-top-none"><a href="#"> Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolorum, laudantium?</a></h4>
-                Lorem, ipsum dolor sit amet 
-                consectetur adipisicing elit. Quae reprehenderit maiores quibusdam obcaecati quasi autem maxime 
-                debitis! Unde pariatur ipsam eius voluptate quas. Ad doloremque ex eaque id voluptatibus quam sit quos pariatur minima quas e
-                sse incidunt beatae assumenda voluptatem quaerat a dolorem cum ipsa necessitatibus molestias, exercitationem delectus dicta.
-              </p>
-              <p class="pull-right">
-                  <i>Опубликовано 10.01.2017</i>
-              </p>
-            </div>
-          </div>
-          <hr>
-          <div class="row">
-            <div class="col-md-12">
-              <p class="text-justify">
-                <h4 class="margin-top-none"><a href="#"> Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolorum, laudantium?</a></h4>
-                Lorem, ipsum dolor sit amet 
-                consectetur adipisicing elit. Quae reprehenderit maiores quibusdam obcaecati quasi autem maxime 
-                debitis! Unde pariatur ipsam eius voluptate quas. Ad doloremque ex eaque id voluptatibus quam sit quos pariatur minima quas e
-                sse incidunt beatae assumenda voluptatem quaerat a dolorem cum ipsa necessitatibus molestias, exercitationem delectus dicta.
-              </p>
-              <p class="pull-right ">
-                  <i>Опубликовано 10.01.2017</i>
-              </p>
-            </div>
-          </div>
-          <hr>               
-<?php
+          <?php
+              $sql="select id, DATE_FORMAT(publishdate, '%d.%m.%Y') as publishdate, title, body, img from news order by publishDate desc";
+              $result = mysqli_query($conn, $sql); 
+              while($row = mysqli_fetch_assoc($result)) 
+              {
+                if(!empty($row['img']))
+                {
+                  $img='<img class="news-left" src="../content/img/'.$row['img'].'" style="height: 150px">';
+                }
+                else
+                {
+                    $img="";
+                }
+                  echo '
+                  <div class="row">
+                  <div class="col-md-12">
+                    <p class="text-justify">
+                      '.$img.'
+                      <h4 class="margin-top-none"><a href="#">'.$row['title'].'</a></h4>
+                      '.$row['body'].'
+                    </p>
+                    <p class="pull-right ">
+                        <i>Опубликовано '.$row['publishdate'].'</i>
+                    </p>
+                  </div>
+                </div>
+                <hr>';  
+              }            
   require_once('../require/footer.php');
 ?>
