@@ -5,6 +5,25 @@ html,body {
     background: url('../img/background.jpg') no-repeat fixed;
 }
 
+.signin-form {
+    max-width: 330px;
+    margin: 0 auto;
+    padding: 10px;
+}
+
+.signin-form input[type="email"] {
+    margin-bottom: -1px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+  .signin-form input[type="password"] {
+    margin-bottom: 10px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+  }
+  
+  
+
 .container {
     background: #fff;
     min-height: 100%;
