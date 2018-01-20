@@ -84,3 +84,12 @@ html,body {
 {
     margin-top: 10px;
 }
+.fixed-height-children
+{
+    height: 450px;
+}
+.fixed-img-children
+{
+    width: 400px;
+    height: 200px;
+}
