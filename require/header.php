@@ -31,7 +31,7 @@
                 <span class="icon-bar"></span>
               </button>
               <a href="#" class="navbar-brand">
-                <img src="../content/img/logo.jpg" class="logo" alt="logo">
+                <img src="../content/img/logo.png" class="logo" alt="logo">
               </a> 
             </div> 
             <div class="collapse navbar-collapse" id="navbar-collapse"> 
