@@ -15,22 +15,16 @@
                             <th>Дисциплина</th>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>Первенство школы по ОПФ</td>
-                                <td>1999 и младше</td>
-                                <td>08.10.2017</td>
-                                <td>Байкал Арена</td>
-                                <td>по положению</td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>Первенство школы по ОПФ</td>
-                                <td>1999 и младше</td>
-                                <td>08.10.2017</td>
-                                <td>Байкал Арена</td>
-                                <td>по положению</td>
-                            </tr>
+                            <?php
+                            $sql="select id, name, age, DATE_FORMAT(eventDate, '%d.%m.%Y') as eventdate, location, subject from events order by eventdate desc";
+                            $result = mysqli_query($conn, $sql); 
+                            while($row = mysqli_fetch_assoc($result)) 
+                            {
+                                echo '<tr><td>'.$row['id'].'</td><td>'.$row['name'].'</td><td>'.$row['age'].'</td><td>'.$row['eventdate'].'</td><td>'.$row['location'].'</td>
+                                <td>'.$row['subject'].'</td></tr>';
+                            }
+
+                            ?>
                         </tbody>
                     </table>
                 </div>

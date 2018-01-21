@@ -4,64 +4,33 @@
     <div class="col-md-9 col-lg-9">
       <p class="text-center block-header">ФОТОГАЛЕРЕЯ</p>
       <!-- Seasons -->
-      <p class="lead">Сезон 2018</p>
-      <div class="row">
-          <div class="col-md-12 col-sm-12 col-lg-12">
-              <div class="row">
-                <!-- data-max-width="100" -->
-                <div class="col-md-3 col-sm-6 col-xs-12 col-lg-3">
-                  <a href="https://unsplash.it/1200/768.jpg?image=504" data-toggle="lightbox" data-gallery="example-gallery">
-                      <img src="https://unsplash.it/600.jpg?image=504" class="img-thumbnail">
-                  </a>
-                  </div>
+      <?php
+      $sql="select distinct season from gallery";
+      $result = mysqli_query($conn, $sql); 
+      while($row = mysqli_fetch_assoc($result)) 
+      {
+        echo '<p class="lead" style="padding-top: 30px;">Сезон '.$row['season'].'</p>';
+        echo '<div class="row">
+        <div class="col-md-12 col-sm-12 col-lg-12">
+            <div class="row">';
+        $sqlG="select id, img from gallery where season='".$row['season']."'";
+        $resultG = mysqli_query($conn, $sqlG); 
+        while($rowG = mysqli_fetch_assoc($resultG)) 
+        {
+            echo '
+                  <!-- data-max-width="100" -->
                   <div class="col-md-3 col-sm-6 col-xs-12 col-lg-3">
-                    <a href="https://unsplash.it/1200/768.jpg?image=500" data-toggle="lightbox" data-gallery="example-gallery" >
-                        <img src="https://unsplash.it/600.jpg?image=500" class="img-thumbnail">
+                    <a href="../content/gallery/'.$rowG['img'].'" data-toggle="lightbox" data-gallery="example-gallery">
+                        <img src="../content/gallery/'.$rowG['img'].'" class="img-thumbnail">
                     </a>
-                  </div>
-                  <div class="col-md-3 col-sm-6 col-xs-12 col-lg-3">
-                    <a href="https://unsplash.it/1200/768.jpg?image=234" data-toggle="lightbox" data-gallery="example-gallery">
-                        <img src="https://unsplash.it/600.jpg?image=234" class="img-thumbnail">
-                    </a>
-                  </div>
-                  <div class="col-md-3 col-sm-6 col-xs-12 col-lg-3">
-                      <a href="https://unsplash.it/1200/768.jpg?image=235" data-toggle="lightbox" data-gallery="example-gallery">
-                          <img src="https://unsplash.it/600.jpg?image=235" class="img-thumbnail">
-                      </a>
-                  </div>
-              </div>
-          </div>
-      </div>
-      <p class="lead" style="padding-top: 30px;">Сезон 2016-2017</p>
-      <div class="row">
-          <div class="col-md-12 col-sm-12 col-lg-12">
-              <div class="row">
-                <!-- data-max-width="100" -->
-                <div class="col-md-3 col-sm-6 col-xs-12 col-lg-3">
-                  <a href="https://unsplash.it/1200/768.jpg?image=301" data-toggle="lightbox" data-gallery="example-gallery">
-                      <img src="https://unsplash.it/600.jpg?image=301" class="img-thumbnail">
-                  </a>
-                  </div>
-                  <div class="col-md-3 col-sm-6 col-xs-12 col-lg-3">
-                    <a href="https://unsplash.it/1200/768.jpg?image=302" data-toggle="lightbox" data-gallery="example-gallery" >
-                        <img src="https://unsplash.it/600.jpg?image=302" class="img-thumbnail">
-                    </a>
-                  </div>
-                  <div class="col-md-3 col-sm-6 col-xs-12 col-lg-3">
-                    <a href="https://unsplash.it/1200/768.jpg?image=214" data-toggle="lightbox" data-gallery="example-gallery">
-                        <img src="https://unsplash.it/600.jpg?image=214" class="img-thumbnail">
-                    </a>
-                  </div>
-                  <div class="col-md-3 col-sm-6 col-xs-12 col-lg-3">
-                      <a href="https://unsplash.it/1200/768.jpg?image=304" data-toggle="lightbox" data-gallery="example-gallery">
-                          <img src="https://unsplash.it/600.jpg?image=304" class="img-thumbnail">
-                      </a>
-                  </div>
-              </div>
-          </div>
-      </div>
-    </div>
-<?php
+                </div>';
+        }
+        echo  '</div>
+            </div>
+        </div>';
+          
+      }
+
   require_once('../require/footer.php');
 ?>
 

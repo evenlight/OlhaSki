@@ -2,70 +2,25 @@
   require_once('../require/header.php');
 ?>
         <div class="col-md-9 col-lg-9">
-          <p class="text-center block-header">ТРЕНЕРСКИЙ СОСТАВ</p>  
-          <div class="row">
-            <div class="col-md-4">
-              <img class="img-thumbnail" src="http://d.topic.lt/Fm_fi/images/picsw/072013/10/post/bogatir/tn.jpg">
-            </div>
-            <div class="col-md-8">
-              <div align="center">
-                <h3 class="margin-top-none">Тренер Петр Васильевич</h3>
-              </div>
-              <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. 
-                Quae reprehenderit maiores quibusdam obcaecati quasi autem maxime debitis! 
-                Unde pariatur ipsam eius voluptate quas. Ad doloremque ex eaque id voluptatibus 
-                quam sit quos pariatur minima quas esse incidunt beatae assumenda voluptatem quaerat 
-                a dolorem cum ipsa necessitatibus molestias, exercitationem delectus dicta.
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit. 
-                Quae reprehenderit maiores quibusdam obcaecati quasi autem maxime debitis! 
-                Unde pariatur ipsam eius voluptate quas. Ad doloremque ex eaque id voluptatibus 
-                quam sit quos pariatur minima quas esse incidunt beatae assumenda voluptatem quaerat 
-                a dolorem cum ipsa necessitatibus molestias, exercitationem delectus dicta. 
-              </p>
-            </div>
-          </div>
-          <div class="row padding-top-40">
-              <div class="col-md-4">
-                <img class="img-thumbnail" src="http://cn13.nevsedoma.com.ua/photo/400/7/17_files/soldier_.jpg">
-              </div>
-              <div class="col-md-8">
-                <div align="center">
-                  <h3 class="margin-top-none">Тренер Сергей Петрович</h3>
-                </div>
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. 
-                  Quae reprehenderit maiores quibusdam obcaecati quasi autem maxime debitis! 
-                  Unde pariatur ipsam eius voluptate quas. Ad doloremque ex eaque id voluptatibus 
-                  quam sit quos pariatur minima quas esse incidunt beatae assumenda voluptatem quaerat 
-                  a dolorem cum ipsa necessitatibus molestias, exercitationem delectus dicta.
-                  Lorem, ipsum dolor sit amet consectetur adipisicing elit. 
-                  Quae reprehenderit maiores quibusdam obcaecati quasi autem maxime debitis! 
-                  Unde pariatur ipsam eius voluptate quas. Ad doloremque ex eaque id voluptatibus 
-                  quam sit quos pariatur minima quas esse incidunt beatae assumenda voluptatem quaerat 
-                  a dolorem cum ipsa necessitatibus molestias, exercitationem delectus dicta. 
-                </p>
-              </div>
-            </div>
-            <div class="row padding-top-40">
+          <p class="text-center block-header">ТРЕНЕРСКИЙ СОСТАВ</p>
+          <?php
+            $sql="select id, name, description, img from trainers";
+            $result = mysqli_query($conn, $sql); 
+            while($row = mysqli_fetch_assoc($result)) 
+            {
+                echo '<div class="row" style="margin-top: 40px;">
                 <div class="col-md-4">
-                  <img class="img-thumbnail" src="http://www.lolpix.com/_pics/Funny_Pictures_392/Funny_Pictures_3928.jpg">
+                  <img class="img-thumbnail" src="../content/img/'.$row['img'].'" style="width: 200px; height: 200px;">
                 </div>
                 <div class="col-md-8">
                   <div align="center">
-                    <h3 class="margin-top-none">Тренер Петр Васильевич</h3>
+                    <h3 class="margin-top-none">'.$row['name'].'</h3>
                   </div>
-                  <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. 
-                    Quae reprehenderit maiores quibusdam obcaecati quasi autem maxime debitis! 
-                    Unde pariatur ipsam eius voluptate quas. Ad doloremque ex eaque id voluptatibus 
-                    quam sit quos pariatur minima quas esse incidunt beatae assumenda voluptatem quaerat 
-                    a dolorem cum ipsa necessitatibus molestias, exercitationem delectus dicta.
-                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. 
-                    Quae reprehenderit maiores quibusdam obcaecati quasi autem maxime debitis! 
-                    Unde pariatur ipsam eius voluptate quas. Ad doloremque ex eaque id voluptatibus 
-                    quam sit quos pariatur minima quas esse incidunt beatae assumenda voluptatem quaerat 
-                    a dolorem cum ipsa necessitatibus molestias, exercitationem delectus dicta. 
+                  <p>
+                  '.$row['description'].'
                   </p>
                 </div>
-              </div>
-<?php
+              </div>';
+            }
   require_once('../require/footer.php');
 ?>
