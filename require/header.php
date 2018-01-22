@@ -37,7 +37,7 @@
             <div class="collapse navbar-collapse" id="navbar-collapse"> 
               <p class="navbar-text navbar-right">
                 <?php
-                  echo '<a href="http://finevision.ru/?hostname='.$_SERVER['HTTP_HOST'].'&path=/" class="navbar-link">версия для слабовидящих</a>'
+                  echo '<a href="http://finevision.ru/?hostname='.$_SERVER['HTTP_HOST'].'&path=/home/" class="navbar-link">версия для слабовидящих</a>'
                 ?>
               </p> 
             </div> 
