@@ -10,7 +10,18 @@
             <li role="presentation"><a href="/terms/"><i class="glyphicon glyphicon-info-sign"></i>Правила приема</a></li>
             <li role="presentation"><a href="/timetable/"><i class="glyphicon glyphicon-time"></i>Расписание занятий</a></li>
             <li role="presentation"><a href="/events/"><i class="glyphicon glyphicon-calendar"></i>Календарь мероприятий</a></li>
-            <li role="presentation"><a href="/contacts/"><i class="glyphicon glyphicon-send"></i>Контакты</a></li>
             <li role="presentation"><a href="/about/"><i class="glyphicon glyphicon-question-sign"></i>О нас</a></li>
         </ul>
+        <hr>
+        <div align="center">
+            <a href="https://clck.yandex.ru/redir/dtype=stred/pid=7/cid=1228/*https://yandex.ru/pogoda/11275" target="_blank"><img src="https://info.weather.yandex.net/11275/2.ru.png?domain=ru" border="0" alt="Яндекс.Погода"/><img width="1" height="1" src="https://clck.yandex.ru/click/dtype=stred/pid=7/cid=1227/*https://img.yandex.ru/i/pix.gif" alt="" border="0"/></a>
+        </div>
+        <hr>
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    По вопросам записи в школу обрашаться <a href="/trainers/">сюда</a>
+                </div>
+            </div>
+        </div>
     </div>
