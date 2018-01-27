@@ -34,9 +34,14 @@
         });
     </script>
     <script type="text/javascript">
-    $(document).ready(function(){
-    $('[data-toggle="tooltip"]').tooltip();   
-    });
+        $(document).ready(function(){
+        $('[data-toggle="tooltip"]').tooltip();   
+        });
+        
+        $("#myModal").on("show.bs.modal", function(e) {
+        var link = $(e.relatedTarget);
+        $(this).find(".modal-body").load(link.attr("href"));
+        });
     </script>
   </body>
 </html>

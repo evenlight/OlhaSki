@@ -2,35 +2,61 @@
   require_once('../require/header.php');
 ?>
     <div class="col-md-9 col-lg-9">
-      <p class="text-center block-header">ФОТОГАЛЕРЕЯ</p>
-      <!-- Seasons -->
-      <?php
-      $sql="select distinct season from gallery";
-      $result = mysqli_query($conn, $sql); 
-      while($row = mysqli_fetch_assoc($result)) 
-      {
-        echo '<p class="lead" style="padding-top: 30px;">Сезон '.$row['season'].'</p>';
-        echo '<div class="row">
-        <div class="col-md-12 col-sm-12 col-lg-12">
-            <div class="row">';
-        $sqlG="select id, img from gallery where season='".$row['season']."'";
-        $resultG = mysqli_query($conn, $sqlG); 
-        while($rowG = mysqli_fetch_assoc($resultG)) 
-        {
-            echo '
-                  <!-- data-max-width="100" -->
-                  <div class="col-md-3 col-sm-6 col-xs-12 col-lg-3">
-                    <a href="../content/gallery/'.$rowG['img'].'" data-toggle="lightbox" data-gallery="example-gallery">
-                        <img src="../content/gallery/'.$rowG['img'].'" class="img-thumbnail">
-                    </a>
-                </div>';
-        }
-        echo  '</div>
+        <p class="text-center block-header">ФОТОГАЛЕРЕЯ</p>
+        <!-- Seasons -->
+        <div class="row">
+            <div class="col-md-3 col-lg-3 col-sm-12">
+                <a href="album.html?pid=1" data-remote="false" data-toggle="modal" data-target="#myModal">
+                    <img class="img-thumbnail img-responsive" src="../content/gallery/4.png" style="height: 150px; width: 200px;">
+                </a>
+                <div align="center">
+                    <p class="lead">Cтроительство учебного корпуса</p>
+                </div>
             </div>
-        </div>';
-          
-      }
-
+        </div>
+      <hr>
+      <div class="row">
+        <?php
+            $sql="select id, name, img from albums";
+            $result = mysqli_query($conn, $sql); 
+            while($row = mysqli_fetch_assoc($result)) 
+            {
+                echo '
+                <div class="col-md-3 col-lg-3 col-sm-12">
+                    <a href="album.html?pid='.$row['id'].'" data-remote="false" data-toggle="modal" data-target="#myModal">
+                        <img class="img-thumbnail img-responsive" src="../content/gallery/'.$row['img'].'" style="height: 150px; width: 200px;">
+                    </a>
+                    <div align="center">
+                        <p class="lead">'.$row['name'].'</p>
+                    </div>
+                </div>
+                ';
+                                
+            }
+        ?>
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4>Фотогалерея</h4>
+            </div>
+            <div class="modal-body">
+            <!-- Remote content -->
+                <div align="center">
+                    <img src="../content/img/preloader.gif">
+                    <p>Выполняется загрузка. Пожалуйста подождите...</p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
+            </div>
+            </div>
+        </div>
+    </div>
+</div>
+<?php
   require_once('../require/footer.php');
 ?>
 

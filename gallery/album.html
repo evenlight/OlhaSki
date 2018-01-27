@@ -1,0 +1,19 @@
+<?php
+    require_once('../require/config.php');
+        echo '<div class="row">
+        <div class="col-md-12 col-sm-12 col-lg-12">
+            <div class="row">';
+        $sqlG="select id, img from gallery where albumid='".$_GET['pid']."'";
+        $resultG = mysqli_query($conn, $sqlG); 
+        while($rowG = mysqli_fetch_assoc($resultG)) 
+        {
+            echo '
+                  <!-- data-max-width="100" -->
+                  <div class="col-md-3 col-sm-6 col-xs-12 col-lg-3">
+                    <a href="../content/gallery/'.$rowG['img'].'" data-toggle="lightbox" data-gallery="example-gallery">
+                        <img src="../content/gallery/'.$rowG['img'].'" class="img-thumbnail">
+                    </a>
+                </div>';
+        }
+      sleep(10);
+?>
