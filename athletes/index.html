@@ -5,23 +5,30 @@
           <p class="text-center block-header">НАШИ СПОРТСМЕНЫ</p>
           <div class="row">
             <?php
-                $sql="select id, name, description, birthday, rank, img from athlets order by rank";
-                $result = mysqli_query($conn, $sql); 
-                while($row = mysqli_fetch_assoc($result)) 
+                $sql="select id, name, description, birthday, rank, img, category, adoptedby from athlets order by rank";
+                $result = @mysqli_query(@$conn, $sql); 
+                while($row = @mysqli_fetch_assoc($result)) 
                 {
                     echo '
-                        <div class="col-sm-12 col-xs-12 col-md-3 col-lg-3">
-                            <div class="thumbnail fixed-height-children">
-                                    <img class="fixed-img-children" src="../content/img/'.$row['img'].'" alt="..." style="width: 400px; height: 250px;">
-                                <div class="caption">
-                                    <h3 class="text-center">'.$row['name'].'</h3>
-                                    <hr>
-                                    <p><h4>Год рождения: '.$row['birthday'].'</h4></p>
-                                    <p><h4>Разряд: '.$row['rank'].'</h4></p>
-                                    <p>'.$row['description'].'</p>
+                    <div class="col-sm-6 col-md-4 col-lg-4">
+                        <div class="card">
+                            <img class="card-img-top" src="http://success-at-work.com/wp-content/uploads/2015/04/free-stock-photos.gif">
+                            <div class="card-block">
+                                <h4 class="card-title">'.$row['name'].'</h4>
+                                <div class="meta">
+                                    <p>'.$row['rank'].' разряд</p>
+                                </div>
+                                <div class="card-text">
+                                    <p>Год рождения: '.$row['birthday'].'
+                                        <br>
+                                        Принят с '.$row['adoptedby'].' года
+                                    </p><br>
+                                    Категория : '.$row['category'].'
+                                    <p><strong>'.$row['description'].'</strong></p>
                                 </div>
                             </div>
-                        </div>';
+                        </div>
+                    </div>';
                 }
             echo '</div>';
   require_once('../require/footer.php');
