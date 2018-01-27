@@ -4,23 +4,28 @@
         <div class="col-md-9 col-lg-9">
           <p class="text-center block-header">ТРЕНЕРСКИЙ СОСТАВ</p>
           <?php
-            $sql="select id, name, description, img from trainers";
+            $sql="select id, name, description, img, contact from trainers";
             $result = mysqli_query($conn, $sql); 
             while($row = mysqli_fetch_assoc($result)) 
             {
                 echo '<div class="row" style="margin-top: 40px;">
-                <div class="col-md-3">
-                  <img class="img-thumbnail" src="../content/img/'.$row['img'].'" style="width: 200px; height: 200px;">
+                <div class="col-md-3 col-sm-12">
+                  <div align="center">
+                    <img class="img-thumbnail img-responsive" src="../content/img/'.$row['img'].'" style="width: 200px; height: 200px;">
+                  </div>
                 </div>
                 <div class="col-md-8">
                   <div align="center">
-                    <h3 class="margin-top-none">'.$row['name'].'</h3>
+                    <h3>'.$row['name'].'</h3>
                   </div>
                   <p>
                   '.$row['description'].'
                   </p>
+                  <div class="panel-footer">
+                    <span class="glyphicon glyphicon-phone"></span> '.$row['contact'].'
+                  </div>
                 </div>
-              </div>';
+              </div><hr>';
             }
   require_once('../require/footer.php');
 ?>
