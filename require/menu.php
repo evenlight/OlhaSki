@@ -10,6 +10,7 @@
             <li role="presentation"><a href="/terms/"><i class="glyphicon glyphicon-info-sign"></i>Правила приема</a></li>
             <li role="presentation"><a href="/timetable/"><i class="glyphicon glyphicon-time"></i>Расписание занятий</a></li>
             <li role="presentation"><a href="/events/"><i class="glyphicon glyphicon-calendar"></i>Календарь мероприятий</a></li>
+            <li role="presentation"><a href="/contacts/"><i class="glyphicon glyphicon-send"></i>Контакты</a></li>
             <li role="presentation"><a href="/about/"><i class="glyphicon glyphicon-question-sign"></i>О нас</a></li>
         </ul>
     </div>
