@@ -20,6 +20,7 @@
     <![endif]-->
   </head>
   <body>
+    <div id="preloader"><span class="spinner"></span></div>
     <div class="container">
         <nav class="navbar">
           <div class="container-fluid">

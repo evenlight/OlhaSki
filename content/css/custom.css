@@ -21,6 +21,26 @@ html,body {
     border-top-left-radius: 0;
     border-top-right-radius: 0;
   }
+
+#preloader {
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background: #000;
+    z-index: 999;
+}
+
+#preloader .spinner {
+    width: 64px;
+    height: 64px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    background: url('/content/img/preloader.gif') no-repeat 50% 50%;
+    margin: -32px 0 0 -32px;
+} 
   
   
 
