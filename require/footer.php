@@ -1,6 +1,12 @@
-        </div>       
+        </div>   
             <footer class="footer">
-                <p class="text-muted text-center">2017 &copy; <a href="evenlight.team" class="copylink">evenlight</a></p>
+                <div class="text-center">
+                    <!-- uSocial -->
+                    <script async src="https://usocial.pro/usocial/usocial.js?v=6.1.4" data-script="usocial" charset="utf-8"></script>
+                    <div class="uSocial-Share" data-pid="5b754275fca259b27ec1ddc93e84d375" data-type="share" data-options="round-rect,style1,default,absolute,horizontal,size48,eachCounter0,counter0" data-social="vk,fb,ok,twi" data-mobile="vi,wa,sms"></div>
+                    <!-- /uSocial -->
+                </div>
+                <p class="text-muted text-center"><?php echo date("Y") ?> &copy; <a href="evenlight.team" class="copylink">evenlight</a></p>
             </footer>
     </div>
   <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
