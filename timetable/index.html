@@ -7,14 +7,14 @@
             <table class="table table-condensed table-bordered table-striped" style="height: 300px;">
                 <thead>
                     <tr>
-                        <th style="text-align: center; padding-top: 50px; padding-bottom: 50px;">Группа</th>
-                        <th style="text-align: center; padding-top: 50px; padding-bottom: 50px;">ПН</th>
-                        <th style="text-align: center; padding-top: 50px; padding-bottom: 50px;">ВТ</th>
-                        <th style="text-align: center; padding-top: 50px; padding-bottom: 50px;">СР</th>
-                        <th style="text-align: center; padding-top: 50px; padding-bottom: 50px;">ЧТ</th>
-                        <th style="text-align: center; padding-top: 50px; padding-bottom: 50px;">ПТ</th>
-                        <th style="text-align: center; padding-top: 50px; padding-bottom: 50px;">СБ</th>
-                        <th style="text-align: center; padding-top: 50px; padding-bottom: 50px;">ВС</th>
+                        <th style="text-align: center; padding-top: 30px; padding-bottom: 30px;">Группа</th>
+                        <th style="text-align: center; padding-top: 30px; padding-bottom: 30px;">ПН</th>
+                        <th style="text-align: center; padding-top: 30px; padding-bottom: 30px;">ВТ</th>
+                        <th style="text-align: center; padding-top: 30px; padding-bottom: 30px;">СР</th>
+                        <th style="text-align: center; padding-top: 30px; padding-bottom: 30px;">ЧТ</th>
+                        <th style="text-align: center; padding-top: 30px; padding-bottom: 30px;">ПТ</th>
+                        <th style="text-align: center; padding-top: 30px; padding-bottom: 30px;">СБ</th>
+                        <th style="text-align: center; padding-top: 30px; padding-bottom: 30px;">ВС</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -47,14 +47,14 @@
                         $result = mysqli_query($conn, $sql); 
                         while($row = mysqli_fetch_assoc($result)) 
                         {
-                            echo '<tr><td style="text-align: center; padding-top: 50px; padding-bottom: 50px;"><strong>'.$row['group'].'</strong></td>
-                            <td style="text-align: center; padding-top: 50px; padding-bottom: 50px;"><a href="#" data-toggle="tooltip" data-placement="top" data-html="true" title="'.$row['loc1'].'">'.$row['day1'].'</a></td>
-                            <td style="text-align: center; padding-top: 50px; padding-bottom: 50px;"><a href="#" data-toggle="tooltip" data-placement="top" data-html="true" title="'.$row['loc2'].'">'.$row['day2'].'</a></td>
-                            <td style="text-align: center; padding-top: 50px; padding-bottom: 50px;"><a href="#" data-toggle="tooltip" data-placement="top" data-html="true" title="'.$row['loc3'].'">'.$row['day3'].'</a></td>
-                            <td style="text-align: center; padding-top: 50px; padding-bottom: 50px;"><a href="#" data-toggle="tooltip" data-placement="top" data-html="true" title="'.$row['loc4'].'">'.$row['day4'].'</a></td>
-                            <td style="text-align: center; padding-top: 50px; padding-bottom: 50px;"><a href="#" data-toggle="tooltip" data-placement="top" data-html="true" title="'.$row['loc5'].'">'.$row['day5'].'</a></td>
-                            <td style="text-align: center; padding-top: 50px; padding-bottom: 50px;"><a href="#" data-toggle="tooltip" data-placement="top" data-html="true" title="'.$row['loc6'].'">'.$row['day6'].'</a></td>
-                            <td style="text-align: center; padding-top: 50px; padding-bottom: 50px;"><a href="#" data-toggle="tooltip" data-placement="top" data-html="true" title="'.$row['loc7'].'">'.$row['day7'].'</td></tr>';
+                            echo '<tr><td style="text-align: center; padding-top: 30px; padding-bottom: 30px;"><strong>'.$row['group'].'</strong></td>
+                            <td style="text-align: center; padding-top: 30px; padding-bottom: 30px;"><a href="#" data-toggle="tooltip" data-placement="top" data-html="true" title="'.$row['loc1'].'">'.$row['day1'].'</a></td>
+                            <td style="text-align: center; padding-top: 30px; padding-bottom: 30px;"><a href="#" data-toggle="tooltip" data-placement="top" data-html="true" title="'.$row['loc2'].'">'.$row['day2'].'</a></td>
+                            <td style="text-align: center; padding-top: 30px; padding-bottom: 30px;"><a href="#" data-toggle="tooltip" data-placement="top" data-html="true" title="'.$row['loc3'].'">'.$row['day3'].'</a></td>
+                            <td style="text-align: center; padding-top: 30px; padding-bottom: 30px;"><a href="#" data-toggle="tooltip" data-placement="top" data-html="true" title="'.$row['loc4'].'">'.$row['day4'].'</a></td>
+                            <td style="text-align: center; padding-top: 30px; padding-bottom: 30px;"><a href="#" data-toggle="tooltip" data-placement="top" data-html="true" title="'.$row['loc5'].'">'.$row['day5'].'</a></td>
+                            <td style="text-align: center; padding-top: 30px; padding-bottom: 30px;"><a href="#" data-toggle="tooltip" data-placement="top" data-html="true" title="'.$row['loc6'].'">'.$row['day6'].'</a></td>
+                            <td style="text-align: center; padding-top: 30px; padding-bottom: 30px;"><a href="#" data-toggle="tooltip" data-placement="top" data-html="true" title="'.$row['loc7'].'">'.$row['day7'].'</td></tr>';
                         }
                     ?>
                     
