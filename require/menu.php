@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row main">
     <div class="col-md-3 col-lg-3">
         <p class="text-center block-header">МЕНЮ</p>
         <ul class="nav nav-pills nav-stacked">
