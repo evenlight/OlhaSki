@@ -20,7 +20,7 @@
         <div class="col-md-12">
             <div class="panel panel-default">
                 <div class="panel-body">
-                    По вопросам записи в школу обрашаться <a href="/trainers/">сюда</a>
+                    По вопросам записи в школу обращаться <a href="/trainers/">сюда</a>
                 </div>
             </div>
         </div>

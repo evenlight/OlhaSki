@@ -4,15 +4,24 @@
         <div class="col-md-9 col-lg-9">
           <p class="text-center block-header">НОВОСТИ</p>
           <?php
-              $sql="select id, DATE_FORMAT(publishdate, '%d.%m.%Y') as publishdate, title, body, img from news where img is not null or img!='' order by publishDate desc";
-              $result = mysqli_query($conn, $sql); 
-              while($row = mysqli_fetch_assoc($result)) 
-              {
+          $sql="select id, DATE_FORMAT(publishdate, '%d.%m.%Y') as publishdate, title, body, img from news order by publishDate desc";
+          echo $sql;
+          $result = mysqli_query($conn, $sql); 
+          while($row = mysqli_fetch_assoc($result)) 
+          {
+            if(!empty($row['img']) or $row['img']!=0)
+            {
+              $img='<img class="news-left" src="../content/img/'.$row['img'].'" style="height: 150px">';
+            }
+            else
+            {
+                $img="";
+            }
                   echo '
                   <div class="row">
                   <div class="col-md-12">
                     <p class="text-justify">
-                      <img class="news-left" src="../content/img/'.$row['img'].'" style="height: 150px">
+                      '.$img.'
                       <h4 class="margin-top-none"><a href="#">'.$row['title'].'</a></h4>
                       '.$row['body'].'
                     </p>
