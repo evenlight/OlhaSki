@@ -248,3 +248,16 @@ html,body {
     color: rgba(0, 0, 0, .87);
 }
 /*------*/
+
+.td-height-50
+{
+    padding: 5px;
+    text-align: center;
+    vertical-align: 25px;
+}
+.th-height-50
+{
+    padding: 5px;
+    text-align: center;
+    vertical-align: 25px;
+}

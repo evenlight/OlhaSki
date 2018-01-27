@@ -33,5 +33,10 @@
             $preloader.delay(350).fadeOut('slow');
         });
     </script>
+    <script type="text/javascript">
+    $(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip();   
+    });
+    </script>
   </body>
 </html>
