@@ -28,7 +28,7 @@ html,body {
     top: 0;
     right: 0;
     bottom: 0;
-    background: #000;
+    background: #fff;
     z-index: 999;
 }
 
@@ -38,7 +38,7 @@ html,body {
     position: absolute;
     left: 50%;
     top: 50%;
-    background: url('/content/img/preloader.gif') no-repeat 50% 50%;
+    background: url('../img/preloader.gif') no-repeat 50% 50%;
     margin: -32px 0 0 -32px;
 } 
   
