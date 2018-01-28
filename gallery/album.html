@@ -10,9 +10,13 @@
             echo '
                   <!-- data-max-width="100" -->
                   <div class="col-md-3 col-sm-6 col-xs-12 col-lg-3">
-                    <a href="../content/gallery/'.$rowG['img'].'" data-toggle="lightbox" data-gallery="example-gallery">
-                        <img src="../content/gallery/'.$rowG['img'].'" class="img-thumbnail">
-                    </a>
+                    <div align="center">
+                        <p>
+                            <a href="../content/gallery/'.$rowG['img'].'" data-toggle="lightbox" data-gallery="example-gallery">
+                                <img src="../content/gallery/'.$rowG['img'].'" class="img-thumbnail" style="height: 150px; width: 200px;">
+                            </a>
+                        </p>
+                    </div>
                 </div>';
         }
       sleep(10);
