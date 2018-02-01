@@ -1,33 +1,16 @@
 
- <?php
+<?php
     require_once('../require/header.php');
-    # проверка авторизации
-    if (isset($_COOKIE['id']) and isset($_COOKIE['hash'])) 
-    {    
-        $userdata = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM users WHERE users_id = '".intval($_COOKIE['id'])."' LIMIT 1"));
-
-        if(($userdata['users_hash'] !== $_COOKIE['hash']) or ($userdata['users_id'] !== $_COOKIE['id'])) 
-        { 
-            setcookie('id', '', time() - 60*24*30*12, '/'); 
-            setcookie('hash', '', time() - 60*24*30*12, '/');
-        setcookie('errors', '1', time() + 60*24*30*12, '/');
-        header('Location: login.php'); exit();
-        } 
-    } 
-    else 
-    { 
-      setcookie('errors', '2', time() + 60*24*30*12, '/');
-      header('Location: login.php'); exit();
-    }
 ?>
-        <form class="signin-form">
+        <form class="signin-form" method="POST">
           <h2 class="form-signin-heading">Авторизация</h2>
-          <label for="inputEmail" class="sr-only">Логин</label>
-          <input type="email" id="inputEmail" class="form-control" placeholder="Логин" required autofocus>
+          <label for="inputLogin" class="sr-only">Логин</label>
+          <input type="text" id="inputLogin" name="login" class="form-control" placeholder="Логин" required autofocus>
           <label for="inputPassword" class="sr-only">Пароль</label>
-          <input type="password" id="inputPassword" class="form-control" placeholder="Пароль" required>
-          <button class="btn btn-lg btn-primary btn-block" type="submit">Войти</button>
+          <input type="password" id="inputPassword" name ="password" class="form-control" placeholder="Пароль" required>
+          <button class="btn btn-lg btn-primary btn-block" name="submit" type="submit">Войти</button>
         </form>
-        </div>
-    </body>
-</html>
+<?php
+    require_once ('login.php');
+    require_once('../require/header.php');
+?>

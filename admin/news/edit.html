@@ -1,82 +1,96 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Горнолыжный комплекс "Олха"</title>
-
-    <!-- Bootstrap -->
-    <link href="../../content/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Custom Styles -->
-    <link href="../../content/css/custom.css" rel="stylesheet">
-    <link rel="shortcut icon" href="../../content/img/favicon.png" type="image/x-icon">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.css" rel="stylesheet">
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-  </head>
-  <body>
-    <div class="container">
-        <nav class="navbar">
-          <div class="container-fluid">
-            <div class="navbar-header">
-              <button type="button" class="collapsed navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-              </button>
-              <a href="#" class="navbar-brand">
-                <img src="../../content/img/logo.jpg" class="logo" alt="logo">
-              </a> 
-            </div> 
-            <div class="collapse navbar-collapse" id="navbar-collapse"> 
-                <ul class="nav navbar-nav">
-                    <li><a href="index.html">Новости</a></li>
-                    <li><a href="../slider/index.html">Слайдер</a></li>
-                    <li><a href="../trainers/index.html">Тренеры</a></li>
-                    <li><a href="../athletes/index.html">Спортсмены</a></li>
-                    <li><a href="../timetable/index.html">Расписание</a></li>
-                    <li><a href="../events/index.html">Мероприятия</a></li>
-                    <li><a href="../gallery/index.html">Галерея</a></li>
-                </ul>  
-                <p class="navbar-text navbar-right">
-                    <a href="#" class="navbar-link">Выход</a>
-                </p> 
-            </div> 
-          </div> 
-        </nav>
-
+<?php
+    require_once('../require/header.php');
+    extract($_REQUEST,EXTR_PREFIX_ALL|EXTR_REFS,'in');
+?>
         <div class="row">
-            <div class="col-md-12">
-                <h2>Редактирование новости</h2>
-                
-                <form>
+          <div class="panel panel-default">
+            <div class="col-md-8 col-md-offset-2">
+                <h2>Режим редактирования</h2>
+                <form action="edit.html?pid=<?php echo $_GET['pid']; ?>" enctype="multipart/form-data" method="POST">
+                <input type="hidden" name="command" value="go">
+                  <?php
+                    $sql="select * from news where id=".$_GET['pid']."";
+                    $result = mysqli_query($conn, $sql); 
+                    while($row = mysqli_fetch_assoc($result)) 
+                    {
+                    ?>
+                      <div class="form-group">
+                        <label for="title">Заголовок</label>
+                        <input type="text" class="form-control" id="title" name="title" value="<?php echo $row['title']; ?>" placeholder="Заголовок">
+                      </div>
+                      <div class="form-group">
+                        <label for="body">Новость</label>
+                        <textarea name="body" id="body" class="form-control"><?php echo $row['body']; ?></textarea>
+                      </div>
+                      <div align="center">
+                      <div class="form-group">
+                        <?php
+                            if (!empty($row['img']))
+                            {
+                              echo '<img class="img-thumnail" id="img" src="../../content/img/'.$row['img'].'" style="max-height: 100px;">';
+                            }
+                        ?>
+                      </div>
                         <div class="form-group">
-                          <label for="title">Заголовок</label>
-                          <input type="text" class="form-control" id="title" value="Lorem ipsum dolor sit amet consectetur adipisicing elit." placeholder="Заголовок">
-                        </div>
-                        <div class="form-group">
-                          <label for="body">Новость</label>
-                          <textarea name="body" id="body" cols="30" rows="10" class="form-control">
-                              Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus modi, blanditiis sit neque culpa temporibus consectetur ipsam tempore fuga delectus repellendus iste doloribus veritatis qui, facilis repudiandae non cupiditate laborum?
-                          </textarea>
-                        </div>
-                        <div class="form-group">
-                          <label for="img">Фото</label>
-                          <input type="file" id="img">
+                          <input type="file" name="img" id="img" class="btn btn-default">
                           <p class="help-block">Загрузите фото для новости</p>
                         </div>
-                        <button type="submit" class="btn btn-default">Сохранить</button>
-                        <button class="btn btn-danger">Удалить</button>
+                  <?php
+
+                    }
+                    ?>
+                    <div class="form-group">
+                          <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-ok"></span>Сохранить</button>
+                          <a href="edit.html?act=delete&pid=<?php echo $_GET['pid']; ?>" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span>Удалить</a>  
+                    </div>
+                  </div>
                 </form>
             </div>
         </div>
+      </div>
+                
+<?php
+if ($_POST['command']=='go')
+{
+  if (basename($_FILES['img']['name'])=='')
+  {
+    $img="";
+  }
+  else
+  {
+    $uploaddir = '../../Content/img/';
+    //$filename = uniqid().'-'.basename($_FILES['img']['name']);
+    $filename = uniqid().'.jpg';
+    //echo $filename;
+    $uploadfile = $uploaddir . $filename;
+    move_uploaded_file($_FILES['img']['tmp_name'], $uploadfile);
+    $img=", img='".$filename."'";
+  }
 
-        </div>
-    </body>
-</html>
+  $sql="update news set title='".$_POST['title']."', body='".$_POST['body']."' ".$img." where id=".$_GET['pid']."";
+  $execute=mysqli_query($conn, $sql);
+  if ($execute)
+  {
+    echo alert ('news', 1);
+  }
+  else
+  {
+    echo alert ('news', 0);
+  }
+}
+
+if($in_act=='delete')
+{
+  $sql="delete from news where id=".$_GET['pid']."";
+  $execute=mysqli_query($conn, $sql);
+  if ($execute)
+  {
+    echo alert ('news', 1);
+  }
+  else
+  {
+    echo alert ('news', 0);
+  }
+}
+  require_once('../require/footer.php');
+?>

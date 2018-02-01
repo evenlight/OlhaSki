@@ -1,101 +1,147 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Горнолыжный комплекс "Олха"</title>
-
-    <!-- Bootstrap -->
-    <link href="../../content/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Custom Styles -->
-    <link href="../../content/css/custom.css" rel="stylesheet">
-    <link rel="shortcut icon" href="../../content/img/favicon.png" type="image/x-icon">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.css" rel="stylesheet">
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-  </head>
-  <body>
-    <div class="container">
-        <nav class="navbar">
-          <div class="container-fluid">
-            <div class="navbar-header">
-              <button type="button" class="collapsed navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-              </button>
-              <a href="#" class="navbar-brand">
-                <img src="../../content/img/logo.jpg" class="logo" alt="logo">
-              </a> 
-            </div> 
-            <div class="collapse navbar-collapse" id="navbar-collapse"> 
-                <ul class="nav navbar-nav">
-                    <li><a href="../news/index.html">Новости</a></li>
-                    <li><a href="../slider/index.html">Слайдер</a></li>
-                    <li><a href="../trainers/index.html">Тренеры</a></li>
-                    <li><a href="index.html">Спортсмены</a></li>
-                    <li><a href="../timetable/index.html">Расписание</a></li>
-                    <li><a href="../events/index.html">Мероприятия</a></li>
-                    <li><a href="../gallery/index.html">Галерея</a></li>
-                </ul>  
-                <p class="navbar-text navbar-right">
-                    <a href="#" class="navbar-link">Выход</a>
-                </p> 
-            </div> 
-          </div> 
-        </nav>
-
+<?php
+    require_once('../require/header.php');
+    extract($_REQUEST,EXTR_PREFIX_ALL|EXTR_REFS,'in');
+?>
         <div class="row">
-            <div class="col-md-12">
-                <h2>Редактирование спортсмена</h2>
-                <div class="col-md-6">
-                    <form>
+          <div class="panel panel-default">
+            <div class="col-md-8 col-md-offset-2">
+                <h2>Режим редактирования</h2>
+                <form action="edit.html?pid=<?php echo $_GET['pid']; ?>" enctype="multipart/form-data" method="POST">
+                <input type="hidden" name="command" value="go">
+                  <?php
+                    $sql="select * from athlets where id=".$_GET['pid']."";
+                    $result = mysqli_query($conn, $sql); 
+                    while($row = mysqli_fetch_assoc($result)) 
+                    {
+                    ?>
+                      <div class="form-group">
+                        <label for="title">Имя</label>
+                        <input type="text" class="form-control" id="name" name="name" value="<?php echo $row['name']; ?>" placeholder="ФИО">
+                      </div>
+                      <div class="form-group">
+                        <label for="birthday">Год рождения</label>
+                        <input type="text" class="form-control" id="birthday" name="birthday" value="<?php echo $row['adoptedBy']; ?>" placeholder="ФИО">
+                      </div>
+                      <div class="form-group">
+                        <label for="rank">Разряд</label>
+                        <select id="rank" name="rank" class="form-control">
+                            <option></option>
+                            <?php
+                            $sqlS="select * from rank";
+                            $resultS = mysqli_query($conn, $sqlS); 
+                            while($rowS = mysqli_fetch_assoc($resultS)) 
+                            {
+                                if ($rowS['id']==$row['rank']) 
+							    {
+                                    echo '<option value="'.$rowS['id'].'" selected="selected">'.$rowS['rankname'].'</option>';
+                                }
+                                else
+                                {
+                                    echo '<option value="'.$rowS['id'].'">'.$rowS['rankname'].'</option>';
+                                }
+                            }
+                            ?>
+                        </select>
+                      </div>
+                      <div class="form-group">
+                        <label for="category">Категория</label>
+                        <select id="category" name="category" class="form-control">
+                            <option></option>
+                            <?php
+                            $sqlSS="select * from category";
+                            $resultSS = mysqli_query($conn, $sqlSS); 
+                            while($rowSS = mysqli_fetch_assoc($resultSS)) 
+                            {
+                                if ($rowSS['id']==$row['category']) 
+							    {
+                                    echo '<option value="'.$rowSS['id'].'" selected="selected">'.$rowSS['categoryname'].'</option>';
+                                }
+                                else
+                                {
+                                    echo '<option value="'.$rowSS['id'].'">'.$rowSS['categoryname'].'</option>';
+                                }
+                            }
+                            ?>
+                        </select>
+                      </div>
+                      <div class="form-group">
+                        <label for="descr">Достижения</label>
+                        <textarea name="descr" id="descr" class="form-control"><?php echo $row['description']; ?></textarea>
+                      </div>
+                      <div class="form-group">
+                            <label for="ado">Принят с</label>
+                            <input type="text" class="form-control" id="ado" name="ado" value="<?php echo $row['adoptedBy']; ?>">
+                        </div>
+                      <div align="center">
                         <div class="form-group">
-                          <label for="name">Имя</label>
-                          <input type="text" class="form-control" id="name" value="Lorem Ipsum" placeholder="Имя">
+                            <?php
+                                if (!empty($row['img']))
+                                {
+                                echo '<img class="img-thumnail" id="img" src="../../content/img/'.$row['img'].'" style="max-height: 100px;">';
+                                }
+                            ?>
                         </div>
                         <div class="form-group">
-                            <label for="birthday">Год рождения</label>
-                            <input type="number" class="form-control" id="birthday" value="1993" placeholder="Год рождения">
+                          <input type="file" name="img" id="img" class="btn btn-default">
+                          <p class="help-block">Загрузите фото</p>
                         </div>
-                        <div class="form-group">
-                          <label for="rank">Разряд</label>
-                          <select name="rank" class="form-control" id="rank">
-                              <option value="I Юн.">I Юн.</option>
-                              <option value="I Юн.">II Юн.</option>
-                              <option value="I Юн.">III Юн.</option>
-                              <option value="I Юн." selected>I Взр.</option>
-                              <option value="I Юн.">II Взр.</option>
-                              <option value="I Юн.">III Взр.</option>
-                              <option value="I Юн.">КМС</option>
-                              <option value="I Юн.">МС</option>
-                              <option value="I Юн.">МСМК</option>
-                          </select>
-                        </div>
-                        <div class="form-group">
-                          <label for="description">Достижения</label>
-                          <textarea name="description" id="description" cols="30" rows="10" class="form-control">
-                              Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore exercitationem consectetur, vitae corrupti possimus rerum consequuntur quaerat eius qui nostrum?
-                          </textarea>
-                        </div>
-                        <div class="form-group">
-                          <label for="img">Фото</label>
-                          <input type="file" id="img">
-                          <p class="help-block">Загрузите фото спортсмена</p>
-                        </div>
-                        <button type="submit" class="btn btn-default">Сохранить</button>
-                        <button class="btn btn-danger">Удалить</button>
-                    </form>
-                </div>
+                  <?php
+
+                    }
+                    ?>
+                    <div class="form-group">
+                          <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-ok"></span>Сохранить</button>
+                          <a href="edit.html?act=delete&pid=<?php echo $_GET['pid']; ?>" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span>Удалить</a>  
+                    </div>
+                  </div>
+                </form>
             </div>
         </div>
+      </div>
+                
+<?php
+if ($_POST['command']=='go')
+{
+  if (basename($_FILES['img']['name'])=='')
+  {
+    $img="";
+  }
+  else
+  {
+    $uploaddir = '../../Content/img/';
+    //$filename = uniqid().'-'.basename($_FILES['img']['name']);
+    $filename = uniqid().'.jpg';
+    //echo $filename;
+    $uploadfile = $uploaddir . $filename;
+    move_uploaded_file($_FILES['img']['tmp_name'], $uploadfile);
+    $img=", img='".$filename."'";
+  }
 
-        </div>
-    </body>
-</html>
+  $sql="update athlets set name='".$_POST['name']."', description='".$_POST['descr']."', birthday='".$_POST['birthday']."', rank='".$_POST['rank']."',
+  category='".$_POST['category']."', adoptedBy='".$_POST['ado']."' ".$img." where id=".$_GET['pid']."";
+  $execute=mysqli_query($conn, $sql);
+  if ($execute)
+  {
+    echo alert ('athletes', 1);
+  }
+  else
+  {
+    echo alert ('athletes', 0);
+  }
+}
+
+if($in_act=='delete')
+{
+  $sql="delete from athlets where id=".$_GET['pid']."";
+  $execute=mysqli_query($conn, $sql);
+  if ($execute)
+  {
+    echo alert ('athletes', 1);
+  }
+  else
+  {
+    echo alert ('athletes', 0);
+  }
+}
+  require_once('../require/footer.php');
+?>

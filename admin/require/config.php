@@ -14,8 +14,4 @@ if (!$conn) {
 //mysqli_close($conn);
 mysqli_set_charset($conn, "utf8");
 $setupMySql = mysqli_query($conn, "SET SQL_BIG_SELECTS = 1" );
-
-$error[0] = 'Я вас не знаю';
-$error[1] = 'Включи куки';
-$error[2] = 'Тебе сюда нельзя';
 ?>

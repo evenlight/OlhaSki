@@ -30,12 +30,13 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              <a href="#" class="navbar-brand">
+              <a href="/admin/home/" class="navbar-brand">
                 <img src="../../../content/img/logo.png" class="logo" alt="logo">
               </a> 
             </div>
             <?php
                 require_once('config.php');
+                require_once('functions.php');
                 require_once('menu.php');
             ?>
           </div> 
