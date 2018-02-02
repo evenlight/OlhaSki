@@ -11,7 +11,7 @@
           {
             if(!empty($row['img']) or $row['img']!=0)
             {
-              $img='<img class="news-left img-thumbnail pull-right" src="../content/img/'.$row['img'].'" style="height: 150px">';
+              $img='<img class="news-left img-thumbnail pull-right" src="../content/img/'.$row['img'].'" style="height: 150px; margin-left: 15px; margin-right: 0px;">';
             }
             else
             {
@@ -23,7 +23,7 @@
                         <p class="blog-post-meta text-muted"> Дата публикации: '.$row['publishdate'].'</p>
                         '.$img.'
                         <!--<blockquote>-->
-                            <p>'.$row['body'].'</p>
+                            <p class="text-justify">'.$row['body'].'</p>
                         <!--</blockquote>-->
                     </div>
                     <hr>';  
