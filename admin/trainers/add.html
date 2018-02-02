@@ -38,7 +38,7 @@ if ($_POST['command']=='go')
   }
   else
   {
-    upload_file (1, 'I');
+    $img=upload_file (1, 'I');
   }
   $sql="insert into trainers (name, description, contact, img) values ('".$_POST['name']."', '".$_POST['descr']."', '".$_POST['contact']."', '".$img."')";
   $execute=mysqli_query($conn, $sql);

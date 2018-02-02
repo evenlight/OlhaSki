@@ -68,7 +68,7 @@ if ($_POST['command']=='go')
   }
   else
   {
-    upload_file (1);
+    $img=upload_file (1, 'I');
   }
   $sql="insert into athlets (name, description, birthday, rank, category, adoptedBy, img) values ('".$_POST['name']."', 
   '".$_POST['descr']."', '".$_POST['birthday']."', '".$_POST['rank']."', '".$_POST['category']."', '".$_POST['ado']."', '".$img."')";

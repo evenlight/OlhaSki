@@ -77,7 +77,7 @@
                             <?php
                                 if (!empty($row['img']))
                                 {
-                                echo '<img class="img-thumnail" id="img" src="../../content/img/'.$row['img'].'" style="max-height: 100px;">';
+                                  echo '<img class="img-thumnail" id="img" src="<?php echo $path; ?>content/img/'.$row['img'].'" style="max-height: 100px;">';
                                 }
                             ?>
                         </div>
@@ -108,13 +108,7 @@ if ($_POST['command']=='go')
   }
   else
   {
-    $uploaddir = '../../Content/img/';
-    //$filename = uniqid().'-'.basename($_FILES['img']['name']);
-    $filename = uniqid().'.jpg';
-    //echo $filename;
-    $uploadfile = $uploaddir . $filename;
-    move_uploaded_file($_FILES['img']['tmp_name'], $uploadfile);
-    $img=", img='".$filename."'";
+    $img=upload_file (1, 'U');
   }
 
   $sql="update athlets set name='".$_POST['name']."', description='".$_POST['descr']."', birthday='".$_POST['birthday']."', rank='".$_POST['rank']."',

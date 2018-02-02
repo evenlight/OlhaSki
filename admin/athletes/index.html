@@ -30,7 +30,7 @@
                             {
                                echo '<tr><td>'.$row['name'].'</td><td>'.$row['description'].'</td><td>'.$row['rankname'].'</td>
                                 <td>'.$row['adoptedBy'].'</td>
-                               <td><a href="../../Content/img/'.$row['img'].'" target="_blank">Открыть</a></td>
+                               <td><a href=<?php echo $path; ?>content/img/'.$row['img'].'" target="_blank">Открыть</a></td>
                                 <td class="text-center"><a class="btn btn-primary" href="edit.html?pid='.$row['ID'].'"><span class="glyphicon glyphicon-pencil"></span>Ред.</a></td></tr>';
                             }
                         ?>
