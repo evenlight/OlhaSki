@@ -68,13 +68,7 @@ if ($_POST['command']=='go')
   }
   else
   {
-    $uploaddir = '../../Content/img/';
-    //$filename = uniqid().'-'.basename($_FILES['img']['name']);
-    $filename = uniqid().'.jpg';
-    //echo $filename;
-    $uploadfile = $uploaddir . $filename;
-    move_uploaded_file($_FILES['img']['tmp_name'], $uploadfile);
-    $img=$filename;
+    upload_file (1);
   }
   $sql="insert into athlets (name, description, birthday, rank, category, adoptedBy, img) values ('".$_POST['name']."', 
   '".$_POST['descr']."', '".$_POST['birthday']."', '".$_POST['rank']."', '".$_POST['category']."', '".$_POST['ado']."', '".$img."')";

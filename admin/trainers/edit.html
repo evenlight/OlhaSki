@@ -58,28 +58,22 @@ if ($_POST['command']=='go')
 {
   if (basename($_FILES['img']['name'])=='')
   {
-    $img="";
+    $img=0;
   }
   else
   {
-    $uploaddir = '../../Content/img/';
-    //$filename = uniqid().'-'.basename($_FILES['img']['name']);
-    $filename = uniqid().'.jpg';
-    //echo $filename;
-    $uploadfile = $uploaddir . $filename;
-    move_uploaded_file($_FILES['img']['tmp_name'], $uploadfile);
-    $img=", img='".$filename."'";
+    $img=upload_file (1, 'U');
   }
 
   $sql="update trainers set name='".$_POST['name']."', description='".$_POST['desc']."', contact='".$_POST['contact']."'  ".$img." where id=".$_GET['pid']."";
   $execute=mysqli_query($conn, $sql);
   if ($execute)
   {
-    echo alert ('trainers', 1);
+    //echo alert ('trainers', 1);
   }
   else
   {
-    echo alert ('trainers', 0);
+    //echo alert ('trainers', 0);
   }
 }
 

@@ -38,11 +38,7 @@ if ($_POST['command']=='go')
   }
   else
   {
-    $uploaddir = '../../Content/img/';
-    $filename = uniqid().'.jpg';
-    $uploadfile = $uploaddir . $filename;
-    move_uploaded_file($_FILES['img']['tmp_name'], $uploadfile);
-    $img=$filename;
+    upload_file (1, 'I');
   }
   $sql="insert into trainers (name, description, contact, img) values ('".$_POST['name']."', '".$_POST['descr']."', '".$_POST['contact']."', '".$img."')";
   $execute=mysqli_query($conn, $sql);
