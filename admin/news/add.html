@@ -43,7 +43,7 @@ if ($_POST['command']=='go')
     move_uploaded_file($_FILES['img']['tmp_name'], $uploadfile);
     $img=$filename;
   }
-  $sql="insert into news (publishDate, title, body, img) values (NOW(), '".$_POST['title']."', '".$_POST['title']."', '".$img."')";
+  $sql="insert into news (publishDate, title, body, img) values (NOW(), '".$_POST['title']."', '".$_POST['body']."', '".$img."')";
   $execute=mysqli_query($conn, $sql);
   if ($execute)
   {

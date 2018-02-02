@@ -1,0 +1,32 @@
+<?php
+  require_once('../require/header.php');
+?>
+        <div class="col-md-9 col-lg-9">
+            <p class="text-center block-header">НОВОСТИ</p>
+          <?php
+          $sql="select id, DATE_FORMAT(publishdate, '%d.%m.%Y') as publishdate, title, body, img from news where id=".$_GET['pid']."";
+          //echo $sql;
+          $result = mysqli_query($conn, $sql); 
+          while($row = mysqli_fetch_assoc($result)) 
+          {
+            if(!empty($row['img']) or $row['img']!=0)
+            {
+              $img='<img class="news-left img-thumbnail pull-right" src="../content/img/'.$row['img'].'" style="height: 150px">';
+            }
+            else
+            {
+                $img="";
+            }
+                  echo '
+                    <div class="blog-post">
+                        <h2 class="blog-post-title">'.$row['title'].'</h2>
+                        <p class="blog-post-meta text-muted"> Дата публикации: '.$row['publishdate'].'</p>
+                        '.$img.'
+                        <!--<blockquote>-->
+                            <p>'.$row['body'].'</p>
+                        <!--</blockquote>-->
+                    </div>
+                    <hr>';  
+              }            
+  require_once('../require/footer.php');
+?>
