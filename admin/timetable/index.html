@@ -4,38 +4,31 @@
 
         <div class="row">
             <div class="col-md-12">
-                <h2>Расписание занятий</h2>
-                <p><a href="add.html">Добавить занятие</a></p>
-                <table class="table table-bordered">
+                <h2>Расписание</h2>
+                <p><a class="btn btn-success" href="add.html"><span class="glyphicon glyphicon-plus"></span>Добавить занятие</a>
+                <a class="btn btn-info" href="../spr/?value=groups"><span class="glyphicon glyphicon-pencil"></span>Справочник групп</a></p>
+                <table class="table table-bordered table-striped">
                     <thead>
                         <tr>
-                            <td><b>Группа</b></td>
-                            <td><b>День недели</b></td>
-                            <td><b>Время занятия</b></td>
-                            <td></td>
-                        </tr>
-                        
+                            <th>Группа</th>
+                            <th>День недели</th>
+                            <th>Время занятия</th>
+                            <th>Место проведения</th>
+                            <th>Действия</th>
+                        </tr>                       
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>Группа 1</td>
-                            <td>ПН</td>
-                            <td>9:00 - 12:00</td>                            
-                            <td><a href="edit.html">Редактировать</a></td>
-                        </tr>
-                        <tr>
-                                <td>Группа 2</td>
-                                <td>ВТ</td>
-                                <td>11:30 - 13:00</td>                            
-                                <td><a href="edit.html">Редактировать</a></td>
-                        </tr>
-                        <tr>
-                                <td>Группа 3</td>
-                                <td>ПН</td>
-                                <td>16:00 - 20:00</td>                            
-                                <td><a href="edit.html">Редактировать</a></td>
-                        </tr>
-                        
+                        <?php
+                            $sql="select t1.ID, t1.timeStart, t1.timeEnd, t1.location, t2.*, t3.sprvalue as groupname
+                             from timetable t1 left join dayweek t2 on t1.dayweek=t2.id left join groups t3 on t1.group=t3.id";
+                            $result = mysqli_query($conn, $sql); 
+                            while($row = mysqli_fetch_assoc($result)) 
+                            {
+                               echo '<tr><td>'.$row['groupname'].'</td><td><strong>'.$row['sprvalue'].'</strong></td><td>'.$row['timeStart'].'-'.$row['timeEnd'].'</td>
+                               <td>'.$row['location'].'</td>
+                                <td class="text-center"><a class="btn btn-primary" href="edit.html?pid='.$row['ID'].'"><span class="glyphicon glyphicon-pencil"></span>Ред.</a></td></tr>';
+                            }
+                        ?>
                     </tbody>
                 </table>
             </div>

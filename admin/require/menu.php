@@ -7,6 +7,7 @@
         <li><a href="../timetable/">Расписание</a></li>
         <li><a href="../events/">Мероприятия</a></li>
         <li><a href="../gallery/">Галерея</a></li>
+        <li><a href="../users/">Пользователи</a></li>
     </ul>  
     <p class="navbar-text navbar-right">
         <a href="#" class="navbar-link">Выход</a>

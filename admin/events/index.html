@@ -5,37 +5,28 @@
         <div class="row">
             <div class="col-md-12">
                 <h2>Календарь мероприятий</h2>
-                <p><a href="add.html">Добавить мероприятие</a></p>
-                <table class="table table-bordered">
+                <p><a class="btn btn-success" href="add.html"><span class="glyphicon glyphicon-plus"></span>Добавить</a>
+                <table class="table table-bordered table-striped">
                     <thead>
                         <tr>
-                            <td><b>Название</b></td>
-                            <td><b>Дата</b></td>
-                            <td><b>Возраст участников</b></td>
-                            <td><b>Вид соревнования</b></td>
-                            <td><b>Место проведения</b></td>
-                            <td></td>
-                        </tr>
-                        
+                            <th>Название</th>
+                            <th>Дата</th>
+                            <th>Возраст участников</th>
+                            <th>Место проведения</th>
+                            <th>Действия</th>
+                        </tr>                       
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>Lorem ipsum dolor sit amet.</td>
-                            <td>20.02.2018</td>
-                            <td>18 - 35</td>     
-                            <td>Горные лыжи</td>     
-                            <td>ГК Олха</td>                  
-                            <td><a href="edit.html">Редактировать</a></td>
-                        </tr>
-                        <tr>
-                                <td>Lorem ipsum dolor sit amet.</td>
-                                <td>20.02.2018</td>
-                                <td>18 - 35</td>     
-                                <td>Горные лыжи</td>     
-                                <td>ГК Олха</td>                  
-                                <td><a href="edit.html">Редактировать</a></td>
-                        </tr>
-                        
+                        <?php
+                            $sql="select * from events order by eventDate DESC";
+                            $result = mysqli_query($conn, $sql); 
+                            while($row = mysqli_fetch_assoc($result)) 
+                            {
+                               echo '<tr><td>'.$row['name'].'</td><td>'.$row['eventDate'].'</td><td>'.$row['age'].'</td>
+                               <td>'.$row['location'].'</td>
+                                <td class="text-center"><a class="btn btn-primary" href="edit.html?pid='.$row['ID'].'"><span class="glyphicon glyphicon-pencil"></span>Ред.</a></td></tr>';
+                            }
+                        ?>
                     </tbody>
                 </table>
             </div>

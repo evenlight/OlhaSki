@@ -19,7 +19,7 @@
                 </thead>
                 <tbody>
                     <?php                        
-                        $sql="SELECT t1.group, 
+                        $sql="select * from (SELECT t1.group, 
                         concat(t2.timestart, ' - ', t2.timeend) as day1,
                         t2.location as loc1,
                         concat(t3.timestart, ' - ', t3.timeend) as day2,
@@ -42,12 +42,14 @@
                         left join timetable t6 on t1.group=t6.group and t6.dayweek=5
                         left join timetable t7 on t1.group=t7.group and t7.dayweek=6
                         left join timetable t8 on t1.group=t8.group and t8.dayweek=7
-                        group by t1.group, t2.location,t3.location,t4.location,t5.location,t6.location,t7.location";
+                        group by t1.group, t2.location,t3.location,t4.location,t5.location,t6.location,t7.location)
+                        as t1 left join groups t2 on t1.group=t2.id
+                        ";
                         //echo $sql;
                         $result = mysqli_query($conn, $sql); 
                         while($row = mysqli_fetch_assoc($result)) 
                         {
-                            echo '<tr><td style="text-align: center; padding-top: 30px; padding-bottom: 30px;"><strong>'.$row['group'].'</strong></td>
+                            echo '<tr><td style="text-align: center; padding-top: 30px; padding-bottom: 30px;"><strong>'.$row['sprvalue'].'</strong></td>
                             <td style="text-align: center; padding-top: 30px; padding-bottom: 30px;"><a href="#" data-toggle="tooltip" data-placement="top" data-html="true" title="'.$row['loc1'].'">'.$row['day1'].'</a></td>
                             <td style="text-align: center; padding-top: 30px; padding-bottom: 30px;"><a href="#" data-toggle="tooltip" data-placement="top" data-html="true" title="'.$row['loc2'].'">'.$row['day2'].'</a></td>
                             <td style="text-align: center; padding-top: 30px; padding-bottom: 30px;"><a href="#" data-toggle="tooltip" data-placement="top" data-html="true" title="'.$row['loc3'].'">'.$row['day3'].'</a></td>

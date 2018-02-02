@@ -1,41 +1,116 @@
 <?php
     require_once('../require/header.php');
+    extract($_REQUEST,EXTR_PREFIX_ALL|EXTR_REFS,'in');
 ?>
         <div class="row">
-            <div class="col-md-12">
-                <h2>Редактирование занятия</h2>
-                <div class="col-md-6">
-                    <form>
-                        <div class="form-group">
-                            <label for="group">Группа</label>
-                            <input type="text" class="form-control" id="group" value="Группа 1" placeholder="Группа">
-                          </div>
-                          <div class="form-group">
-                              <label for="dayofweek">День недели</label>
-                              <select name="dayofweek" class="form-control" id="dayofweek">
-                                <option value="1" selected>ПН</option>
-                                <option value="2">ВТ</option>
-                                <option value="3">СР</option>
-                                <option value="4">ЧТ</option>
-                                <option value="5">ПТ</option>
-                                <option value="6">СБ</option>
-                                <option value="7">ВС</option>
-                              </select>
-                          </div>
-                          <div class="form-group">
-                              <label for="timestart">Начало занятия</label>
-                              <input type="text" class="form-control" id="timestart" value="9:00" placeholder="Начало">
-                            </div>
-                          <div class="form-group">
-                                <label for="timeend">Конец занятия</label>
-                                <input type="text" class="form-control" id="timeend" value="12:00" placeholder="Конец">
-                          </div>
-                        <button type="submit" class="btn btn-default">Сохранить</button>
-                        <button class="btn btn-danger">Удалить</button>
-                    </form>
-                </div>
+          <div class="panel panel-default">
+            <div class="col-md-8 col-md-offset-2">
+                <h2>Режим редактирования</h2>
+                <form action="edit.html?pid=<?php echo $_GET['pid']; ?>" enctype="multipart/form-data" method="POST">
+                <input type="hidden" name="command" value="go">
+                  <?php
+                    $sql="select * from timetable where id=".$_GET['pid']."";
+                    $result = mysqli_query($conn, $sql); 
+                    while($row = mysqli_fetch_assoc($result)) 
+                    {
+                    ?>
+                      <div class="form-group">
+                        <label for="group">Группа</label>
+                        <select class="form-control" name="group" id="group">
+                            <option></option>
+                            <?php
+                                $sqlS="select * from groups";
+                                $resultS = mysqli_query($conn, $sqlS); 
+                                while($rowS = mysqli_fetch_assoc($resultS)) 
+                                {
+                                    if ($rowS['id']==$row['group']) 
+                                    {
+                                        echo '<option value="'.$rowS['id'].'" selected="selected">'.$rowS['sprvalue'].'</option>';
+                                    }
+                                    else
+                                    {
+                                        echo '<option value="'.$rowS['id'].'">'.$rowS['sprvalue'].'</option>';
+                                    }
+                                }
+                            ?>
+                        </select>
+                      </div>
+                      <div class="form-group">
+                        <label for="dayweek">День недели</label>
+                        <select class="form-control" name="dayweek" id="dayweek">
+                            <option></option>
+                            <?php
+                                $sqlSS="select * from dayweek";
+                                $resultSS = mysqli_query($conn, $sqlSS); 
+                                while($rowSS = mysqli_fetch_assoc($resultSS)) 
+                                {
+                                    if ($rowSS['id']==$row['dayWeek']) 
+                                    {
+                                        echo '<option value="'.$rowSS['id'].'" selected="selected">'.$rowSS['sprvalue'].'</option>';
+                                    }
+                                    else
+                                    {
+                                        echo '<option value="'.$rowSS['id'].'">'.$rowSS['sprvalue'].'</option>';
+                                    }
+                                }
+                            ?>
+                        </select>
+                      </div>
+                      <div class="form-group">
+                        <label for="timestart">Начало занятия</label>
+                        <input type="text" class="form-control" id="timestart" name="timestart" value="<?php echo $row['timeStart']; ?>">
+                      </div>
+                      <div class="form-group">
+                        <label for="timeend">Конец занятия</label>
+                        <input type="text" class="form-control" id="timeend" name="timeend" value="<?php echo $row['timeEnd']; ?>">
+                      </div>
+                      <div class="form-group">
+                        <label for="location">Место проведения</label>
+                        <input type="text" class="form-control" id="location" name="location" value="<?php echo $row['location']; ?>">
+                      </div>
+                      <div align="center">
+                  <?php
+
+                    }
+                    ?>
+                    <div class="form-group">
+                          <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-ok"></span>Сохранить</button>
+                          <a href="edit.html?act=delete&pid=<?php echo $_GET['pid']; ?>" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span>Удалить</a>  
+                    </div>
+                  </div>
+                </form>
             </div>
         </div>
+      </div>
+                
 <?php
+if ($_POST['command']=='go')
+{
+  $sql="update timetable set group='".$_POST['group']."', dayWeek='".$_POST['dayweek']."', timeStart='".$_POST['timestart']."', timeEnd='".$_POST['timeend']."',
+  location='".$_POST['location']."' where id=".$_GET['pid']."";
+  $execute=mysqli_query($conn, $sql);
+  if ($execute)
+  {
+    echo alert ('timetable', 1);
+  }
+  else
+  {
+    echo alert ('timetable', 0);
+  }
+}
+
+if($in_act=='delete')
+{
+  $sql="delete from timetable where id=".$_GET['pid']."";
+  $execute=mysqli_query($conn, $sql);
+  if ($execute)
+  {
+    echo alert ('timetable', 1);
+  }
+  else
+  {
+    echo alert ('timetable', 0);
+  }
+}
   require_once('../require/footer.php');
 ?>

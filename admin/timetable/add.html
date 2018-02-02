@@ -1,41 +1,62 @@
 <?php
     require_once('../require/header.php');
+    extract($_REQUEST,EXTR_PREFIX_ALL|EXTR_REFS,'in');
 ?>
-
         <div class="row">
-            <div class="col-md-12">
-                <h2>Добавить занятие</h2>
-                <div class="col-md-6">
-                    <form>
-                        <div class="form-group">
-                          <label for="group">Группа</label>
-                          <input type="text" class="form-control" id="group" placeholder="Группа">
-                        </div>
-                        <div class="form-group">
-                            <label for="dayofweek">День недели</label>
-                            <select name="dayofweek" class="form-control" id="dayofweek">
-                              <option value="1">ПН</option>
-                              <option value="2">ВТ</option>
-                              <option value="3">СР</option>
-                              <option value="4">ЧТ</option>
-                              <option value="5">ПТ</option>
-                              <option value="6">СБ</option>
-                              <option value="7">ВС</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="timestart">Начало занятия</label>
-                            <input type="text" class="form-control" id="timestart" placeholder="Начало">
-                          </div>
-                        <div class="form-group">
-                              <label for="timeend">Конец занятия</label>
-                              <input type="text" class="form-control" id="timeend" placeholder="Конец">
-                        </div>
-                        <button type="submit" class="btn btn-default">Добавить</button>
-                    </form>
-                </div>
+          <div class="panel panel-default">
+            <div class="col-md-8 col-md-offset-2">
+                <h2>Режим добавления</h2>
+                <form action="add.html" enctype="multipart/form-data" method="POST">
+                <input type="hidden" name="command" value="go">
+                      <div class="form-group">
+                        <input type="text" class="form-control" id="group" name="group" placeholder="Группа">
+                      </div>
+                      <div class="form-group">
+                        <select class="form-control" name="dayweek" id="dayweek">
+                            <option>Укажите день недели</option>
+                            <?php
+                                $sqlSS="select * from dayweek";
+                                $resultSS = mysqli_query($conn, $sqlSS); 
+                                while($rowSS = mysqli_fetch_assoc($resultSS)) 
+                                {
+                                     echo '<option value="'.$rowSS['id'].'">'.$rowSS['sprvalue'].'</option>';
+                                }
+                            ?>
+                        </select>
+                      </div>
+                      <div class="form-group">
+                        <input type="text" class="form-control" id="timestart" name="timestart" placeholder="Начало занятия">
+                      </div>
+                      <div class="form-group">
+                        <input type="text" class="form-control" id="timeend" name="timeend" placeholder="Конец занятия">
+                      </div>
+                      <div class="form-group">
+                        <input type="text" class="form-control" id="location" name="location" placeholder="Место проведения">
+                      </div>
+                      <div align="center">
+                    <div class="form-group">
+                          <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-ok"></span>Сохранить</button>
+                    </div>
+                  </div>
+                </form>
             </div>
         </div>
+      </div>
+                
 <?php
+if ($_POST['command']=='go')
+{
+  $sql="insert into timetable (`group`, dayweek, timestart, timeend, location) values ('".$_POST['group']."', '".$_POST['dayweek']."', '".$_POST['timestart']."', 
+  '".$_POST['timeend']."', '".$_POST['location']."')";
+  $execute=mysqli_query($conn, $sql);
+  if ($execute)
+  {
+    echo alert ('timetable', 1);
+  }
+  else
+  {
+    echo alert ('timetable', 0);
+  }
+}
   require_once('../require/footer.php');
 ?>
