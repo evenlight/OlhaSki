@@ -27,14 +27,14 @@
                         <?php
                             if (!empty($row['img']))
                             {
-                              echo '<img class="img-thumnail" id="img" src="'.$path.'content/img/'.$row['img'].'" style="max-height: 100px;">';
+                              echo '<img class="img-thumnail" id="img" src="../../content/img/'.$row['img'].'" style="max-height: 100px;">';
                             }
                         ?>
                       </div>
-                        <div class="form-group">
-                          <input type="file" name="img" id="img" class="btn btn-default">
-                          <p class="help-block">Загрузите фото для новости</p>
-                        </div>
+                      <div class="form-group">
+                        <input type="file" name="img" id="img" class="btn btn-default">
+                        <p class="help-block">Загрузите фото для новости</p>
+                      </div>
                   <?php
 
                     }
