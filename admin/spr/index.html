@@ -1,4 +1,85 @@
 <?php
     require_once('../require/header.php');
+?>
+<div class="row">
+    <div class="col-md-12">
+        <h2>Режим редактирования справочников</h2>
+        <hr>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Добавить запись</h3>
+            </div>
+            <div class="panel-body">
+                <form action="index.html?value=<?php echo $_GET['value']; ?>" class="col-md-offset-3 col-md-6 col-sm-12" enctype="multipart/form-data" method="POST">
+                    <input type="hidden" name="command" value="add">
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="title" name="name" placeholder="Введите значение">
+                    </div>
+                    <div align="center">
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-ok"></span>Сохранить</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Удалить запись</h3>
+            </div>
+            <div class="panel-body">
+                <form action="index.html?value=<?php echo $_GET['value']; ?>" class="col-md-offset-3 col-md-6 col-sm-12" enctype="multipart/form-data" method="POST">
+                    <input type="hidden" name="command" value="del">
+                    <div class="form-group">
+                        <select name="name" class="form-control">
+                            <option></option>
+                            <?php
+                                $sql="select * from ".$_GET['value']."";
+                                echo $sql;
+                                $result=mysqli_query($conn, $sql);
+                                while($row = mysqli_fetch_assoc($result)) 
+                                {
+                                    echo '<option value="'.$row['id'].'">'.$row['sprvalue'].'</option>';
+                                }
+                            ?>
+                        </select>
+                    </div>
+                    <div align="center">
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span>Удалить</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+<?php
+if ($_POST['command']=='add')
+{
+  $sql="insert into ".$_GET['value']." (sprvalue) values ('".$_POST['name']."') ";
+  $execute=mysqli_query($conn, $sql);
+  if ($execute)
+  {
+    echo alert ('athletes', 1);
+  }
+  else
+  {
+    echo alert ('athletes', 0);
+  }
+}
+if ($_POST['command']=='del')
+{
+  $sql="delete from ".$_GET['value']." where id=".$_POST['name']."";
+  $execute=mysqli_query($conn, $sql);
+  if ($execute)
+  {
+    echo alert ('athletes', 1);
+  }
+  else
+  {
+    echo alert ('athletes', 0);
+  }
+}
     require_once('../require/footer.php');
 ?>

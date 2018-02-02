@@ -22,7 +22,7 @@
                         $result = mysqli_query($conn, $sql); 
                         while($row = mysqli_fetch_assoc($result)) 
                         {
-                            echo '<option value="'.$row['id'].'">'.$row['rankname'].'</option>';
+                            echo '<option value="'.$row['id'].'">'.$row['sprvalue'].'</option>';
                         }
                         ?>
                     </select>
@@ -35,7 +35,7 @@
                         $result = mysqli_query($conn, $sql); 
                         while($row = mysqli_fetch_assoc($result)) 
                         {
-                            echo '<option value="'.$row['id'].'">'.$row['categoryname'].'</option>';                       
+                            echo '<option value="'.$row['id'].'">'.$row['sprvalue'].'</option>';                       
                         }
                         ?>
                     </select>
