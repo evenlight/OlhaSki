@@ -9,7 +9,7 @@
   <script src="../../content/js/bootstrap.min.js"></script>
   <script>
     $(document).ready(function () {
-        $('a[href="' + this.location.pathname + '"]').parent().addClass('active');
+        $('a[href*="' + this.location.pathname.split('/')[2] + '"]').parent().addClass('active');
         });
   </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.js"></script>

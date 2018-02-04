@@ -47,7 +47,15 @@ html,body {
     font-size: 30px;
     color: #337ab7;
 }
-  
+ 
+.navbar-nav > .active {
+    background: #337ab7;
+}
+
+.navbar-nav> .active > a {
+    color: #fff;
+}
+
 
 .container {
     background: #fff;
