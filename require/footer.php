@@ -14,6 +14,23 @@
   <!-- Include all compiled plugins (below), or include individual files as needed -->
   <script src="../content/js/bootstrap.min.js"></script>
   <script>
+      $(document).ready(function () {
+          var weatherIcon = $("#weather-icon");
+          var temperature = $("#temp");
+
+          $.ajax({
+              url: 'http://api.openweathermap.org/data/2.5/weather?id=2016764&appid=1ee0a6c31c54d056c3f241013cf71f28',
+              dataType: 'json',
+              success: function(data) {
+                  temperature.html(data.main.temp - 273.15);
+                  weatherIcon.attr('class', 'wi wi-owm-' + data.weather[0].id);
+
+              }
+          });
+          
+      })
+  </script>
+  <script>
     $(document).ready(function () {
         $('a[href="' + this.location.pathname + '"]').parent().addClass('active');
         });
