@@ -32,7 +32,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              <a href="#" class="navbar-brand">
+              <a href="/home/" class="navbar-brand">
                 <img src="../content/img/logo.png" class="logo" alt="logo">
               </a> 
             </div> 

@@ -1,0 +1,96 @@
+<?php
+    require_once('../require/header.php');
+    extract($_REQUEST,EXTR_PREFIX_ALL|EXTR_REFS,'in');
+?>
+        <div class="row">
+          <div class="panel panel-default">
+            <div class="col-md-8 col-md-offset-2">
+                <h2>Режим редактирования</h2>
+                <form action="edit.html?pid=<?php echo $_GET['pid']; ?>" enctype="multipart/form-data" method="POST">
+                <input type="hidden" name="command" value="go">
+                  <?php
+                    $sql="select * from albums where id=".$_GET['pid']."";
+                    $result = mysqli_query($conn, $sql); 
+                    while($row = mysqli_fetch_assoc($result)) 
+                    {
+                    ?>
+                      <div class="form-group">
+                        <label for="title">Название альбома</label>
+                        <input type="text" class="form-control" id="title" name="title" value="<?php echo $row['name']; ?>" placeholder="Заголовок" disabled="disabled">
+                      </div>
+                      <div align="center">
+                        <div class="form-group">
+                            <input type="file" name="img" id="img" class="btn btn-default">
+                            <p class="help-block">Добавить фото</p>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-ok"></span>Сохранить</button>
+                            <a href="edit.html?act=delete&pid=<?php echo $_GET['pid']; ?>" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span>Удалить альбом</a>  
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <?php
+                            $sqlS="select * from gallery where albumid=".$row['id']."";
+                            $resultS = mysqli_query($conn, $sqlS); 
+                            while($rowS = mysqli_fetch_assoc($resultS)) 
+                            {
+                                echo '
+                                <div class="col-md-3">
+                                    <a href="../../content/gallery/'.$rowS['img'].'" target="_blank">
+                                        <img class="img-thumbnail" src="../../content/gallery/'.$rowS['img'].'" style="max-height: 100px;">
+                                    </a>
+                                </div>';
+                            }
+          
+                              }
+                            ?>
+                        </div>
+                     </div>
+                </form>
+            </div>
+        </div>
+      </div>
+                
+<?php
+if ($_POST['command']=='go')
+{
+  if (basename($_FILES['img']['name'])=='')
+  {
+    $img="";
+    echo '<div class="alert alert-danger col-md-3">Выберете фотографию</div>';
+    die();
+  }
+  else
+  {
+    $img=upload_gallery (1, 'I');
+  }
+
+  $sql="insert into gallery (albumid, img) values (".$_GET['pid'].", '".$img."')";
+  $execute=mysqli_query($conn, $sql);
+  if ($execute)
+  {
+    echo alert ('gallery', 1);
+  }
+  else
+  {
+    echo alert ('gallery', 0);
+  }
+}
+
+if($in_act=='delete')
+{
+  $sql="delete from news where id=".$_GET['pid']."";
+  $execute=mysqli_query($conn, $sql);
+  if ($execute)
+  {
+    $sql="delete from gallery where albumid=".$_GET['pid']."";
+    $execute=mysqli_query($conn, $sql);  
+    echo alert ('gallery', 1);
+  }
+  else
+  {
+    echo alert ('gallery', 0);
+  }
+}
+  require_once('../require/footer.php');
+?>

@@ -34,4 +34,21 @@
             return $img;
         }
     }
+    function upload_gallery ($start, $type)
+    {
+        if ($start==1)
+        {
+            $uploaddir = $_SERVER['DOCUMENT_ROOT'].'/Content/gallery/';
+            $filename = uniqid().'.jpg';
+            $uploadfile = $uploaddir . $filename;
+            move_uploaded_file($_FILES['img']['tmp_name'], $uploadfile);
+
+            if ($type=="I")
+            {
+                $img=$filename;
+            }
+
+            return $img;
+        }
+    }
 ?>

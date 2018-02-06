@@ -1,7 +1,4 @@
 </div>   
-        <footer class="footer">
-            <p class="text-muted text-center"><?php echo date("Y") ?> &copy; <a href="evenlight.team" class="copylink">evenlight</a></p>
-        </footer>
     </div>
   <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>

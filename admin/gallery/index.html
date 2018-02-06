@@ -1,4 +1,35 @@
 <?php
     require_once('../require/header.php');
+?>
+
+        <div class="row">
+            <div class="col-md-12">
+                <h2>Галерея</h2>
+                <p><a class="btn btn-success" href="add.html"><span class="glyphicon glyphicon-plus"></span>Добавить альбом</a></p>
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>Фото</th>
+                            <th>Название</th>
+                            <th>Действия</th>
+                        </tr>                       
+                    </thead>
+                    <tbody>
+                        <?php
+                            $sql="select * from albums";
+                            $result = mysqli_query($conn, $sql); 
+                            while($row = mysqli_fetch_assoc($result)) 
+                            {
+                               echo '<tr><td class="text-center"><a href="../../content/gallery/'.$row['img'].'" target="_blank"><img src="../../content/gallery/'.$row['img'].'" class="img-thumnail" style="max-height: 100px;"></a></td>
+                                <td>'.$row['name'].'</td>
+                                <td class="text-center"><a class="btn btn-primary" href="edit.html?pid='.$row['id'].'"><span class="glyphicon glyphicon-pencil"></span>Ред.</a></td></tr>';
+                            }
+                        ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+<?php
     require_once('../require/footer.php');
 ?>
