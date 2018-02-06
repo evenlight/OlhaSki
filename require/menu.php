@@ -14,7 +14,7 @@
         </ul>
         <hr>
         <div align="center" class="weather">
-            <i id="weather-icon" class="wi wi-owm-600"></i> <span id="temp">27</span> &#8451;
+            <i id="weather-icon" class="wi wi-owm-600"></i> <span id="temp">27</span> &#176;C
             <!-- <a href="https://clck.yandex.ru/redir/dtype=stred/pid=7/cid=1228/*https://yandex.ru/pogoda/11275" target="_blank"><img src="https://info.weather.yandex.net/11275/2.ru.png?domain=ru" border="0" alt="Яндекс.Погода"/><img width="1" height="1" src="https://clck.yandex.ru/click/dtype=stred/pid=7/cid=1227/*https://img.yandex.ru/i/pix.gif" alt="" border="0"/></a> -->
         </div>
         <hr>
