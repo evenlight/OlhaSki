@@ -101,6 +101,7 @@ html,body {
 
 .footer {
     line-height: 60px;
+    left: 0px;
     width: 100%;
     position: absolute;
     bottom: 0;
