@@ -22,14 +22,13 @@
         {
             session_start(); 
             $_SESSION['user'] = $user_id; 
-            echo $_SESSION['user'];
             echo '<SCRIPT language="JavaScript"> window.location="/admin/home/";</SCRIPT>';
             //require_once('menu.php');
 
         } 
         else 
         {
-            echo '<div class="alert alert-danger">Неверно указан логин/пароль!</div>';
+            echo '<div class="alert alert-danger signin-form">Неверно указан логин/пароль!</div>';
             //$_SESSION['auth'] = false;
             //die();
             //Пользователь неверно ввел логин или пароль, выполним какой-то код.
