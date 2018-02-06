@@ -8,6 +8,7 @@
             <li role="presentation"><a href="/trainers/"><i class="glyphicon glyphicon-user"></i>Тренерский состав</a></li>
             <li role="presentation"><a href="/athletes/"><i class="glyphicon glyphicon-star"></i>Наши спортсмены</a></li>
             <li role="presentation"><a href="/terms/"><i class="glyphicon glyphicon-info-sign"></i>Правила приема</a></li>
+            <li role="presentation"><a href="/safety/"><i class="glyphicon glyphicon-exclamation-sign"></i>Техника безопасности</a></li>
             <li role="presentation"><a href="/timetable/"><i class="glyphicon glyphicon-time"></i>Расписание занятий</a></li>
             <li role="presentation"><a href="/events/"><i class="glyphicon glyphicon-calendar"></i>Календарь мероприятий</a></li>
             <li role="presentation"><a href="/about/"><i class="glyphicon glyphicon-question-sign"></i>О нас</a></li>
@@ -24,5 +25,11 @@
                     По вопросам записи в школу обращаться <a href="/trainers/">сюда</a>
                 </div>
             </div>
+        </div>
+        <hr>
+        <div align="center">
+            <a href="../content/img/5a72d7ea35b27.jpg" target="_blank">
+                <img class="img-thumbnail" src="../content/img/5a72d7ea35b27.jpg" style="max-height: 100px;">
+            </a>
         </div>
     </div>

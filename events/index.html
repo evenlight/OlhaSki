@@ -11,52 +11,51 @@
                     </ul>
                     <div class="tab-content">
                         <div id="competitions" class="tab-pane fade in active" role="tabpanel">
-                                <table class="table table-bordered table-striped">
-                                        <thead>
-                                            <th>Наименование соревнований</th>
-                                            <th>Возраст участников</th>
-                                            <th>Сроки проведения</th>
-                                            <th>Место проведения</th>
-                                            <th>Дисциплина</th>
-                                        </thead>
-                                        <tbody>
-                                            <?php
-                                            $sql="select name, age, DATE_FORMAT(eventDate, '%d.%m.%Y') as eventdate, location, subject, filename from events where competition = 1 order by eventdate desc";
-                                            $result = mysqli_query($conn, $sql); 
-                                            while($row = mysqli_fetch_assoc($result)) 
-                                            {
-                                                echo '<tr><td><a href="../content/events/'.$row['filename'].'">'.$row['name'].'</a></td><td>'.$row['age'].'</td><td>'.$row['eventdate'].'</td><td>'.$row['location'].'</td>
-                                                <td>'.$row['subject'].'</td></tr>';
-                                            }
-                
-                                            ?>
-                                        </tbody>
-                                    </table>
+                            <table class="table table-bordered table-striped">
+                                <thead>
+                                    <th>Наименование соревнований</th>
+                                    <th>Возраст участников</th>
+                                    <th>Сроки проведения</th>
+                                    <th>Место проведения</th>
+                                    <th>Дисциплина</th>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    $sql="select name, age, DATE_FORMAT(eventDate, '%d.%m.%Y') as eventdate, location, subject, filename from events where competition = 1 order by eventdate desc";
+                                    $result = mysqli_query($conn, $sql); 
+                                    while($row = mysqli_fetch_assoc($result)) 
+                                    {
+                                        echo '<tr><td><a href="../content/events/'.$row['filename'].'">'.$row['name'].'</a></td><td>'.$row['age'].'</td><td>'.$row['eventdate'].'</td><td>'.$row['location'].'</td>
+                                        <td>'.$row['subject'].'</td></tr>';
+                                    }
+        
+                                    ?>
+                                </tbody>
+                            </table>                                          
                         </div>
                         <div id="noncompetitions" class="tab-pane fade" role="tabpanel">
-                                <table class="table table-bordered table-striped">
-                                        <thead>
-                                            <th>Наименование мероприятия</th>
-                                            <th>Возраст участников</th>
-                                            <th>Дата проведения</th>
-                                            <th>Место проведения</th>
-                                        </thead>
-                                        <tbody>
-                                            <?php
-                                            $sql="select name, age, DATE_FORMAT(eventDate, '%d.%m.%Y') as eventdate, location, subject, filename from events where competition = 0 order by eventdate desc";
-                                            $result = mysqli_query($conn, $sql); 
-                                            while($row = mysqli_fetch_assoc($result)) 
-                                            {
-                                                echo '<tr><td><a href="../content/events/'.$row['filename'].'">'.$row['name'].'</a></td><td>'.$row['age'].'</td><td>'.$row['eventdate'].'</td><td>'.$row['location'].'</td>
-                                                </tr>';
-                                            }
-                
-                                            ?>
-                                        </tbody>
-                                    </table>
+                            <table class="table table-bordered table-striped">
+                                <thead>
+                                    <th>Наименование мероприятия</th>
+                                    <th>Возраст участников</th>
+                                    <th>Дата проведения</th>
+                                    <th>Место проведения</th>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    $sql="select name, age, DATE_FORMAT(eventDate, '%d.%m.%Y') as eventdate, location, subject, filename from events where competition = 0 order by eventdate desc";
+                                    $result = mysqli_query($conn, $sql); 
+                                    while($row = mysqli_fetch_assoc($result)) 
+                                    {
+                                        echo '<tr><td><a href="../content/events/'.$row['filename'].'">'.$row['name'].'</a></td><td>'.$row['age'].'</td><td>'.$row['eventdate'].'</td><td>'.$row['location'].'</td>
+                                        </tr>';
+                                    }
+        
+                                    ?>
+                                </tbody>
+                            </table>
                         </div>
-                    </div>
-                    
+                    </div>               
                 </div>
             </div>
 <?php
