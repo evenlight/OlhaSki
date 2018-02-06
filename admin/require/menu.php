@@ -10,6 +10,6 @@
         <li><a href="../users/">Пользователи</a></li>
     </ul>  
     <p class="navbar-text navbar-right">
-        <a href="#" class="navbar-link">Выход</a>
+        <a href="/admin/home/?action=logout" class="navbar-link">Выход</a>
     </p> 
 </div> 

@@ -36,8 +36,9 @@
             </div>
             <?php
                 require_once('config.php');
+                require_once('security.php');
                 require_once('functions.php');
-                require_once('menu.php');
+                //require_once('menu.php');
             ?>
           </div> 
         </nav>
