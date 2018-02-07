@@ -3,7 +3,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <?php 
     require_once ('functions.php');
-    echo title($text);
+    echo title(@$text);
 ?>
 <!-- Bootstrap -->
 <link href="../content/css/bootstrap.min.css" rel="stylesheet">

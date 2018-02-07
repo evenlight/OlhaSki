@@ -3,7 +3,7 @@
     {
         $login = $_POST['login'];
         $password = $_POST['password'];
-        $query = 'SELECT * FROM users WHERE login="'.$login.'" AND password="'.$password.'"';
+        $query = 'SELECT * FROM users WHERE login="'.$login.'" AND password="'.md5($password).'"';
         $result = mysqli_query($conn, $query);
         while ($row=mysqli_fetch_assoc($result))
         {
