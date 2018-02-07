@@ -69,17 +69,17 @@ if ($_POST['command']=='go')
   $execute=mysqli_query($conn, $sql);
   if ($execute)
   {
-    echo alert (1);
+    echo alert (0, 1);
   }
   else
   {
-    echo alert (0);
+    echo alert (0, 0);
   }
 }
 
 if($in_act=='delete')
 {
-  $sql="delete from news where id=".$_GET['pid']."";
+  $sql="delete from albums where id=".$_GET['pid']."";
   $execute=mysqli_query($conn, $sql);
   if ($execute)
   {

@@ -1,10 +1,18 @@
 <?php
+//echo $_SERVER['DOCUMENT_ROOT'];
     function alert ($url, $result)
     {
         if ($result==1)
         {
-            echo '<div class="alert alert-success col-md-8 col-md-offset-2">Действие выполнено успешно</div>';
-            echo '<SCRIPT language="JavaScript"> window.location="/admin/'.$url.'/";</SCRIPT>';
+            if ($url!=0)
+            {
+                echo '<div class="alert alert-success col-md-8 col-md-offset-2">Действие выполнено успешно</div>';
+                echo '<SCRIPT language="JavaScript"> window.location="/admin/'.$url.'/";</SCRIPT>';
+            }
+            else
+            {
+                echo '<div class="alert alert-success col-md-8 col-md-offset-2">Действие выполнено успешно</div>';
+            }
         }
         elseif ($result==0)
         {
@@ -17,7 +25,7 @@
     {
         if ($start==1)
         {
-            $uploaddir = $_SERVER['DOCUMENT_ROOT'].'/Content/img/';
+            $uploaddir = $_SERVER['DOCUMENT_ROOT'].'/content/img/';
             $filename = uniqid().'.jpg';
             $uploadfile = $uploaddir . $filename;
             move_uploaded_file($_FILES['img']['tmp_name'], $uploadfile);
@@ -38,7 +46,7 @@
     {
         if ($start==1)
         {
-            $uploaddir = $_SERVER['DOCUMENT_ROOT'].'/Content/gallery/';
+            $uploaddir = $_SERVER['DOCUMENT_ROOT'].'/content/gallery/';
             $filename = uniqid().'.jpg';
             $uploadfile = $uploaddir . $filename;
             move_uploaded_file($_FILES['img']['tmp_name'], $uploadfile);
