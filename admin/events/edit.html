@@ -31,20 +31,19 @@
                             <input type="text" class="form-control" id="location" name="location" value="<?php echo $row['location']; ?>">
                         </div>
                       <div align="center">
-                      <div class="form-group">
+                      <!--<div class="form-group">
                           <label for="types">Мероприятие школы</label>
                           <?php 
-                            if ($row['competition']==0)
+                            /*if ($row['competition']==0)
                             {
-                              echo $row['competition'];
-                              echo '<input type="checkbox" name="types" value="0" checked>';
+                              echo '<input type="checkbox" id="types" name="types" value="0" checked>';
                             }
                             elseif ($row['competition']==1)
                             {
-                              echo '<input type="checkbox" name="types" value="1">';
-                            }
+                              echo '<input type="checkbox" id="types" name="types" value="1">';
+                            }*/
                           ?>
-                      </div>
+                      </div>-->
                       <div class="form-group">
                           <?php
                               if (!empty($row['filename']))
@@ -83,8 +82,7 @@ if ($_POST['command']=='go')
     $doc=upload_event (1, 'U');
   }
   $sql="update events set name='".$_POST['name']."', age='".$_POST['age']."', eventDate='".$_POST['datem']."', location='".$_POST['location']."', 
-  name='".$_POST['name']."', competition='".$_POST['types']."' ".$doc." where id=".$_GET['pid']."";
-  //echo $sql;
+  name='".$_POST['name']."' ".$doc." where id=".$_GET['pid']."";
   $execute=mysqli_query($conn, $sql);
 
   if ($execute)

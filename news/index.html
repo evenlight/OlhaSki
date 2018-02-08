@@ -36,7 +36,7 @@
                       <a href="properties.html?pid='.$row['id'].'">
                         <h4 class="margin-top-none">'.$row['title'].'</h4>
                       </a>
-                      '.$row['body'].'
+                      '.substr($row['body'], 0, 350) .'...
                       <br>
                       '.$video.'
                     </p>
