@@ -1,37 +1,69 @@
 <?php
     require_once('../require/header.php');
+    extract($_REQUEST,EXTR_PREFIX_ALL|EXTR_REFS,'in');
 ?>
-
         <div class="row">
-            <div class="col-md-12">
-                <h2>Добавить мероприятие</h2>
-                <div class="col-md-6">
-                    <form>
-                        <div class="form-group">
-                          <label for="name">Название</label>
-                          <input type="text" class="form-control" id="name" placeholder="Название">
-                        </div>
-                        <div class="form-group">
-                            <label for="date">Дата</label>
-                            <input type="date" class="form-control" id="date" placeholder="Дата">
-                          </div>
-                          <div class="form-group">
-                              <label for="age">Возраст участников</label>
-                              <input type="text" class="form-control" id="age" placeholder="Возраст участников">
-                            </div>
+            <div class="col-md-8 col-md-offset-2">
+                <h2>Режим добавления</h2>
+                <form action="add.html" enctype="multipart/form-data" method="POST">
+                <input type="hidden" name="command" value="go">
+                      <div class="form-group">
+                        <input type="text" class="form-control" id="title" name="title" placeholder="Название мероприятия">
+                      </div>
+                      <div class="form-group">
+                          <input type="date" class="form-control" id="date" name="date" placeholder="Дата">
+                      </div>
+                      <div class="form-group">
+                            <input type="text" class="form-control" id="age" name="age" placeholder="Возраст участников">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="type" name="type" placeholder="Вид соревнования">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="location" name="location" placeholder="Место проведения">                                               
+                    </div>
+                      <div align="center">
                             <div class="form-group">
-                                <label for="subject">Вид соревнования</label>
-                                <input type="text" class="form-control" id="subject" placeholder="Вид соревнования">
-                              </div>
-                              <div class="form-group">
-                                  <label for="place">Место проведения</label>
-                                  <input type="text" class="form-control" id="place" placeholder="Место проведения">
-                                </div>
-                        <button type="submit" class="btn btn-default">Добавить</button>
-                    </form>
-                </div>
+                                <label for="types">Мероприятие школы</label>
+                            <input type="checkbox" id="types" name="types" value="1">
+                            </div>
+                        <div class="form-group">
+                          <input type="file" name="doc" id="doc" class="btn btn-default">
+                          <p class="help-block">Загрузите документ</p>
+                        </div>
+                      <div class="form-group">
+                          <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-ok"></span>Сохранить</button>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
+                
 <?php
+if ($_POST['command']=='go')
+{
+  if (basename($_FILES['doc']['name'])=='')
+  {
+    $doc=0;
+  }
+  else
+  {
+    $doc=upload_event (1, 'I');
+  }
+  if ($_POST['types']!=1){
+    $_POST['types']=0;
+  }
+  $sql="insert into events (name, age, eventDate, location, subject, filename, competition) values ('".$_POST['title']."', '".$_POST['age']."', 
+  '".$_POST['date']."', '".$_POST['age']."')";
+  $execute=mysqli_query($conn, $sql);
+  if ($execute)
+  {
+    echo alert ('documents', 1);
+  }
+  else
+  {
+    echo alert ('documents', 0);
+  }
+}
   require_once('../require/footer.php');
 ?>

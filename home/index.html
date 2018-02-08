@@ -4,17 +4,25 @@
           <div class="col-md-9 col-lg-9">
             <p class="text-center block-header">НОВОСТИ</p>
            <?php
-            $sql="select id, DATE_FORMAT(publishdate, '%d.%m.%Y') as publishdate, title, body, img from news where img!='0' order by publishDate desc limit 3";
+            $sql="select id, DATE_FORMAT(publishdate, '%d.%m.%Y') as publishdate, title, body, img from news where img!='0' or youtube!='0' order by publishDate desc limit 3";
             //echo $sql;
             $result = mysqli_query($conn, $sql); 
             while($row = mysqli_fetch_assoc($result)) 
             {
+              if ($row['img']=='' or $row['img']==0)
+              {
+                $img="";
+              }
+              else
+              {
+                $img='<img class="news-left img-thumbnail" src="../content/img/'.$row['img'].'" style="max-height: 150px;">';
+              }
                 echo '
                 <div class="row">
                 <div class="col-md-12">
                   <p class="text-justify" style="margin-bottom: 0px;">
                     <a href="/news/properties.html?pid='.$row['id'].'">
-                      <img class="news-left img-thumbnail" src="../content/img/'.$row['img'].'" style="max-height: 150px;">
+                      '.@$img.'
                     </a>
                     <a href="/news/properties.html?pid='.$row['id'].'">
                       <h4 class="margin-top-none">'.$row['title'].'</h4>                    

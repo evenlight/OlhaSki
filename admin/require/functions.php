@@ -1,5 +1,12 @@
 <?php
 //echo $_SERVER['DOCUMENT_ROOT'];
+    function left($str, $length) {
+        return substr($str, 0, $length);
+    }
+
+    function right($str, $length) {
+        return substr($str, -$length);
+    }
     function alert ($url, $result)
     {
         if ($result==1)
@@ -57,6 +64,50 @@
             }
 
             return $img;
+        }
+    }
+    function upload_doc ($start, $type)
+    {
+        if ($start==1)
+        {
+            $uploaddir = $_SERVER['DOCUMENT_ROOT'].'/documents/';
+            $r= right($_FILES['doc']['name'], 5);
+            $filename = uniqid().$r;
+            $uploadfile = $uploaddir . $filename;
+            move_uploaded_file($_FILES['doc']['tmp_name'], $uploadfile);
+
+            if ($type=="I")
+            {
+                $doc=$filename;
+            }
+            if ($type=="U")
+            {
+                $doc=", filename='".$filename."'";
+            }
+
+            return $doc;
+        }
+    }
+    function upload_event ($start, $type)
+    {
+        if ($start==1)
+        {
+            $uploaddir = $_SERVER['DOCUMENT_ROOT'].'/events/';
+            $r= right($_FILES['doc']['name'], 5);
+            $filename = uniqid().$r;
+            $uploadfile = $uploaddir . $filename;
+            move_uploaded_file($_FILES['doc']['tmp_name'], $uploadfile);
+
+            if ($type=="I")
+            {
+                $doc=$filename;
+            }
+            if ($type=="U")
+            {
+                $doc=", filename='".$filename."'";
+            }
+
+            return $doc;
         }
     }
 ?>

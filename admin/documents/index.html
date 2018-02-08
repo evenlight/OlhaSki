@@ -1,0 +1,35 @@
+<?php
+    require_once('../require/header.php');
+?>
+
+        <div class="row">
+            <div class="col-md-12">
+                <h2>Документы</h2>
+                <p><a class="btn btn-success" href="add.html"><span class="glyphicon glyphicon-plus"></span>Добавить</a>
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>Название</th>
+                            <th>Файл</th>
+                            <th>Порядок отображения</th>
+                            <th>Действия</th>
+                        </tr>                       
+                    </thead>
+                    <tbody>
+                        <?php
+                            $sql="select * from documents order by sortorder";
+                            $result = mysqli_query($conn, $sql); 
+                            while($row = mysqli_fetch_assoc($result)) 
+                            {
+                               echo '<tr><td>'.$row['title'].'</td><td><a href="../../documents/'.$row['filename'].'">Открыть</a></td>
+                               <td>'.$row['sortorder'].'</td>
+                                <td class="text-center"><a class="btn btn-primary" href="edit.html?pid='.$row['id'].'"><span class="glyphicon glyphicon-pencil"></span>Ред.</a></td></tr>';
+                            }
+                        ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+<?php
+    require_once('../require/footer.php');
+?>

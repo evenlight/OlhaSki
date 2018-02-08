@@ -1,0 +1,90 @@
+<?php
+    require_once('../require/header.php');
+    extract($_REQUEST,EXTR_PREFIX_ALL|EXTR_REFS,'in');
+?>
+        <div class="row">
+          <div class="panel panel-default">
+            <div class="col-md-8 col-md-offset-2">
+                <h2>Режим редактирования</h2>
+                <form action="edit.html?pid=<?php echo $_GET['pid']; ?>" enctype="multipart/form-data" method="POST">
+                <input type="hidden" name="command" value="go">
+                  <?php
+                    $sql="select * from documents where id=".$_GET['pid']."";
+                    $result = mysqli_query($conn, $sql); 
+                    while($row = mysqli_fetch_assoc($result)) 
+                    {
+                    ?>
+                      <div class="form-group">
+                        <label for="name">Название</label>
+                        <input type="text" class="form-control" id="title" name="title" value="<?php echo $row['title']; ?>">
+                      </div>
+                      <div class="form-group">
+                            <label for="sortorder">Порядок сортировки</label>
+                            <input class="form-control" id="sortorder" type="text" name="sortorder" value="<?php echo $row['sortorder']; ?>">
+                        </div>
+                      <div align="center">
+                      <div class="form-group">
+                        <?php
+                            if (!empty($row['filename']))
+                            {
+                              echo '<a href="../../documents/'.$row['filename'].'" class="btn btn-success" target="_blank">Открыть документ</a>';
+                            }
+                        ?>
+                      </div>
+                  <?php
+
+                    }
+                    ?>
+                    <div class="form-group">
+                        <input type="file" name="doc" id="doc" class="btn btn-default">
+                        <p class="help-block">Загрузите документ</p>
+                      </div>
+                    <div class="form-group">
+                          <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-ok"></span>Сохранить</button>
+                          <a href="edit.html?act=delete&pid=<?php echo $_GET['pid']; ?>" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span>Удалить</a>  
+                    </div>
+                  </div>
+                </form>
+            </div>
+        </div>
+      </div>
+                
+<?php
+if ($_POST['command']=='go')
+{
+  if (basename($_FILES['doc']['name'])=='')
+  {
+    $doc="";
+  }
+  else
+  {
+    $doc=upload_doc (1, 'U');
+  }
+
+  $sql="update documents set title='".$_POST['title']."', sortorder='".$_POST['sortorder']."' ".$doc." where id=".$_GET['pid']."";
+  $execute=mysqli_query($conn, $sql);
+  if ($execute)
+  {
+    echo alert ('documents', 1);
+  }
+  else
+  {
+    echo alert ('documents', 0);
+  }
+}
+
+if($in_act=='delete')
+{
+  $sql="delete from documents where id=".$_GET['pid']."";
+  $execute=mysqli_query($conn, $sql);
+  if ($execute)
+  {
+    echo alert ('documents', 1);
+  }
+  else
+  {
+    echo alert ('documents', 0);
+  }
+}
+  require_once('../require/footer.php');
+?>
