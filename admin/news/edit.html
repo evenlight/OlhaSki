@@ -22,6 +22,10 @@
                         <label for="body">Новость</label>
                         <textarea name="body" id="body" class="form-control"><?php echo $row['body']; ?></textarea>
                       </div>
+                      <div class="form-group">
+                          <label for="youtube">Ссылка на видео YouTube</label>
+                          <input type="text" class="form-control" id="youtube" name="youtube" value="<?php echo $row['youtube']; ?>">
+                      </div>
                       <div align="center">
                       <div class="form-group">
                         <?php
@@ -60,8 +64,15 @@ if ($_POST['command']=='go')
   {
     $img=upload_file (1, 'U');
   }
-
-  $sql="update news set title='".$_POST['title']."', body='".$_POST['body']."' ".$img." where id=".$_GET['pid']."";
+  if (empty($_POST['youtube']))
+  {
+    $_POST['youtube']=0;
+  }
+  else
+  {
+    $youtube = str_replace("watch?v=", "embed/", $_POST['youtube']);
+  }
+  $sql="update news set title='".$_POST['title']."', body='".$_POST['body']."', youtube='".$youtube."' ".$img." where id=".$_GET['pid']."";
   $execute=mysqli_query($conn, $sql);
   if ($execute)
   {

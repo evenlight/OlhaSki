@@ -5,7 +5,7 @@
         <div class="col-md-9 col-lg-9">
           <p class="text-center block-header">НОВОСТИ</p>
           <?php
-          $sql="select id, DATE_FORMAT(publishdate, '%d.%m.%Y') as publishdate, title, body, img from news order by publishDate desc";
+          $sql="select id, DATE_FORMAT(publishdate, '%d.%m.%Y') as publishdate, title, body, img, youtube from news order by publishDate desc";
           //echo $sql;
           $result = mysqli_query($conn, $sql); 
           while($row = mysqli_fetch_assoc($result)) 
@@ -18,6 +18,16 @@
             {
                 $img="";
             }
+            if (!empty($row['youtube']) or $row['youtube']!=0)
+            {
+              $video='<div align="center" style="margin-top: 20px;">
+              <iframe width="560" height="315" src="'.$row['youtube'].'" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>
+              </iframe></div>';
+            }
+            else
+            {
+              $video="";
+            }
                   echo '
                   <div class="row">
                   <div class="col-md-12">
@@ -27,7 +37,10 @@
                         <h4 class="margin-top-none">'.$row['title'].'</h4>
                       </a>
                       '.$row['body'].'
+                      <br>
+                      '.$video.'
                     </p>
+
                     <p class="pull-right text-muted">
                         <i>Опубликовано '.$row['publishdate'].'</i>
                     </p>

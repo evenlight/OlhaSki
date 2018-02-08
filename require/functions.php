@@ -3,7 +3,7 @@
     {
         if (empty($text))
         {
-            $title='<title>ДЮСШ "Олха"</title>';
+            $title='<title>Горнолыжная школа Олха</title>';
         }
         else
         {

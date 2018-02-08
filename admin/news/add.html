@@ -13,6 +13,9 @@
                       <div class="form-group">
                         <textarea name="body" class="form-control" placeholder="Текст новости"></textarea>
                       </div>
+                      <div class="form-group">
+                          <input type="text" class="form-control" id="youtube" name="youtube" placeholder="Ссылка на видео YouTube">
+                      </div>
                       <div align="center">
                         <div class="form-group">
                           <input type="file" name="img" id="img" class="btn btn-default">
@@ -37,7 +40,15 @@ if ($_POST['command']=='go')
   {
     $img=upload_file (1, 'I');
   }
-  $sql="insert into news (publishDate, title, body, img) values (NOW(), '".$_POST['title']."', '".$_POST['body']."', '".$img."')";
+  if (empty($_POST['youtube']))
+  {
+    $_POST['youtube']=0;
+  }
+  else
+  {
+    $youtube = str_replace("watch?v=", "embed/", $_POST['youtube']);
+  }
+  $sql="insert into news (publishDate, title, body, img, youtube) values (NOW(), '".$_POST['title']."', '".$_POST['body']."', '".$img."', '".$youtube."')";
   $execute=mysqli_query($conn, $sql);
   if ($execute)
   {
