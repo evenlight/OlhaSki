@@ -11,7 +11,7 @@ while($row = mysqli_fetch_assoc($result))
         <div class="col-md-9 col-lg-9">
             <p class="text-center block-header">НОВОСТИ</p>
           <?php
-          $sql="select id, DATE_FORMAT(publishdate, '%d.%m.%Y') as publishdate, title, body, img from news where id=".$_GET['pid']."";
+          $sql="select id, DATE_FORMAT(publishdate, '%d.%m.%Y') as publishdate, title, body, img, youtube from news where id=".$_GET['pid']."";
           //echo $sql;
           $result = mysqli_query($conn, $sql); 
           while($row = mysqli_fetch_assoc($result)) 
@@ -25,12 +25,23 @@ while($row = mysqli_fetch_assoc($result))
             {
                 $img="";
             }
+            if (!empty($row['youtube']) or $row['youtube']!=0)
+            {
+              $video='<div align="left" style="margin-top: 20px;">
+              <iframe width="560" height="315" src="'.$row['youtube'].'" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>
+              </iframe></div>';
+            }
+            else
+            {
+              $video="";
+            }
                   echo '
                     <div class="blog-post">
                         <h2 class="blog-post-title">'.$row['title'].'</h2>
                         <p class="blog-post-meta text-muted"> Дата публикации: '.$row['publishdate'].'</p>
                         <!--<blockquote>-->
-                            <p class="text-justify">'.$img.$row['body'].'</p>
+                            <p class="text-justify">'.$img.$row['body'].'<br>
+                              '.$video.'</p>
                         <!--</blockquote>-->
                     </div>
                     <hr>';  
