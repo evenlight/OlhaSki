@@ -23,10 +23,10 @@
                         <input type="text" class="form-control" id="location" name="location" placeholder="Место проведения">                                               
                     </div>
                       <div align="center">
-                            <div class="form-group">
-                                <label for="types">Мероприятие школы</label>
-                            <input type="checkbox" id="types" name="types" value="1">
-                            </div>
+                        <div class="form-group">
+                            <label for="types">Мероприятие школы</label>
+                            <input type="checkbox" id="types" name="types" value="0">
+                        </div>
                         <div class="form-group">
                           <input type="file" name="doc" id="doc" class="btn btn-default">
                           <p class="help-block">Загрузите документ</p>
@@ -50,19 +50,20 @@ if ($_POST['command']=='go')
   {
     $doc=upload_event (1, 'I');
   }
-  if ($_POST['types']!=1){
-    $_POST['types']=0;
+  if ($_POST['types']!=0)
+  {
+    $_POST['types']=1;
   }
-  $sql="insert into events (name, age, eventDate, location, subject, filename, competition) values ('".$_POST['title']."', '".$_POST['age']."', 
-  '".$_POST['date']."', '".$_POST['age']."')";
+  $sql="insert into events (name, age, eventDate, location, subject, filename, competition) values ('".$_POST['title']."', 
+  '".$_POST['age']."', '".$_POST['date']."', '".$_POST['location']."', '".$_POST['type']."', '".$doc."', '".$_POST['types']."')";
   $execute=mysqli_query($conn, $sql);
   if ($execute)
   {
-    echo alert ('documents', 1);
+    echo alert ('events', 1);
   }
   else
   {
-    echo alert ('documents', 0);
+    echo alert ('events', 0);
   }
 }
   require_once('../require/footer.php');

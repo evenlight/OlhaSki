@@ -20,7 +20,7 @@
                       </div>
                       <div class="form-group">
                             <label for="date">Дата</label>
-                            <input class="form-control" id="date" placeholder="Дата" type="date" value="<?php echo $row['eventDate']; ?>">
+                            <input class="form-control" id="date" placeholder="Дата" name="datem" type="date" value="<?php echo $row['eventDate']; ?>">
                         </div>
                         <div class="form-group">
                             <label for="age">Возраст участников</label>
@@ -32,13 +32,31 @@
                         </div>
                       <div align="center">
                       <div class="form-group">
-                        <?php
-                            if (!empty($row['img']))
+                          <label for="types">Мероприятие школы</label>
+                          <?php 
+                            if ($row['competition']==0)
                             {
-                              echo '<img class="img-thumnail" id="img" src="../../content/img/'.$row['img'].'" style="max-height: 100px;">';
+                              echo $row['competition'];
+                              echo '<input type="checkbox" name="types" value="0" checked>';
                             }
-                        ?>
+                            elseif ($row['competition']==1)
+                            {
+                              echo '<input type="checkbox" name="types" value="1">';
+                            }
+                          ?>
                       </div>
+                      <div class="form-group">
+                          <?php
+                              if (!empty($row['filename']))
+                              {
+                                echo '<a href="../../events/'.$row['filename'].'" class="btn btn-success" target="_blank">Открыть документ</a>';
+                              }
+                          ?>
+                        </div>
+                        <div class="form-group">
+                            <input type="file" name="doc" id="doc" class="btn btn-default">
+                            <p class="help-block">Загрузите документ</p>
+                          </div>
                   <?php
 
                     }
@@ -56,30 +74,40 @@
 <?php
 if ($_POST['command']=='go')
 {
-  $sql="update events set name='".$_POST['name']."', age='".$_POST['name']."', eventDate='".$_POST['date']."', location='".$_POST['location']."', 
-  name='".$_POST['name']."' ".$img." where id=".$_GET['pid']."";
-  $execute=mysqli_query($conn, $sql);
-  if ($execute)
+  if (basename($_FILES['doc']['name'])=='')
   {
-    echo alert ('slider', 1);
+    $doc="";
   }
   else
   {
-    echo alert ('slider', 0);
+    $doc=upload_event (1, 'U');
+  }
+  $sql="update events set name='".$_POST['name']."', age='".$_POST['age']."', eventDate='".$_POST['datem']."', location='".$_POST['location']."', 
+  name='".$_POST['name']."', competition='".$_POST['types']."' ".$doc." where id=".$_GET['pid']."";
+  //echo $sql;
+  $execute=mysqli_query($conn, $sql);
+
+  if ($execute)
+  {
+    echo alert ('events', 1);
+  }
+  else
+  {
+    echo alert ('events', 0);
   }
 }
 
 if($in_act=='delete')
 {
-  $sql="delete from slider where id=".$_GET['pid']."";
+  $sql="delete from events where id=".$_GET['pid']."";
   $execute=mysqli_query($conn, $sql);
   if ($execute)
   {
-    echo alert ('slider', 1);
+    echo alert ('events', 1);
   }
   else
   {
-    echo alert ('slider', 0);
+    echo alert ('events', 0);
   }
 }
   require_once('../require/footer.php');
