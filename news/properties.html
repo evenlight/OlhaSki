@@ -28,7 +28,7 @@ while($row = mysqli_fetch_assoc($result))
             if (!empty($row['youtube']) or $row['youtube']!=0)
             {
               $video='<div align="left" style="margin-top: 20px;">
-              <iframe width="560" height="315" src="'.$row['youtube'].'" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>
+              <iframe class="embed-responsive-item" width="560" height="315" src="'.$row['youtube'].'" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>
               </iframe></div>';
             }
             else
