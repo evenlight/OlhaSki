@@ -29,7 +29,7 @@
         </div>
         <hr>
         <div align="center">
-            <a href="../content/img/scheme.jpg"  data-toggle="lightbox" data-gallery="example-gallery">
+            <a href="../content/img/scheme.jpg"  data-toggle="lightbox" data-gallery="menu-img">
                 <img class="img-thumbnail" src="../content/img/scheme.jpg" style="max-height: 170px;">
             </a>
         </div>
