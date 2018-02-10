@@ -11,6 +11,7 @@
 <link href="../content/css/custom.css" rel="stylesheet">
 <link rel="shortcut icon" href="../content/img/favicon.png" type="image/x-icon">
 <link rel="stylesheet" href="../content/css/weather-icons.css">
+<link rel="stylesheet" href="../content/css/bvi.css">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.css" rel="stylesheet">
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
