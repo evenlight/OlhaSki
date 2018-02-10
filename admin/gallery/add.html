@@ -30,10 +30,6 @@ if ($_POST['command']=='go')
   {
     $img=0;
   }
-  else
-  {
-    $img=upload_gallery (1, 'I');
-  }
   $sql="insert into albums (name, img) values ('".$_POST['title']."', '".$img."')";
   $execute=mysqli_query($conn, $sql);
   if ($execute)

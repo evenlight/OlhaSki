@@ -20,7 +20,7 @@
                             $result = mysqli_query($conn, $sql); 
                             while($row = mysqli_fetch_assoc($result)) 
                             {
-                               echo '<tr><td class="text-center"><a href="../../content/gallery/'.$row['img'].'" target="_blank"><img src="../../content/gallery/'.$row['img'].'" class="img-thumnail" style="max-height: 100px;"></a></td>
+                               echo '<tr><td class="text-center"><a href="../../content/img/'.$row['img'].'" target="_blank"><img src="../../content/img/'.$row['img'].'" class="img-thumnail" style="max-height: 100px;"></a></td>
                                 <td>'.$row['name'].'</td>
                                 <td class="text-center"><a class="btn btn-primary" href="edit.html?pid='.$row['id'].'"><span class="glyphicon glyphicon-pencil"></span>Ред.</a></td></tr>';
                             }
