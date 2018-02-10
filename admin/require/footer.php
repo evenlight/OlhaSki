@@ -26,5 +26,41 @@ $(".nav a").on("click", function(){
             $preloader.delay(350).fadeOut('slow');
         });
     </script>
+    <script src="../../content/js/image-compressor.js"></script>
+    <script>
+        // import ImageCompressor from 'image-compressor.js';
+        // var imgInput = document.getElementById('img');
+        // if (imgInput) {
+        //     imgInput.addEventListener('change', (e) => {
+        //     const file = e.target.files[0];
+
+        //     if (!file) {
+        //         return;
+        //     } 
+
+        //     new ImageCompressor(file, {
+        //         quality: .6,
+        //         success(result) {
+        //           const formData = new FormData();
+
+        //           formData.append('file', result, result.name);
+        //           $.ajax({
+        //             url: 'upload_img.php',
+        //             data: formData,
+        //             processData: false,
+        //             contentType: false,
+        //             type: 'POST',
+        //             success: function(data){
+        //               console.log('success!');
+        //             }
+        //           });
+        //         },
+        //         error(e) {
+        //             console.log(e.message);
+        //         },
+        //     });
+        // });
+        // }
+        </script>
   </body>
 </html>
