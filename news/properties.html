@@ -19,7 +19,7 @@ while($row = mysqli_fetch_assoc($result))
             $text=$row['title'];
             if(!empty($row['img']) or $row['img']!=0)
             {
-              $img='<img class="news-left img-thumbnail pull-right" src="../content/img/'.$row['img'].'" style="height: 150px; margin-left: 15px; margin-right: 0px;">';
+              $img='<img class="news-left img-thumbnail pull-right" src="../content/img/'.$row['img'].'" style="height: 50%; margin-left: 15px; margin-right: 0px;">';
             }
             else
             {
