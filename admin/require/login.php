@@ -16,7 +16,7 @@
             $_SESSION['user'] = $user_id; 
             echo '<SCRIPT language="JavaScript"> window.location="/admin/home/";</SCRIPT>';
         } 
-        else 
+        else
         {
             echo '<div class="alert alert-danger signin-form">Неверно указан логин/пароль!</div>';
         }

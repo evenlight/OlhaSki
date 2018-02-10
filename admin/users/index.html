@@ -9,17 +9,16 @@
             <thead>
                 <tr>
                     <th>Логин</th>
-                    <th>Порядок прокрутки</th>
                     <th>Действия</th>
                 </tr>                       
             </thead>
             <tbody>
                 <?php
-                    $sql="select * from users where login!='admin'";
+                    $sql="select id, upper(login) as login from users where login!='admin'";
                     $result = mysqli_query($conn, $sql); 
                     while($row = mysqli_fetch_assoc($result)) 
                     {
-                        echo '<tr><td class="text-center">'.$row['login'].'</td>
+                        echo '<tr><td class="text-center"><strong>'.$row['login'].'</strong></td>
                         <td class="text-center"><a class="btn btn-primary" href="edit.html?pid='.$row['id'].'"><span class="glyphicon glyphicon-pencil"></span>Ред.</a></td></tr>';
                     }
                 ?>

@@ -1,0 +1,37 @@
+<?php
+    require_once('../require/header.php');
+    extract($_REQUEST,EXTR_PREFIX_ALL|EXTR_REFS,'in');
+?>
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <h2>Смена пароля</h2>
+                <form action="pass.html" enctype="multipart/form-data" method="POST">
+                <input type="hidden" name="command" value="go">
+                      <div class="form-group">
+                        <input type="text" class="form-control" id="password" name="password" placeholder="Пароль">
+                      </div>
+                      <div align="center">
+                      <div class="form-group">
+                          <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-ok"></span>Изменить пароль</button>
+                    </div>
+                  </div>
+                </form>
+            </div>
+        </div>
+                
+<?php
+if ($_POST['command']=='go')
+{
+    $sql="update users set password=md5('".$_POST['password']."') where id=".$_SESSION['user']."";
+    $execute=mysqli_query($conn, $sql);
+    if ($execute)
+    {
+      echo alert ('users', 1);
+    }
+    else
+    {
+      echo alert ('users', 0);
+    }
+  }
+  require_once('../require/footer.php');
+?>

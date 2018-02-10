@@ -10,7 +10,17 @@
         <li><a href="../gallery/">Галерея</a></li>
         <li><a href="../users/">Пользователи</a></li>
     </ul>  
-    <p class="navbar-text navbar-right">
-        <a href="/admin/home/?action=logout" class="navbar-link"><span class="glyphicon glyphicon-log-out"></span> Выход</a>
-    </p> 
-</div> 
+</div>
+<hr>
+<div class="pull-right">
+    <p>
+        <?php
+        if ($_SESSION['user']==1)
+        {
+            echo ' <p><a href="/admin/users/system.html"><span class="glyphicon glyphicon-user"></span> Системный справочник</a></p>';
+        }
+        ?>
+        <p><a href="/admin/users/pass.html"><span class="glyphicon glyphicon-lock"></span> Сменить пароль</a></p>
+        <p><a href="/admin/home/?action=logout"><span class="glyphicon glyphicon-log-out"></span> Выход</a></p>
+    </p>
+</div>

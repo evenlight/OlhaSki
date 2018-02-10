@@ -1,0 +1,26 @@
+<?php
+    require_once('../require/header.php');
+    extract($_REQUEST,EXTR_PREFIX_ALL|EXTR_REFS,'in');
+?>
+        <div class="row">
+          <div>
+            <div class="col-md-8 col-md-offset-2">
+                <div class="alert alert-danger">НИКОМУ НЕ СООБЩАЙТЕ ИНФОРМАЦИЮ С ДАННОЙ СТРАНИЦЫ!!!</div>
+                  <?php
+                    $sql="select * from systeminfo";
+                    $result = mysqli_query($conn, $sql); 
+                    while($row = mysqli_fetch_assoc($result)) 
+                    {
+                        echo '<div class="alert alert-info">
+                        E-mail для восстановления пароля администратора: '.$row['sysvalue'].'
+                        </div>';
+                    }
+                   ?>
+                </form>
+            </div>
+        </div>
+      </div>
+                
+<?php
+  require_once('../require/footer.php');
+?>
