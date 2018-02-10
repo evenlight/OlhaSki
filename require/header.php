@@ -26,7 +26,7 @@
                 <?php
                   //echo '<a href="http://finevision.ru/?hostname='.$_SERVER['HTTP_HOST'].'&path=/home/" class="navbar-link">версия для слабовидящих</a>'
                 ?>
-		<a href="#" class="navbar-link">версия для слабовидящих</a>
+		<a href="#" class="bvi-panel-open navbar-link">версия для слабовидящих</a>
               </p> 
             </div> 
           </div> 
