@@ -6,7 +6,10 @@
           <p class="text-center block-header">НАШИ СПОРТСМЕНЫ</p>
           <div class="row">
             <?php
-                $sql="select id, name, description, birthday, rank, img, category, adoptedby from athlets order by rank";
+                $sql="select t1.id, name, description, birthday, img, t2.sprvalue, t3.sprvalue as rank, adoptedby from athlets t1
+                left join category t2 on t1.category=t2.id
+                left join rank t3 on t1.rank=t3.id
+                order by rank";
                 $result = @mysqli_query(@$conn, $sql); 
                 while($row = @mysqli_fetch_assoc($result)) 
                 {
@@ -23,8 +26,9 @@
                                     <p>Год рождения: '.$row['birthday'].'
                                         <br>
                                         Принят с '.$row['adoptedby'].' года
-                                    </p><br>
-                                    Категория : '.$row['category'].'
+                                    </p>
+                                    Категория : '.$row['sprvalue'].'<br>
+                                    Разряд : '.$row['rank'].'<br>
                                     <p><strong>'.$row['description'].'</strong></p>
                                 </div>
                             </div>
