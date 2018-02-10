@@ -29,8 +29,8 @@
         </div>
         <hr>
         <div align="center">
-            <a href="../content/img/5a72d7ea35b27.jpg" target="_blank">
-                <img class="img-thumbnail" src="../content/img/5a72d7ea35b27.jpg" style="max-height: 100px;">
+            <a href="../content/img/scheme.jpg"  data-toggle="lightbox" data-gallery="example-gallery">
+                <img class="img-thumbnail" src="../content/img/scheme.jpg" style="max-height: 170px;">
             </a>
         </div>
         <hr>
