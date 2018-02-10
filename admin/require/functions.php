@@ -12,14 +12,14 @@
     {
         if ($result==1)
         {
-            if ($url!=0)
+            if ($url!='')
             {
                 echo '<div class="alert alert-success col-md-8 col-md-offset-2">Действие выполнено успешно</div>';
+                echo '<SCRIPT language="JavaScript"> window.location="/admin/'.$url.'/";</SCRIPT>';
             }
             else
             {
                 echo '<div class="alert alert-success col-md-8 col-md-offset-2">Действие выполнено успешно</div>';
-                echo '<SCRIPT language="JavaScript"> window.location="/admin/'.$url.'/";</SCRIPT>';
             }
         }
         elseif ($result==0)
