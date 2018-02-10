@@ -69,11 +69,11 @@ if ($_POST['command']=='go')
   $execute=mysqli_query($conn, $sql);
   if ($execute)
   {
-    echo alert ('gallery', 1);
+    echo alert (0, 1);
   }
   else
   {
-    echo alert ('gallery', 0);
+    echo alert (0, 0);
   }
 }
 
