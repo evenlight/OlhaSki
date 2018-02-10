@@ -33,4 +33,5 @@
                 <img class="img-thumbnail" src="../content/img/5a72d7ea35b27.jpg" style="max-height: 100px;">
             </a>
         </div>
+        <hr>
     </div>
