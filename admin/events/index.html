@@ -18,13 +18,14 @@
                     </thead>
                     <tbody>
                         <?php
-                            $sql="select * from events order by eventDate DESC";
+                            $sql="select * from events where arc!=1 order by eventDate DESC";
                             $result = mysqli_query($conn, $sql); 
                             while($row = mysqli_fetch_assoc($result)) 
                             {
                                echo '<tr><td>'.$row['name'].'</td><td>'.$row['eventDate'].'</td><td>'.$row['age'].'</td>
                                <td>'.$row['location'].'</td>
-                                <td class="text-center"><a class="btn btn-primary" href="edit.html?pid='.$row['ID'].'"><span class="glyphicon glyphicon-pencil"></span>Ред.</a></td></tr>';
+                                <td class="text-center"><a class="btn btn-primary" href="edit.html?pid='.$row['ID'].'"><span class="glyphicon glyphicon-pencil"></span>Ред.</a>
+                                    <a class="btn btn-danger" href="edit.html?pid='.$row['ID'].'&arc=1"><span class="glyphicon glyphicon-folder-close"></span>В архив</a></td></tr>';
                             }
                         ?>
                     </tbody>

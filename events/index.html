@@ -9,6 +9,7 @@
                     <ul class="nav nav-tabs">
                         <li class="active"><a data-toggle="tab" href="#competitions" role="tab">Соревнования</a></li>
                         <li><a data-toggle="tab" href="#noncompetitions" role="tab">Мероприятия школы</a></li>
+                        <li><a data-toggle="tab" href="#arc" role="tab">Архив соревнований</a></li>
                     </ul>
                     <div class="tab-content">
                         <div id="competitions" class="tab-pane fade in active" role="tabpanel">
@@ -55,6 +56,23 @@
                                     ?>
                                 </tbody>
                             </table>
+                        </div>
+                        <div id="arc" class="tab-pane fade" role="tabpanel" style="margin-top: 20px;">
+                            <div class="col-md-3">
+                                <form class="form-horizontal" id="archive" method="POST" action="archive.html">
+                                    <input type="hidden" name="command" value="go">
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-md-9">
+                                                <input type="text" class="form-control" placeholder="Введите год">
+                                            </div>
+                                            <div class="col-md-3">
+                                                <button class="btn btn-success" type="submit">Показать</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
                     </div>               
                 </div>

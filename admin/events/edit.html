@@ -108,5 +108,18 @@ if($in_act=='delete')
     echo alert ('events', 0);
   }
 }
+if ($_GET['arc']==1)
+{
+  $sql="update events set arc=1 where id=".$_GET['pid']."";
+  $execute=mysqli_query($conn, $sql);
+  if ($execute)
+  {
+    echo alert ('events', 1);
+  }
+  else
+  {
+    echo alert ('events', 0);
+  }
+}
   require_once('../require/footer.php');
 ?>
