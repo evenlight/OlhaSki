@@ -9,7 +9,24 @@
                 <form action="add.html" enctype="multipart/form-data" method="POST">
                 <input type="hidden" name="command" value="go">
                       <div class="form-group">
-                        <input type="text" class="form-control" id="group" name="group" placeholder="Группа">
+                          <select class="form-control" name="group" id="group">
+                            <option></option>
+                            <?php
+                                $sqlS="select * from groups";
+                                $resultS = mysqli_query($conn, $sqlS); 
+                                while($rowS = mysqli_fetch_assoc($resultS)) 
+                                {
+                                    if ($rowS['id']==$row['group']) 
+                                    {
+                                        echo '<option value="'.$rowS['id'].'" selected="selected">'.$rowS['sprvalue'].'</option>';
+                                    }
+                                    else
+                                    {
+                                        echo '<option value="'.$rowS['id'].'">'.$rowS['sprvalue'].'</option>';
+                                    }
+                                }
+                            ?>
+                        </select>
                       </div>
                       <div class="form-group">
                         <select class="form-control" name="dayweek" id="dayweek">

@@ -61,11 +61,11 @@ if ($_POST['command']=='add')
   $execute=mysqli_query($conn, $sql);
   if ($execute)
   {
-    echo alert ('athletes', 1);
+    echo alert ('home', 1);
   }
   else
   {
-    echo alert ('athletes', 0);
+    echo alert ('home', 0);
   }
 }
 if ($_POST['command']=='del')
@@ -74,11 +74,11 @@ if ($_POST['command']=='del')
   $execute=mysqli_query($conn, $sql);
   if ($execute)
   {
-    echo alert ('athletes', 1);
+    echo alert ('home', 1);
   }
   else
   {
-    echo alert ('athletes', 0);
+    echo alert ('home', 0);
   }
 }
     require_once('../require/footer.php');
