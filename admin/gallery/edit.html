@@ -37,7 +37,7 @@
                 $result = mysqli_query($conn, $sql); 
                 while($row = mysqli_fetch_assoc($result)) 
                 {
-                  echo '<tr><td><img src="'.$imgPath.$row['img'].'" style="max-height: 100px;"></td>
+                  echo '<tr><td><img src="../../content/gallery/'.$row['img'].'" style="max-height: 100px;"></td>
                   <td><a href="edit.html?act=delete_single&id='.$row['ID'].'&img='.$row['img'].'" class="btn btn-danger">Удалить</a></td></tr>';
                 }
                 ?>
