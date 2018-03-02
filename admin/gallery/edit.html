@@ -1,96 +1,89 @@
 <?php
     require_once('../require/header.php');
     extract($_REQUEST,EXTR_PREFIX_ALL|EXTR_REFS,'in');
+    $imgPath=$_SERVER['DOCUMENT_ROOT'].'/content/gallery/';
 ?>
-        <div class="row">
-          <div class="panel panel-default">
-            <div class="col-md-8 col-md-offset-2">
-                <h2>Режим редактирования</h2>
-                <form action="edit.html?pid=<?php echo $_GET['pid']; ?>" enctype="multipart/form-data" method="POST">
-                <input type="hidden" name="command" value="go">
-                  <?php
-                    $sql="select * from albums where id=".$_GET['pid']."";
-                    $result = mysqli_query($conn, $sql); 
-                    while($row = mysqli_fetch_assoc($result)) 
-                    {
-                    ?>
-                      <div class="form-group">
-                        <label for="title">Название альбома</label>
-                        <input type="text" class="form-control" id="title" name="title" value="<?php echo $row['name']; ?>" placeholder="Заголовок" disabled="disabled">
-                      </div>
-                      <div align="center">
-                        <div class="form-group">
-                            <input type="file" name="img" id="img" class="btn btn-default">
-                            <p class="help-block">Добавить фото</p>
-                        <div class="form-group">
-                            <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-ok"></span>Сохранить</button>
-                            <a href="edit.html?act=delete&pid=<?php echo $_GET['pid']; ?>" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span>Удалить альбом</a>  
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="row">
-                            <?php
-                            $sqlS="select * from gallery where albumid=".$row['id']."";
-                            $resultS = mysqli_query($conn, $sqlS); 
-                            while($rowS = mysqli_fetch_assoc($resultS)) 
-                            {
-                                echo '
-                                <div class="col-md-3">
-                                    <a href="../../content/gallery/'.$rowS['img'].'" target="_blank">
-                                        <img class="img-thumbnail" src="../../content/gallery/'.$rowS['img'].'" style="max-height: 100px;">
-                                    </a>
-                                </div>';
-                            }
-          
-                              }
-                            ?>
-                        </div>
-                     </div>
-                </form>
-            </div>
+  <div class="row">
+    <div class="panel panel-default">
+      <div class="col-md-8 col-md-offset-2">
+        <h2>Массовая загрузка изображений</h2>
+        <form action="upload.php?pid=<?php echo $_GET['pid']; ?>" class="dropzone"></form>
+        <br>
+        <div align="center">
+          <div class="form-group">
+            <a href="edit.html?act=delete&pid=<?php echo $_GET['pid']; ?>" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span>Удалить альбом и все фотографии</a>  
+          </div>
         </div>
       </div>
-                
+    </div>
+  </div> 
+  <div class="panel-group" id="accordion">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+              Управление фотографиями альбома
+            </a>
+          </h4>
+        </div>
+        <div id="collapseOne" class="panel-collapse collapse in">
+          <div class="panel-body">
+              <table class="table table-striped table-bordered">
+                <th>Фото</th>
+                <th>Действия</th>
+                <?php
+                $sql="select * from gallery where albumid=".$_GET['pid']."";
+                $result = mysqli_query($conn, $sql); 
+                while($row = mysqli_fetch_assoc($result)) 
+                {
+                  echo '<tr><td><img src="'.$imgPath.$row['img'].'" style="max-height: 100px;"></td>
+                  <td><a href="edit.html?act=delete_single&id='.$row['ID'].'&img='.$row['img'].'" class="btn btn-danger">Удалить</a></td></tr>';
+                }
+                ?>
+              </table>
+          </div>
+        </div>
+      </div>
+    </div>              
 <?php
-if ($_POST['command']=='go')
-{
-  if (basename($_FILES['img']['name'])=='')
-  {
-    $img="";
-    echo '<div class="alert alert-danger col-md-3">Выберете фотографию</div>';
-    die();
-  }
-  else
-  {
-    $img=upload_gallery (1, 'I');
-  }
-
-  $sql="insert into gallery (albumid, img) values (".$_GET['pid'].", '".$img."')";
-  $execute=mysqli_query($conn, $sql);
-  if ($execute)
-  {
-    echo alert ('gallery', 1);
-  }
-  else
-  {
-    echo alert ('gallery', 0);
-  }
-}
-
 if($in_act=='delete')
 {
-  $sql="delete from albums where id=".$_GET['pid']."";
-  $execute=mysqli_query($conn, $sql);
-  if ($execute)
-  {
-    $sql="delete from gallery where albumid=".$_GET['pid']."";
-    $execute=mysqli_query($conn, $sql);  
-    echo alert ('gallery', 1);
-  }
-  else
-  {
-    echo alert ('gallery', 0);
-  }
+    $sql="select * from gallery where albumid=".$_GET['pid']."";
+    $execute=mysqli_query($conn, $sql);
+    while($row = mysqli_fetch_assoc($execute)) 
+    {
+      $sqlD="delete from gallery where ID=".$row['ID']."";
+      $executeD=mysqli_query($conn, $sqlD);
+      if ($executeD)
+      {
+        $delFiles=unlink($imgPath.$row['img']);
+      }
+    }  
+    $sql="delete from albums where id=".$_GET['pid']."";
+    $execute=mysqli_query($conn, $sql);
+    if($execute)
+    {
+      echo alert ('gallery', 1);
+    }
+    else
+    {
+      echo alert ('gallery', 0);
+    }
+    
+}
+if($in_act=='delete_single')
+{
+    $sql="delete from gallery where ID=".$_GET['id']."";
+    $execute=mysqli_query($conn, $sql);
+    if($execute)
+    {
+      unlink($imgPath.$_GET['img']);
+      echo alert ('gallery', 1);
+    }
+    else
+    {
+      echo alert ('gallery', 0);
+    }  
 }
   require_once('../require/footer.php');
 ?>

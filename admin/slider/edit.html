@@ -1,6 +1,8 @@
 <?php
     require_once('../require/header.php');
     extract($_REQUEST,EXTR_PREFIX_ALL|EXTR_REFS,'in');
+    require_once('../require/role.php');
+    $imgPath=$_SERVER['DOCUMENT_ROOT'].'/content/img/';
 ?>
         <div class="row">
           <div class="panel panel-default">
@@ -31,14 +33,14 @@
                         <input type="file" name="img" id="img" class="btn btn-default">
                         <p class="help-block">Загрузите фото</p>
                       </div>
-                  <?php
-
-                    }
-                    ?>
                     <div class="form-group">
                           <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-ok"></span>Сохранить</button>
-                          <a href="edit.html?act=delete&pid=<?php echo $_GET['pid']; ?>" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span>Удалить</a>  
+                          <a href="edit.html?act=delete&pid=<?php echo $_GET['pid']; ?>&img=<?php echo $row['img']; ?>" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span>Удалить</a>  
                     </div>
+                    <?php
+
+                  }
+                  ?>
                   </div>
                 </form>
             </div>
@@ -75,6 +77,7 @@ if($in_act=='delete')
   $execute=mysqli_query($conn, $sql);
   if ($execute)
   {
+    unlink($imgPath.$_GET['img']);
     echo alert ('slider', 1);
   }
   else

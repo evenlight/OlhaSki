@@ -5,6 +5,10 @@
     <div class="col-md-12">
         <h2>Режим редактирования справочников</h2>
         <hr>
+        <?php
+            if ($_GET['value']!='category')
+            {
+        ?>
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h3 class="panel-title">Добавить запись</h3>
@@ -51,11 +55,11 @@
                 </form>
             </div>
         </div>
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title">Редактирование записей</h3>
-            </div>
-            <div class="panel-body">
+        <?php
+    }
+    else
+    {
+        ?>
                 <div class="form-group">
                     <table class="table table-bordered table-condensed">
                         <thead>
@@ -75,8 +79,9 @@
                         </tbody>
                     </table>
                 </div>
-            </div>
-        </div>
+    <?php
+    }
+    ?>
     </div>
 
 <?php

@@ -1,17 +1,18 @@
 <?php
     require_once('../require/header.php');
+    require_once('../require/role.php');
     extract($_REQUEST,EXTR_PREFIX_ALL|EXTR_REFS,'in');
 ?>
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <h2>Режим добавления</h2>
                 <form action="add.html" enctype="multipart/form-data" method="POST">
-                <input type="hidden" name="command" value="go">
+                  <input type="hidden" name="command" value="go">
                       <div class="form-group">
                           <select id="category" name="category" class="form-control">
                               <option>Укажите категорию</option>
                               <?php
-                              $sql="select * from category";
+                              $sql="select id, sprvalue from category";
                               $result = mysqli_query($conn, $sql); 
                               while($row = mysqli_fetch_assoc($result)) 
                               {
@@ -30,7 +31,7 @@
                             <input type="text" class="form-control" id="age" name="age" placeholder="Возраст участников">
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control" id="type" name="type" placeholder="Вид соревнования">
+                        <input type="text" class="form-control" id="type" name="type" placeholder="Дисциплина">
                     </div>
                     <div class="form-group">
                         <input type="text" class="form-control" id="location" name="location" placeholder="Место проведения">                                               
@@ -64,8 +65,9 @@ if ($_POST['command']=='go')
     $_POST['types']=1;
   }
   $sql="insert into events (name, age, eventDate, location, subject, filename, category, arc) values ('".$_POST['title']."', 
-  '".$_POST['age']."', '".$_POST['date']."', '".$_POST['location']."', '".$_POST['category']."', '".$doc."', '".$_POST['types']."', 0)";
+  '".$_POST['age']."', '".$_POST['date']."', '".$_POST['location']."', '".$_POST['type']."', '".$doc."', '".$_POST['category']."', 0)";
   $execute=mysqli_query($conn, $sql);
+  //echo $sql;
   if ($execute)
   {
     echo alert ('events', 1);

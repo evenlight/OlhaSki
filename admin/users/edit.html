@@ -1,5 +1,6 @@
 <?php
     require_once('../require/header.php');
+    require_once('../require/role.php');
     extract($_REQUEST,EXTR_PREFIX_ALL|EXTR_REFS,'in');
 ?>
         <div class="row">
@@ -17,6 +18,27 @@
                       <div class="form-group">
                         <label for="password">Пароль</label>
                         <input type="text" class="form-control" id="password" name="password">
+                      </div>
+                      <div class="form-group">
+                          <label for="role">Роль</label>
+                          <select id="role" name="role" class="form-control">
+                              <option></option>
+                              <?php
+                              $sqlS="select * from user_roles";
+                              $resultS = mysqli_query($conn, $sqlS); 
+                              while($rowS = mysqli_fetch_assoc($resultS)) 
+                              {
+                                  if ($rowS['id']==$row['userRole']) 
+                                  {
+                                      echo '<option value="'.$rowS['id'].'" selected="selected">'.$rowS['roleName'].'</option>';
+                                  }
+                                  else
+                                  {
+                                      echo '<option value="'.$rowS['id'].'">'.$rowS['roleName'].'</option>';
+                                  }
+                              }
+                              ?>
+                          </select>
                       </div>
                       <div align="center">
                   <?php
@@ -36,8 +58,17 @@
 <?php
 if ($_POST['command']=='go')
 {
-  $sql="update users set password=md5('".$_POST['password']."') where id=".$_GET['pid']."";
+  if (empty($_POST['password']))
+  {
+    $editPassword="";
+  }
+  else
+  {
+    $editPassword=", password=md5('".$_POST['password']."')";
+  }
+  $sql="update users set userRole='".$_POST['role']."'".$editPassword." where id=".$_GET['pid']."";
   $execute=mysqli_query($conn, $sql);
+  //echo $sql;
   if ($execute)
   {
     echo alert ('users', 1);

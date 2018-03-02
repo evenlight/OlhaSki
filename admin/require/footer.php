@@ -27,6 +27,7 @@ $(".nav a").on("click", function(){
         });
     </script>
     <script src="../../content/js/image-compressor.js"></script>
+    <script src="../../content/js/dropzone.js"></script>
     <script>
         // import ImageCompressor from 'image-compressor.js';
         // var imgInput = document.getElementById('img');

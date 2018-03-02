@@ -1,5 +1,6 @@
 <?php
     require_once('../require/header.php');
+    require_once('../require/role.php');
     extract($_REQUEST,EXTR_PREFIX_ALL|EXTR_REFS,'in');
 ?>
         <div class="row">
@@ -13,10 +14,23 @@
                       <div class="form-group">
                         <input type="text" class="form-control" id="password" name="password" placeholder="Пароль">
                       </div>
+                      <div class="form-group">
+                          <select class="form-control" name="role">
+                            <option>Укажите роль</option>
+                            <?php
+                              $sql="select * from user_roles";
+                              $result = mysqli_query($conn, $sql); 
+                              while($row = mysqli_fetch_assoc($result)) 
+                              {
+                                echo '<option value="'.$row['id'].'">'.$row['roleName'].'</option>';          
+                              }
+                            ?>
+                          </select>
+                        </div>
                       <div align="center">
                       <div class="form-group">
                           <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-ok"></span>Сохранить</button>
-                    </div>
+                      </div>
                   </div>
                 </form>
             </div>
@@ -25,7 +39,7 @@
 <?php
 if ($_POST['command']=='go')
 {
-  $sql="insert into users (login, password, state) values ('".$_POST['login']."', md5('".$_POST['password']."'), 0)";
+  $sql="insert into users (login, password, userRole) values ('".$_POST['login']."', md5('".$_POST['password']."'), ".$_POST['role'].")";
   $execute=mysqli_query($conn, $sql);
   if ($execute)
   {

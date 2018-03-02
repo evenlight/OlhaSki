@@ -8,12 +8,14 @@
         while ($row=mysqli_fetch_assoc($result))
         {
             $user_id=$row['id'];
+            $role=$row['userRole'];
         }
 
         if (!empty($user_id)) 
         {
             session_start(); 
             $_SESSION['user'] = $user_id; 
+            $_SESSION['role'] = $role;
             echo '<SCRIPT language="JavaScript"> window.location="/admin/home/";</SCRIPT>';
         } 
         else

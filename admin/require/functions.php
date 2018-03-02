@@ -1,5 +1,24 @@
 <?php
 //echo $_SERVER['DOCUMENT_ROOT'];
+$pathfile = $_SERVER['PHP_SELF']; 
+$currentfile = basename($pathfile);
+if ($currentfile=='add.html' or $currentfile=='edit.html')
+{
+?>
+    <script>
+    window.onbeforeunload = function (evt) {
+	var message = "Document 'foo' is not saved. You will lost the changes if you leave the page.";
+	if (typeof evt == "undefined") {
+		evt = window.event;
+	}
+	if (evt) {
+		evt.returnValue = message;
+	}
+	return message;
+}
+</script>
+<?php
+}
     function left($str, $length) {
         return substr($str, 0, $length);
     }

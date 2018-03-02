@@ -13,34 +13,91 @@
                             while($row = mysqli_fetch_assoc($result)) 
                             {
                                 $id=$row['ID'];
-                                //echo '<li class="active">
-                                   // <a data-toggle="tab" href="#tab'.$row['id'].'" role="tab">'.$row['sprvalue'].'</a></li>';
-                                
-                                    echo '<li role="presentation" class="active"><a data-toggle="tab" aria-controls="#tab'.$row['id'].'" data-target="#tab'.$row['id'].'" href="index.html?ajax=1&category='.$row['id'].'" 
-                                    role="tab">'.$row['sprvalue'].'</a></li>';
-                                
-                                
+                                echo '<li class="active">
+                                        <a data-toggle="tab" href="#tab1" role="tab">'.$row['sprvalue'].'</a>
+                                      </li>';
+                                                               
                                 $sql="select * from category limit 1, 100";
                                 $result = mysqli_query($conn, $sql); 
                                 while($row = mysqli_fetch_assoc($result)) 
                                 {
-                                    //echo '<li><a data-toggle="tab" href="#tab'.$row['id'].'" role="tab">'.$row['sprvalue'].'</a></li>';
-                                    echo '<li role="presentation"><a data-toggle="tab" aria-controls="#tab'.$row['id'].'" data-target="#tab'.$row['id'].'" href="index.html?ajax=1&category='.$row['id'].'" 
-                                    role="tab">'.$row['sprvalue'].'</a></li>';
+                                    echo '<li><a data-toggle="tab" href="#tab2" role="tab">'.$row['sprvalue'].'</a></li>';
                                 } 
                             } 
                         ?>
                         <li><a data-toggle="tab" href="#arc" role="tab">Архив соревнований</a></li>
                     </ul>
                     <div class="tab-content">
-                        <?php
-                            $sql="select * from category";
-                            $result = mysqli_query($conn, $sql); 
-                            while($row = mysqli_fetch_assoc($result)) 
-                            {
-                                echo '<div id="tab'.$row['id'].'" class="tab-pane fade in" role="tabpanel" style="margin-top: 20px;"></div>';
-                            } 
-                        ?>
+                        <div id="tab1" class="tab-pane fade in active" role="tabpanel" style="margin-top: 20px;">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <th>Наименование соревнований</th>
+                                    <th>Возраст участников</th>
+                                    <th>Сроки проведения</th>
+                                    <th>Место проведения</th>
+                                    <th>Дисциплина</th>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    $sql="select name, age, DATE_FORMAT(eventDate, '%d.%m.%Y') as eventdate, 
+                                    location, subject, filename, DATEDIFF( eventDate, now()) as checkDate from events where category=1 order by eventdate desc";
+                                    //echo $sql;
+                                    $result = mysqli_query($conn, $sql); 
+                                    while($row = mysqli_fetch_assoc($result)) 
+                                    {
+                                        $checkDate=$row['checkDate'];
+                                        if($checkDate<0)
+                                        {
+                                            $color="#fcf8e3";
+                                        }
+                                        elseif($checkDate>=1 or $checkDate==0)
+                                        {
+                                            $color="#dff0d8";
+                                        }
+                                        echo '<tr><td style="background-color: '.$color.';"><a href="'.$row['filename'].'" target="_blank">'.$row['name'].'</a></td>
+                                        <td style="background-color: '.$color.';">'.$row['age'].'</td>
+                                        <td style="background-color: '.$color.';">'.$row['eventdate'].'</td>
+                                        <td style="background-color: '.$color.';">'.$row['location'].'</td>
+                                        <td style="background-color: '.$color.';">'.$row['subject'].'</td></tr>';
+                                    }
+                        
+                                    ?>
+                                </tbody>
+                            </table>  
+                        </div>
+                        <div id="tab2" class="tab-pane fade in" role="tabpanel" style="margin-top: 20px;">
+                            <table class="table table-bordered table-striped">
+                                <thead>
+                                    <th>Наименование соревнований</th>
+                                    <th>Возраст участников</th>
+                                    <th>Сроки проведения</th>
+                                    <th>Место проведения</th>
+                                    <th>Дисциплина</th>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    $sql="select name, age, DATE_FORMAT(eventDate, '%d.%m.%Y') as eventdate, 
+                                    location, subject, filename, DATEDIFF(eventDate, now()) as checkDate from events where category=2 order by eventdate desc";
+                                    $result = mysqli_query($conn, $sql); 
+                                    while($row = mysqli_fetch_assoc($result)) 
+                                    {
+                                        $checkDate=$row['checkDate'];
+                                        if($checkDate<0)
+                                        {
+                                            $textColor="text-danger";
+                                        }
+                                        elseif($checkDate>=0)
+                                        {
+                                            $textColor="text-success";
+                                        }
+                                        echo '<tr><td><a href="'.$row['filename'].'" target="_blank" class="'.$textColor.'">'.$row['name'].'</a></td><td>'.$row['age'].'</td><td>'.$row['eventdate'].'</td><td>'.$row['location'].'</td>
+                                        <td>'.$row['subject'].'</td></tr>';
+                                    }
+                        
+                                    ?>
+                                </tbody>
+                            </table>  
+                        </div>
                         <div id="arc" class="tab-pane fade" role="tabpanel" style="margin-top: 20px;">
                             <div class="col-md-3">
                                 <form class="form-horizontal" id="archive" method="POST" action="archive.html">
@@ -63,49 +120,5 @@
                 </div>
             </div>
 <?php
-  if ($_GET['ajax']==1)
-  {
-?>
-    <table class="table table-bordered table-striped">
-        <thead>
-            <th>Наименование соревнований</th>
-            <th>Возраст участников</th>
-            <th>Сроки проведения</th>
-            <th>Место проведения</th>
-            <th>Дисциплина</th>
-        </thead>
-        <tbody>
-            <?php
-            $sql="select name, age, DATE_FORMAT(eventDate, '%d.%m.%Y') as eventdate, 
-            location, subject, filename from events where category=".$_GET['category']." order by eventdate desc";
-            echo $sql;
-            $result = mysqli_query($conn, $sql); 
-            while($row = mysqli_fetch_assoc($result)) 
-            {
-                echo '<tr><td><a href="'.$row['filename'].'" target="_blank">'.$row['name'].'</a></td><td>'.$row['age'].'</td><td>'.$row['eventdate'].'</td><td>'.$row['location'].'</td>
-                <td>'.$row['subject'].'</td></tr>';
-            }
-
-            ?>
-        </tbody>
-    </table>  
-<?php
-  }
   require_once('../require/footer.php');
 ?>
-<script>
-$('[data-toggle="tab"]').on('click', function(){
-    var $this = $(this),
-        source = $this.attr('href'),
-        pane = $this.attr('data-target');
-		
-    if($(pane).is(':empty')) {  // check if pane is empty, if so get data
-	  $.get(source, function(data) {
-          $(pane).html(data);
-      });
-		
-      $(this).tab('show');
-      return false;
-    }
-});
-</script>

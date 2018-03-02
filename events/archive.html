@@ -5,6 +5,21 @@
 <div class="col-md-9 col-lg-9">
     <p class="text-center block-header">АРХИВ МЕРОПРИЯТИЙ</p>
         <div class="row">
+            <div class="col-md-3">
+                <form class="form-horizontal" id="archive" method="POST" action="archive.html">
+                    <input type="hidden" name="command" value="go">
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-9">
+                                <input type="text" class="form-control" name="year" placeholder="Введите год">
+                            </div>
+                            <div class="col-md-3">
+                                <button class="btn btn-success" type="submit">Показать</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
         <?php
         if ($_POST['command']=="go")
         {
