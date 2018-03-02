@@ -41,6 +41,10 @@
                           <input type="file" name="doc" id="doc" class="btn btn-default">
                           <p class="help-block">Загрузите документ</p>
                         </div>
+                        <div class="form-group">
+                          <input type="file" name="protocol" id="protocol" class="btn btn-default">
+                          <p class="help-block">Загрузите протокол</p>
+                        </div>
                       <div class="form-group">
                           <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-ok"></span>Сохранить</button>
                         </div>
@@ -60,12 +64,22 @@ if ($_POST['command']=='go')
   {
     $doc=upload_event (1, 'I');
   }
+
+  if (basename($_FILES['protocol']['name'])=='')
+  {
+    $protocol=0;
+  }
+  else
+  {
+    $protocol=upload_protocol (1, 'I');
+  }
+
   if ($_POST['types']!=0)
   {
     $_POST['types']=1;
   }
-  $sql="insert into events (name, age, eventDate, location, subject, filename, category, arc) values ('".$_POST['title']."', 
-  '".$_POST['age']."', '".$_POST['date']."', '".$_POST['location']."', '".$_POST['type']."', '".$doc."', '".$_POST['category']."', 0)";
+  $sql="insert into events (name, age, eventDate, location, subject, filename, category, protocol, arc) values ('".$_POST['title']."', 
+  '".$_POST['age']."', '".$_POST['date']."', '".$_POST['location']."', '".$_POST['type']."', '".$doc."', '".$protocol."', '".$_POST['category']."', 0)";
   $execute=mysqli_query($conn, $sql);
   //echo $sql;
   if ($execute)

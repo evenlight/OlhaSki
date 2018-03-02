@@ -130,4 +130,27 @@ if ($currentfile=='add.html' or $currentfile=='edit.html')
             return $doc;
         }
     }
+    function upload_protocol ($start, $type)
+    {
+        if ($start==1)
+        {
+            $uploaddir = $_SERVER['DOCUMENT_ROOT'].'/events/';
+            //$uploaddir = '../../events/';
+            $r= right($_FILES['protocol']['name'], 5);
+            $filename = uniqid().$r;
+            $uploadfile = $uploaddir . $filename;
+            move_uploaded_file($_FILES['protocol']['tmp_name'], $uploadfile);
+
+            if ($type=="I")
+            {
+                $protocol=$filename;
+            }
+            if ($type=="U")
+            {
+                $protocol=", protocol='".$filename."'";
+            }
+
+            return $protocol;
+        }
+    }
 ?>

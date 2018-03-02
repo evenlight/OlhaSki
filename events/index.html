@@ -36,11 +36,12 @@
                                     <th>Сроки проведения</th>
                                     <th>Место проведения</th>
                                     <th>Дисциплина</th>
+                                    <th>Протоколы</th>
                                 </thead>
                                 <tbody>
                                     <?php
                                     $sql="select name, age, DATE_FORMAT(eventDate, '%d.%m.%Y') as eventdate, 
-                                    location, subject, filename, DATEDIFF( eventDate, now()) as checkDate from events where category=1 order by eventdate desc";
+                                    location, subject, filename, DATEDIFF( eventDate, now()) as checkDate, protocol from events where category=1 order by eventdate desc";
                                     //echo $sql;
                                     $result = mysqli_query($conn, $sql); 
                                     while($row = mysqli_fetch_assoc($result)) 
@@ -58,7 +59,8 @@
                                         <td style="background-color: '.$color.';">'.$row['age'].'</td>
                                         <td style="background-color: '.$color.';">'.$row['eventdate'].'</td>
                                         <td style="background-color: '.$color.';">'.$row['location'].'</td>
-                                        <td style="background-color: '.$color.';">'.$row['subject'].'</td></tr>';
+                                        <td style="background-color: '.$color.';">'.$row['subject'].'</td>
+                                        <td style="background-color: '.$color.';"><a href="'.$row['protocol'].'" target="_blank" class="btn btn-success">Открыть</a></td></tr>';
                                     }
                         
                                     ?>
@@ -77,21 +79,25 @@
                                 <tbody>
                                     <?php
                                     $sql="select name, age, DATE_FORMAT(eventDate, '%d.%m.%Y') as eventdate, 
-                                    location, subject, filename, DATEDIFF(eventDate, now()) as checkDate from events where category=2 order by eventdate desc";
+                                    location, subject, filename, DATEDIFF(eventDate, now()) as checkDate, protocol from events where category=2 order by eventdate desc";
                                     $result = mysqli_query($conn, $sql); 
                                     while($row = mysqli_fetch_assoc($result)) 
                                     {
                                         $checkDate=$row['checkDate'];
                                         if($checkDate<0)
                                         {
-                                            $textColor="text-danger";
+                                            $color="#fcf8e3";
                                         }
-                                        elseif($checkDate>=0)
+                                        elseif($checkDate>=1 or $checkDate==0)
                                         {
-                                            $textColor="text-success";
+                                            $color="#dff0d8";
                                         }
-                                        echo '<tr><td><a href="'.$row['filename'].'" target="_blank" class="'.$textColor.'">'.$row['name'].'</a></td><td>'.$row['age'].'</td><td>'.$row['eventdate'].'</td><td>'.$row['location'].'</td>
-                                        <td>'.$row['subject'].'</td></tr>';
+                                        echo '<tr><td style="background-color: '.$color.';"><a href="'.$row['filename'].'" target="_blank">'.$row['name'].'</a></td>
+                                        <td style="background-color: '.$color.';">'.$row['age'].'</td>
+                                        <td style="background-color: '.$color.';">'.$row['eventdate'].'</td>
+                                        <td style="background-color: '.$color.';">'.$row['location'].'</td>
+                                        <td style="background-color: '.$color.';">'.$row['subject'].'</td>
+                                        <td style="background-color: '.$color.';"><a href="'.$row['protocol'].'" target="_blank" class="btn btn-success">Открыть</a></td></tr>';
                                     }
                         
                                     ?>

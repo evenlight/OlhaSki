@@ -66,8 +66,20 @@
                           ?>
                         </div>
                         <div class="form-group">
+                            <?php
+                                if (!empty($row['protocol']))
+                                {
+                                  echo '<a href="../../events/'.$row['protocol'].'" class="btn btn-success" target="_blank">Открыть протокол</a>';
+                                }
+                            ?>
+                          </div>
+                        <div class="form-group">
                             <input type="file" name="doc" id="doc" class="btn btn-default">
                             <p class="help-block">Загрузите документ</p>
+                          </div>
+                        <div class="form-group">
+                            <input type="file" name="protocol" id="protocol" class="btn btn-default">
+                            <p class="help-block">Загрузите протокол</p>
                           </div>
                   <?php
 
@@ -94,8 +106,18 @@ if ($_POST['command']=='go')
   {
     $doc=upload_event (1, 'U');
   }
+
+  if (basename($_FILES['protocol']['name'])=='')
+  {
+    $protocol=0;
+  }
+  else
+  {
+    $protocol=upload_protocol (1, 'U');
+  }
+
   $sql="update events set name='".$_POST['name']."', age='".$_POST['age']."', subject='".$_POST['type']."', eventDate='".$_POST['datem']."', location='".$_POST['location']."', 
-  name='".$_POST['name']."', category='".$_POST['category']."' ".$doc." where id=".$_GET['pid']."";
+  name='".$_POST['name']."', category='".$_POST['category']."' ".$doc." ".$protocol."  where id=".$_GET['pid']."";
   $execute=mysqli_query($conn, $sql);
 
   if ($execute)

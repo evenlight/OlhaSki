@@ -31,6 +31,7 @@
                     <th>Сроки проведения</th>
                     <th>Место проведения</th>
                     <th>Дисциплина</th>
+                    <th>Протоколы</th>
                 </thead>
                 <tbody>
                     <?php
@@ -41,7 +42,7 @@
                     while($row = mysqli_fetch_assoc($result)) 
                     {
                         echo '<tr><td><a href="'.$row['filename'].'" target="_blank">'.$row['name'].'</a></td><td>'.$row['age'].'</td><td>'.$row['eventdate'].'</td><td>'.$row['location'].'</td>
-                        <td>'.$row['subject'].'</td></tr>';
+                        <td>'.$row['subject'].'</td><td><a href="'.$row['protocol'].'" target="_blank" class="btn btn-success">Открыть</a></td></tr>';
                     }
 
                     ?>
