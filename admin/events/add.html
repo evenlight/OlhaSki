@@ -8,6 +8,19 @@
                 <form action="add.html" enctype="multipart/form-data" method="POST">
                 <input type="hidden" name="command" value="go">
                       <div class="form-group">
+                          <select id="category" name="category" class="form-control">
+                              <option>Укажите категорию</option>
+                              <?php
+                              $sql="select * from category";
+                              $result = mysqli_query($conn, $sql); 
+                              while($row = mysqli_fetch_assoc($result)) 
+                              {
+                                  echo '<option value="'.$row['id'].'">'.$row['sprvalue'].'</option>';
+                              }
+                              ?>
+                          </select>
+                      </div>
+                      <div class="form-group">
                         <input type="text" class="form-control" id="title" name="title" placeholder="Название мероприятия">
                       </div>
                       <div class="form-group">
@@ -23,10 +36,6 @@
                         <input type="text" class="form-control" id="location" name="location" placeholder="Место проведения">                                               
                     </div>
                       <div align="center">
-                        <div class="form-group">
-                            <label for="types">Мероприятие школы</label>
-                            <input type="checkbox" id="types" name="types" value="0">
-                        </div>
                         <div class="form-group">
                           <input type="file" name="doc" id="doc" class="btn btn-default">
                           <p class="help-block">Загрузите документ</p>
@@ -54,8 +63,8 @@ if ($_POST['command']=='go')
   {
     $_POST['types']=1;
   }
-  $sql="insert into events (name, age, eventDate, location, subject, filename, competition, arc) values ('".$_POST['title']."', 
-  '".$_POST['age']."', '".$_POST['date']."', '".$_POST['location']."', '".$_POST['type']."', '".$doc."', '".$_POST['types']."', 0)";
+  $sql="insert into events (name, age, eventDate, location, subject, filename, category, arc) values ('".$_POST['title']."', 
+  '".$_POST['age']."', '".$_POST['date']."', '".$_POST['location']."', '".$_POST['category']."', '".$doc."', '".$_POST['types']."', 0)";
   $execute=mysqli_query($conn, $sql);
   if ($execute)
   {

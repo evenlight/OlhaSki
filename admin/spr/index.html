@@ -35,7 +35,6 @@
                             <option></option>
                             <?php
                                 $sql="select * from ".$_GET['value']."";
-                                echo $sql;
                                 $result=mysqli_query($conn, $sql);
                                 while($row = mysqli_fetch_assoc($result)) 
                                 {
@@ -50,6 +49,32 @@
                         </div>
                     </div>
                 </form>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Редактирование записей</h3>
+            </div>
+            <div class="panel-body">
+                <div class="form-group">
+                    <table class="table table-bordered table-condensed">
+                        <thead>
+                            <th>Значение</th>
+                            <th>Действие</th> 
+                        </thead>
+                        <tbody>
+                            <?php
+                                $sql="select * from ".$_GET['value']."";
+                                $result=mysqli_query($conn, $sql);
+                                while($row = mysqli_fetch_assoc($result)) 
+                                {
+                                    echo '<tr><td>'.$row['sprvalue'].'</td>
+                                    <td><a class="btn btn-primary" href="edit.html?pid='.$row['id'].'&table='.$_GET['value'].'">Изменить</a></td></tr>';
+                                }
+                            ?>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>

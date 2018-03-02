@@ -5,10 +5,14 @@
         <div class="row">
             <div class="col-md-12">
                 <h2>Календарь мероприятий</h2>
-                <p><a class="btn btn-success" href="add.html"><span class="glyphicon glyphicon-plus"></span>Добавить</a>
+                <p>
+                    <a class="btn btn-success" href="add.html"><span class="glyphicon glyphicon-plus"></span>Добавить</a>
+                    <a class="btn btn-info" href="../spr/?value=category"><span class="glyphicon glyphicon-pencil"></span>Справочник категорий</a>
+                </p>    
                 <table class="table table-bordered table-striped">
                     <thead>
                         <tr>
+                            <th>Категория</th>
                             <th>Название</th>
                             <th>Дата</th>
                             <th>Возраст участников</th>
@@ -18,11 +22,13 @@
                     </thead>
                     <tbody>
                         <?php
-                            $sql="select * from events where arc!=1 order by eventDate DESC";
+                            $sql="select * from events t1
+                            left join category t2 on t1.category=t2.id
+                            where arc!=1 order by eventDate DESC";
                             $result = mysqli_query($conn, $sql); 
                             while($row = mysqli_fetch_assoc($result)) 
                             {
-                               echo '<tr><td>'.$row['name'].'</td><td>'.$row['eventDate'].'</td><td>'.$row['age'].'</td>
+                               echo '<tr><td>'.$row['sprvalue'].'</td><td>'.$row['name'].'</td><td>'.$row['eventDate'].'</td><td>'.$row['age'].'</td>
                                <td>'.$row['location'].'</td>
                                 <td class="text-center"><a class="btn btn-primary" href="edit.html?pid='.$row['ID'].'"><span class="glyphicon glyphicon-pencil"></span>Ред.</a>
                                     <a class="btn btn-danger" href="edit.html?pid='.$row['ID'].'&arc=1"><span class="glyphicon glyphicon-folder-close"></span>В архив</a></td></tr>';

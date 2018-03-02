@@ -6,8 +6,7 @@
           <p class="text-center block-header">НАШИ СПОРТСМЕНЫ</p>
           <div class="row">
             <?php
-                $sql="select t1.id, name, description, birthday, img, t2.sprvalue, t3.sprvalue as rank, adoptedby from athlets t1
-                left join category t2 on t1.category=t2.id
+                $sql="select t1.id, name, description, birthday, img, t3.sprvalue as rank, adoptedby from athlets t1
                 left join rank t3 on t1.rank=t3.id
                 order by rank";
                 $result = @mysqli_query(@$conn, $sql); 
@@ -25,10 +24,8 @@
                                 <div class="card-text">
                                     <p>Год рождения: '.$row['birthday'].'
                                         <br>
-                                        Принят с '.$row['adoptedby'].' года
+                                        Принят с '.$row['adoptedby'].' года<br>
                                     </p>
-                                    Категория : '.$row['sprvalue'].'<br>
-                                    Разряд : '.$row['rank'].'<br>
                                     <p><strong>'.$row['description'].'</strong></p>
                                 </div>
                             </div>

@@ -86,7 +86,7 @@
 <?php
 if ($_POST['command']=='go')
 {
-  $sql="update timetable set group='".$_POST['group']."', dayWeek='".$_POST['dayweek']."', timeStart='".$_POST['timestart']."', timeEnd='".$_POST['timeend']."',
+  $sql="update timetable set `group`='".$_POST['group']."', dayWeek='".$_POST['dayweek']."', timeStart='".$_POST['timestart']."', timeEnd='".$_POST['timeend']."',
   location='".$_POST['location']."' where id=".$_GET['pid']."";
   $execute=mysqli_query($conn, $sql);
   if ($execute)
