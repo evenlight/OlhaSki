@@ -78,7 +78,8 @@ if($in_act=='delete_single')
     if($execute)
     {
       unlink($imgPath.$_GET['img']);
-      echo alert ('gallery', 1);
+      echo $imgPath.$_GET['img'];
+      //echo alert ('gallery', 1);
     }
     else
     {
