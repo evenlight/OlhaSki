@@ -11,6 +11,7 @@
     echo '<meta property="og:url" content="http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'].'" />';
 ?>
 <meta property="og:type" content="article" />
+<meta property="og:image" content="../content/img/logo.png" />
 <!-- Bootstrap -->
 <link href="../content/css/bootstrap.min.css" rel="stylesheet">
 <!-- Custom Styles -->
