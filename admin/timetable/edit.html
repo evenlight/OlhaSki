@@ -2,15 +2,23 @@
     require_once('../require/header.php');
     extract($_REQUEST,EXTR_PREFIX_ALL|EXTR_REFS,'in');
     require_once('../require/role.php');
+    if ($_GET['type']=='winter')
+    {
+      $table="timetablewinter";
+    }
+    elseif($_GET['type']=='summer')
+    {
+      $table="timetable";
+    }
 ?>
         <div class="row">
           <div class="panel panel-default">
             <div class="col-md-8 col-md-offset-2">
                 <h2>Режим редактирования</h2>
-                <form action="edit.html?pid=<?php echo $_GET['pid']; ?>" enctype="multipart/form-data" method="POST">
+                <form action="edit.html?pid=<?php echo $_GET['pid']; ?>&type=<?php echo $_GET['type']; ?>" enctype="multipart/form-data" method="POST">
                 <input type="hidden" name="command" value="go">
                   <?php
-                    $sql="select * from timetable where id=".$_GET['pid']."";
+                    $sql="select * from ".$table." where id=".$_GET['pid']."";
                     $result = mysqli_query($conn, $sql); 
                     while($row = mysqli_fetch_assoc($result)) 
                     {
@@ -76,7 +84,7 @@
                     ?>
                     <div class="form-group">
                           <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-ok"></span>Сохранить</button>
-                          <a href="edit.html?act=delete&pid=<?php echo $_GET['pid']; ?>" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span>Удалить</a>  
+                          <a href="edit.html?act=delete&pid=<?php echo $_GET['pid']; ?>&type=<?php echo $_GET['type']; ?>" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span>Удалить</a>  
                     </div>
                   </div>
                 </form>
@@ -87,7 +95,7 @@
 <?php
 if ($_POST['command']=='go')
 {
-  $sql="update timetable set `group`='".$_POST['group']."', dayWeek='".$_POST['dayweek']."', timeStart='".$_POST['timestart']."', timeEnd='".$_POST['timeend']."',
+  $sql="update ".$table." set `group`='".$_POST['group']."', dayWeek='".$_POST['dayweek']."', timeStart='".$_POST['timestart']."', timeEnd='".$_POST['timeend']."',
   location='".$_POST['location']."' where id=".$_GET['pid']."";
   $execute=mysqli_query($conn, $sql);
   if ($execute)
@@ -102,7 +110,15 @@ if ($_POST['command']=='go')
 
 if($in_act=='delete')
 {
-  $sql="delete from timetable where id=".$_GET['pid']."";
+  if ($_GET['type']=='winter')
+  {
+    $table="timetablewinter";
+  }
+  elseif($_GET['type']=='summer')
+  {
+    $table="timetable";
+  }
+  $sql="delete from ".$table." where id=".$_GET['pid']."";
   $execute=mysqli_query($conn, $sql);
   if ($execute)
   {

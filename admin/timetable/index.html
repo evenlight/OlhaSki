@@ -8,32 +8,84 @@
                 <h2>Расписание</h2>
                 <p><a class="btn btn-success" href="add.html"><span class="glyphicon glyphicon-plus"></span>Добавить занятие</a>
                 <a class="btn btn-info" href="../spr/?value=groups"><span class="glyphicon glyphicon-pencil"></span>Справочник групп</a>
-                <a class="btn btn-info" href="banner.html"><span class="glyphicon glyphicon-pencil"></span>Объявление</a>
-            </p>
-                <table class="table table-bordered table-striped">
-                    <thead>
-                        <tr>
-                            <th>Группа</th>
-                            <th>День недели</th>
-                            <th>Время занятия</th>
-                            <th>Место проведения</th>
-                            <th>Действия</th>
-                        </tr>                       
-                    </thead>
-                    <tbody>
-                        <?php
-                            $sql="select t1.ID, t1.timeStart, t1.timeEnd, t1.location, t2.*, t3.sprvalue as groupname
-                             from timetable t1 left join dayweek t2 on t1.dayweek=t2.id left join groups t3 on t1.group=t3.id";
-                            $result = mysqli_query($conn, $sql); 
-                            while($row = mysqli_fetch_assoc($result)) 
-                            {
-                               echo '<tr><td>'.$row['groupname'].'</td><td><strong>'.$row['sprvalue'].'</strong></td><td>'.$row['timeStart'].'-'.$row['timeEnd'].'</td>
-                               <td>'.$row['location'].'</td>
-                                <td class="text-center"><a class="btn btn-primary" href="edit.html?pid='.$row['ID'].'"><span class="glyphicon glyphicon-pencil"></span>Ред.</a></td></tr>';
-                            }
-                        ?>
-                    </tbody>
-                </table>
+                <a class="btn btn-info" href="banner.html"><span class="glyphicon glyphicon-pencil"></span>Объявление</a></p>
+                <a class="btn btn-info" href="show.html"><span class="glyphicon glyphicon-pencil"></span>Отображение расписания</a></p>
+                <div class="panel-group" id="accordion">
+                    <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                                Лето
+                                </a>
+                            </h4>
+                    </div>
+                    <div id="collapseOne" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <table class="table table-bordered table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Группа</th>
+                                        <th>День недели</th>
+                                        <th>Время занятия</th>
+                                        <th>Место проведения</th>
+                                        <th>Действия</th>
+                                    </tr>                       
+                                </thead>
+                                <tbody>
+                                    <?php
+                                        $sql="select t1.ID, t1.timeStart, t1.timeEnd, t1.location, t2.*, t3.sprvalue as groupname
+                                            from timetable t1 left join dayweek t2 on t1.dayweek=t2.id left join groups t3 on t1.group=t3.id";
+                                        $result = mysqli_query($conn, $sql); 
+                                        while($row = mysqli_fetch_assoc($result)) 
+                                        {
+                                            echo '<tr><td>'.$row['groupname'].'</td><td><strong>'.$row['sprvalue'].'</strong></td><td>'.$row['timeStart'].'-'.$row['timeEnd'].'</td>
+                                            <td>'.$row['location'].'</td>
+                                            <td class="text-center"><a class="btn btn-primary" href="edit.html?pid='.$row['ID'].'&type=summer"><span class="glyphicon glyphicon-pencil"></span>Ред.</a></td></tr>';
+                                        }
+                                    ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    </div>
+                    <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+                                Зима
+                                </a>
+                            </h4>
+                    </div>
+                    <div id="collapseTwo" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <table class="table table-bordered table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Группа</th>
+                                        <th>День недели</th>
+                                        <th>Время занятия</th>
+                                        <th>Место проведения</th>
+                                        <th>Действия</th>
+                                    </tr>                       
+                                </thead>
+                                <tbody>
+                                    <?php
+                                        $sql="select t1.ID, t1.timeStart, t1.timeEnd, t1.location, t2.*, t3.sprvalue as groupname
+                                            from timetablewinter t1 left join dayweek t2 on t1.dayweek=t2.id left join groups t3 on t1.group=t3.id";
+                                        $result = mysqli_query($conn, $sql); 
+                                        while($row = mysqli_fetch_assoc($result)) 
+                                        {
+                                            echo '<tr><td>'.$row['groupname'].'</td><td><strong>'.$row['sprvalue'].'</strong></td><td>'.$row['timeStart'].'-'.$row['timeEnd'].'</td>
+                                            <td>'.$row['location'].'</td>
+                                            <td class="text-center"><a class="btn btn-primary" href="edit.html?pid='.$row['ID'].'&type=winter"><span class="glyphicon glyphicon-pencil"></span>Ред.</a></td></tr>';
+                                        }
+                                    ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    </div>
+                </div>
             </div>
         </div>
 <?php

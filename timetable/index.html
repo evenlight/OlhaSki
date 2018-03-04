@@ -2,6 +2,20 @@
   $text="Расписание занятий";
   $type="2";
   require_once('../require/header.php');
+
+  $sql="select * from timetableisshow where isshow=1";
+  $result = mysqli_query($conn, $sql); 
+  while($row = mysqli_fetch_assoc($result)) 
+  {
+      if ($row['id']=='1')
+      {
+        $table="timetablewinter";
+      }     
+      elseif($row['id']=='2')   
+      {
+        $table="timetable";
+      }      
+  }
 ?>
         <div class="col-md-9 col-lg-9">
           <p class="text-center block-header">РАСПИСАНИЕ ЗАНЯТИЙ</p>
@@ -49,14 +63,14 @@
                         t7.location as loc6,
                         concat(t8.timestart, ' - ', t8.timeend) as day7,
                         t8.location as loc7
-                        FROM timetable t1
-                        left join timetable t2 on t1.group=t2.group and t2.dayweek=1
-                        left join timetable t3 on t1.group=t3.group and t3.dayweek=2
-                        left join timetable t4 on t1.group=t4.group and t4.dayweek=3
-                        left join timetable t5 on t1.group=t5.group and t5.dayweek=4
-                        left join timetable t6 on t1.group=t6.group and t6.dayweek=5
-                        left join timetable t7 on t1.group=t7.group and t7.dayweek=6
-                        left join timetable t8 on t1.group=t8.group and t8.dayweek=7
+                        FROM ".$table." t1
+                        left join ".$table." t2 on t1.group=t2.group and t2.dayweek=1
+                        left join ".$table." t3 on t1.group=t3.group and t3.dayweek=2
+                        left join ".$table." t4 on t1.group=t4.group and t4.dayweek=3
+                        left join ".$table." t5 on t1.group=t5.group and t5.dayweek=4
+                        left join ".$table." t6 on t1.group=t6.group and t6.dayweek=5
+                        left join ".$table." t7 on t1.group=t7.group and t7.dayweek=6
+                        left join ".$table." t8 on t1.group=t8.group and t8.dayweek=7
                         group by t1.group, t2.location,t3.location,t4.location,t5.location,t6.location,t7.location)
                         as t1 left join groups t2 on t1.group=t2.id
                         ";

@@ -10,6 +10,19 @@
                 <form action="add.html" enctype="multipart/form-data" method="POST">
                 <input type="hidden" name="command" value="go">
                       <div class="form-group">
+                          <select id="tt" name="tt" class="form-control">
+                              <option>Время года</option>
+                              <?php
+                                $sqlS="select * from timetableisshow";
+                                $resultS = mysqli_query($conn, $sqlS); 
+                                while($rowS = mysqli_fetch_assoc($resultS)) 
+                                {
+                                  echo '<option value="'.$rowS['id'].'">'.$rowS['timetable'].'</option>';
+                                }
+                              ?>
+                          </select>
+                      </div>
+                      <div class="form-group">
                           <select class="form-control" name="group" id="group">
                             <option></option>
                             <?php
@@ -64,7 +77,15 @@
 <?php
 if ($_POST['command']=='go')
 {
-  $sql="insert into timetable (`group`, dayweek, timestart, timeend, location) values ('".$_POST['group']."', '".$_POST['dayweek']."', '".$_POST['timestart']."', 
+  if ($_POST['tt']==1)
+  {
+    $table="timetablewinter";
+  }
+  elseif($_POST['tt']==2)
+  {
+    $table="timetable";
+  }
+  $sql="insert into ".$table." (`group`, dayweek, timestart, timeend, location) values ('".$_POST['group']."', '".$_POST['dayweek']."', '".$_POST['timestart']."', 
   '".$_POST['timeend']."', '".$_POST['location']."')";
   $execute=mysqli_query($conn, $sql);
   if ($execute)
