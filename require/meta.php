@@ -3,8 +3,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <?php 
     require_once ('functions.php');
+    echo meta_description(@$type, @$text, @$textDescr);
+    echo $meta_description;
+    echo $metaDescriptionOg;
     echo title(@$text);
+    echo '<meta property="og:title" content="'.ogtitle(@$text).'" />';
+    echo '<meta property="og:url" content="http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'].'" />';
 ?>
+<meta property="og:type" content="article" />
 <!-- Bootstrap -->
 <link href="../content/css/bootstrap.min.css" rel="stylesheet">
 <!-- Custom Styles -->

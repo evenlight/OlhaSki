@@ -1,11 +1,15 @@
 <?php
 require_once('../require/config.php');
-$sql="select title from news where id=".$_GET['pid']."";
+$sql="select title, body from news where id=".$_GET['pid']."";
 $result = mysqli_query($conn, $sql); 
 while($row = mysqli_fetch_assoc($result)) 
 {
   $text=$row['title'];
+  $metaDescription='<meta name="description" content="'.substr($row['body'], 0, 250).'"/>';
+  $metaDescriptionOg='<meta property="og:description" content="'.substr($row['body'], 0, 250).'" />';
 }
+$type="1";
+$textDescr=$metaDescription;
   require_once('../require/header.php');
 ?>
         <div class="col-md-9 col-lg-9">
@@ -21,7 +25,7 @@ while($row = mysqli_fetch_assoc($result))
             $text=$row['title'];
             if(!empty($row['img']) or $row['img']!=0)
             {
-              $img='<img class="news-left img-thumbnail pull-right" src="../content/img/'.$row['img'].'" style="width: 50%; margin-left: 15px; margin-right: 0px;">';
+              $img='<img class="news-left img-thumbnail pull-right" src="../content/img/'.$row['img'].'" alt="'.$row['title'].'" style="width: 50%; margin-left: 15px; margin-right: 0px;">';
             }
             else
             {

@@ -1,5 +1,6 @@
 <?php
-  $text="Горнолыжная школа Олха";
+  $text="";
+  $type="0";
   require_once('../require/header.php');
 ?>
           <div class="col-md-9 col-lg-9">
@@ -16,7 +17,7 @@
               }
               else
               {
-                $img='<img class="news-left img-thumbnail" src="../content/img/'.$row['img'].'" style="max-height: 150px;">';
+                $img='<img class="news-left img-thumbnail" src="../content/img/'.$row['img'].'" alt="'.$row['title'].'" style="max-height: 150px;">';
               }
                 echo '
                 <div class="row">
