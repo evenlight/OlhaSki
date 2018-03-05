@@ -1,0 +1,118 @@
+<?php
+    require_once('../require/config.php');
+?>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Горнолыжный комплекс "Олха"</title>
+
+    <!-- Bootstrap -->
+    <link href="../../content/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom Styles -->
+    <link href="../../content/css/custom.css" rel="stylesheet">
+    <link href="../../content/css/dropzone.css" rel="stylesheet">
+    <link rel="shortcut icon" href="../../content/img/favicon.png" type="image/x-icon">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.css" rel="stylesheet">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="container">
+        <nav class="navbar">
+          <div class="container-fluid">
+            <div class="navbar-header">
+              <button type="button" class="collapsed navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a href="/admin/home/" class="navbar-brand">
+                <img src="../../../content/img/logo.png" class="logo" alt="logo">
+              </a> 
+            </div>
+          </div> 
+        </nav>
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <form class="form-horizontal" action="recovery.html" method="POST">
+                    <input type="hidden" name="command" value="go">
+                    <div class="form-group">
+                        <input type="email" class="form-control" name="email" placeholder="Email пользователя"/>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="login" placeholder="Логин пользователя"/>
+                    </div>
+                    <div class="form-group">
+                        <div align="center">
+                            <button type="submit" class="btn btn-success">Сбросить пароль</button>
+                        </div>
+                    </div>                   
+                </form>             
+<?php
+if ($_POST['command']=="go")
+{
+    if(empty($_POST['email']) or empty($_POST['login']))
+    {
+        echo '<div class="alert alert-danger">Не все поля формы заполнены!</div>';
+    }
+    else
+    {
+        $sql="SELECT count(*) as checkUser FROM `users` t1
+        left join user_email t2 on t1.id=t2.userid
+        where t2.email is not null and upper(t1.login)=upper('".$_POST['login']."') and upper(t2.email)=upper('".$_POST['email']."')";
+        $result = mysqli_query($conn, $sql); 
+        while($row = mysqli_fetch_assoc($result)) 
+        {
+            if ($row['checkUser']==0)
+            {
+                echo '<div class="alert alert-danger">Не удалось обнаружить пользователя с указанными данными</div>';
+            }
+            else
+            {
+                $sql="SELECT t1.id, t1.login, t2.email FROM `users` t1
+                left join user_email t2 on t1.id=t2.userid
+                where t2.email is not null and upper(t1.login)=upper('".$_POST['login']."') and upper(t2.email)=upper('".$_POST['email']."')";
+                $result = mysqli_query($conn, $sql); 
+                while($row = mysqli_fetch_assoc($result)) 
+                {
+                    // Символы, которые будут использоваться в пароле. 
+                    $chars="qazxswedcvfrtgbnhyujmkiolp1234567890QAZXSWEDCVFRTGBNHYUJMKIOLP"; 
+                    // Количество символов в пароле. 
+                    $max=10; 
+                   // Определяем количество символов в $chars 
+                    $size=StrLen($chars)-1; 
+                    // Определяем пустую переменную, в которую и будем записывать символы. 
+                    $password=null; 
+                    // Создаём пароль. 
+                    while($max--) 
+                    $password.=$chars[rand(0,$size)]; 
+                    $sqlR="update users set password=md5('".$password."') where id=".$row['id']."";
+                    $executeR=mysqli_query($conn, $sqlR);
+                    if($executeR)
+                    {
+                        $send=mail($row['email'], "Запрос на сброс пароля", "Здравтсвуйте!\nВы запросили сброс пароля!\n Ваш Новый пароль: ", "From: web@evenlight.team");
+                        if($send)
+                        {
+                            echo '<div class="alert alert-success">На указанный адрес отправлено письмо с паролем</div>';
+                        }
+                        else
+                        {
+                            echo '<div class="alert alert-danger">Не удалось отправить письмо</div>';
+                        }  
+                    }
+                }
+            }
+        }
+    }
+    echo '</div></div>';
+}
+  require_once('../require/footer.php');
+?>
