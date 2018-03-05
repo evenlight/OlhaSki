@@ -101,7 +101,9 @@ if ($_POST['command']=="go")
                         $send=mail($row['email'], "Запрос на сброс пароля", "Здравтсвуйте!\nВы запросили сброс пароля!\n Ваш Новый пароль: ".$password."", "From: web@evenlight.team");
                         if($send)
                         {
-                            echo '<div class="alert alert-success">На указанный адрес отправлено письмо с паролем</div>';
+                            echo '<div class="alert alert-success">На указанный адрес отправлено письмо с паролем
+                            <br>
+                            <a href="/admin/home/">На страницу входа</a></div>';
                         }
                         else
                         {
