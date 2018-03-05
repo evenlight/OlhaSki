@@ -6,7 +6,7 @@
           <div class="col-md-9 col-lg-9">
             <p class="text-center block-header">НОВОСТИ</p>
            <?php
-            $sql="select id, DATE_FORMAT(publishdate, '%d.%m.%Y') as publishdate, title, body, img from news where img!='0' or youtube!='0' order by publishDate desc limit 3";
+            $sql="select id, DATE_FORMAT(publishdate, '%d.%m.%Y') as publishdate, title, body, img from news where img!='0' order by publishDate desc limit 3";
             //echo $sql;
             $result = mysqli_query($conn, $sql); 
             while($row = mysqli_fetch_assoc($result)) 
