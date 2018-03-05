@@ -1,5 +1,11 @@
 <?php
     require_once('../require/config.php');
+    $sql="select sysvalue as fromEmail from systeminfo where type='email'";
+    $result = mysqli_query($conn, $sql); 
+    while($row = mysqli_fetch_assoc($result)) 
+    {
+        $from=$row['fromEmail'];
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -98,12 +104,14 @@ if ($_POST['command']=="go")
                     $executeR=mysqli_query($conn, $sqlR);
                     if($executeR)
                     {
-                        $send=mail($row['email'], "Запрос на сброс пароля", "Здравтсвуйте!\nВы запросили сброс пароля!\n Ваш Новый пароль: ".$password."", "From: web@evenlight.team");
+                        $message = "Здравствуйте!\nВы запросили сброс пароля для аккаунта.\n Ваш Новый пароль: ".$password."";
+                        $message=iconv('UTF-8', 'cp1251', $message);
+                        $send=mail($row['email'], "Запрос на сброс пароля", $message, "From: $from");
                         if($send)
                         {
-                            echo '<div class="alert alert-success">На указанный адрес отправлено письмо с паролем
+                            echo '<div class="alert alert-success"><div align="center">На указанный адрес отправлено письмо с паролем
                             <br><br>
-                            <div align="center"><a href="/admin/home/">На страницу входа</a></div></div>';
+                            <a href="/admin/home/">На страницу входа</a></div></div>';
                         }
                         else
                         {

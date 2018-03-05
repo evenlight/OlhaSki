@@ -10,7 +10,7 @@
                 <form action="edit.html?pid=<?php echo $_GET['pid']; ?>" enctype="multipart/form-data" method="POST">
                 <input type="hidden" name="command" value="go">
                   <?php
-                    $sql="select * from users where id=".$_GET['pid']."";
+                    $sql="select t1.*, t2.userid, t2.email from users t1 left join user_email t2 on t1.id=t2.userid where t1.id=".$_GET['pid']."";
                     $result = mysqli_query($conn, $sql); 
                     while($row = mysqli_fetch_assoc($result)) 
                     {
@@ -19,6 +19,10 @@
                         <label for="password">Пароль</label>
                         <input type="text" class="form-control" id="password" name="password">
                       </div>
+                      <div class="form-group">
+                          <label for="email">Email</label>
+                          <input type="email" class="form-control" name="email" id="email" value="<?php echo $row['email']; ?>">
+                        </div>
                       <div class="form-group">
                           <label for="role">Роль</label>
                           <select id="role" name="role" class="form-control">
@@ -46,8 +50,8 @@
                     }
                     ?>
                     <div class="form-group">
-                          <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-ok"></span>Сохранить</button>
-                          <a href="edit.html?act=delete&pid=<?php echo $_GET['pid']; ?>" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span>Удалить</a>  
+                      <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-ok"></span>Сохранить</button>
+                      <a href="edit.html?act=delete&pid=<?php echo $_GET['pid']; ?>" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span>Удалить</a>  
                     </div>
                   </div>
                 </form>
@@ -71,6 +75,8 @@ if ($_POST['command']=='go')
   //echo $sql;
   if ($execute)
   {
+    $sql="update user_email set email='".$_POST['email']."' where userid=".$_GET['pid']."";
+    $execute=mysqli_query($conn, $sql);
     echo alert ('users', 1);
   }
   else
@@ -85,6 +91,8 @@ if($in_act=='delete')
   $execute=mysqli_query($conn, $sql);
   if ($execute)
   {
+    $sql="delete from user_email where userid=".$_GET['pid']."";
+    $execute=mysqli_query($conn, $sql);
     echo alert ('users', 1);
   }
   else

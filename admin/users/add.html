@@ -15,6 +15,9 @@
                         <input type="text" class="form-control" id="password" name="password" placeholder="Пароль">
                       </div>
                       <div class="form-group">
+                          <input type="email" class="form-control" id="email" name="email" placeholder="Email">
+                        </div>
+                      <div class="form-group">
                           <select class="form-control" name="role">
                             <option>Укажите роль</option>
                             <?php
@@ -41,9 +44,15 @@ if ($_POST['command']=='go')
 {
   $sql="insert into users (login, password, userRole) values ('".$_POST['login']."', md5('".$_POST['password']."'), ".$_POST['role'].")";
   $execute=mysqli_query($conn, $sql);
+  $id=mysqli_insert_id($conn);
   if ($execute)
   {
-    echo alert ('users', 1);
+    $sqlE="insert into user_email (userid, email) values ('".$id."', '".$_POST['email']."')";
+    $executeE=mysqli_query($conn, $sqlE);
+    if($executeE)
+    {
+      echo alert ('users', 1);
+    }
   }
   else
   {
