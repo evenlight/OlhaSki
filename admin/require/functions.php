@@ -174,11 +174,11 @@ if ($currentfile=='add.html' or $currentfile=='edit.html')
 
         // Ограничение по ширине в пикселях
         $max_thumb_size = 200;
-        $max_size = 800;
+        $max_size = 1280;
 
         // Качество изображения по умолчанию
         if ($quality == null)
-            $quality = 75;
+            $quality = 85;
 
         // Cоздаём исходное изображение на основе исходного файла
         if ($file['type'] == 'image/jpeg')
