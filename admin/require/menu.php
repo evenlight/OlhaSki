@@ -34,7 +34,7 @@
 <hr>
 <div class="pull-right">
     <p>
-        <p><a href="<?php echo $_SERVER['HTTP_HOST']; ?>/home/" target="_blank"><span class="glyphicon glyphicon-share-alt"></span> Перейти на сайт</a></p>
+        <p><a href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/home/" target="_blank"><span class="glyphicon glyphicon-share-alt"></span> Перейти на сайт</a></p>
         <?php
         if ($_SESSION['role']==777)
         {
