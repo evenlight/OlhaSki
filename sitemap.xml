@@ -1,87 +1,88 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset
-      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
-            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
-
-
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9             http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
 <url>
   <loc>http://olha.evenlight.team/home/</loc>
-  <lastmod>2018-03-04T13:32:04+00:00</lastmod>
+  <lastmod>2018-03-05</lastmod>
   <priority>1.00</priority>
 </url>
 <url>
   <loc>http://olha.evenlight.team/news/</loc>
-  <lastmod>2018-03-04T13:32:04+00:00</lastmod>
+  <lastmod>2018-03-05</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>http://olha.evenlight.team/terms/</loc>
-  <lastmod>2018-03-04T13:32:04+00:00</lastmod>
+  <lastmod>2018-03-05</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>http://olha.evenlight.team/trainers/</loc>
-  <lastmod>2018-03-04T13:32:04+00:00</lastmod>
+  <lastmod>2018-03-05</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>http://olha.evenlight.team/athletes/</loc>
-  <lastmod>2018-03-04T13:32:04+00:00</lastmod>
+  <lastmod>2018-03-05</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>http://olha.evenlight.team/safety/</loc>
-  <lastmod>2018-03-04T13:32:04+00:00</lastmod>
+  <lastmod>2018-03-05</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>http://olha.evenlight.team/timetable/</loc>
-  <lastmod>2018-03-04T13:32:04+00:00</lastmod>
+  <lastmod>2018-03-05</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>http://olha.evenlight.team/events/</loc>
-  <lastmod>2018-03-04T13:32:04+00:00</lastmod>
+  <lastmod>2018-03-05</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>http://olha.evenlight.team/documents/</loc>
-  <lastmod>2018-03-04T13:32:04+00:00</lastmod>
+  <lastmod>2018-03-05</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>http://olha.evenlight.team/gallery/</loc>
-  <lastmod>2018-03-04T13:32:04+00:00</lastmod>
+  <lastmod>2018-03-05</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>http://olha.evenlight.team/about/</loc>
-  <lastmod>2018-03-04T13:32:04+00:00</lastmod>
+  <lastmod>2018-03-05</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>http://olha.evenlight.team/news/properties.html?pid=13</loc>
-  <lastmod>2018-03-04T13:32:04+00:00</lastmod>
+  <lastmod>2018-03-05</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>http://olha.evenlight.team/news/properties.html?pid=9</loc>
-  <lastmod>2018-03-04T13:32:04+00:00</lastmod>
+  <lastmod>2018-03-05</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>http://olha.evenlight.team/news/properties.html?pid=12</loc>
-  <lastmod>2018-03-04T13:32:04+00:00</lastmod>
+  <lastmod>2018-03-05</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>http://olha.evenlight.team/safety/safety.pdf</loc>
-  <lastmod>2018-02-06T14:29:24+00:00</lastmod>
+  <lastmod>2018-03-05</lastmod>
   <priority>0.64</priority>
 </url>
-
-
+<url>
+  <loc>http://localhost:8080//news//properties.html?pid=24</loc>
+  <lastmod>2018-03-05</lastmod>
+  <priority>1</priority>
+</url>
+<url>
+  <loc>http://localhost:8080/news/properties.html?pid=25</loc>
+  <lastmod>2018-03-05</lastmod>
+  <priority>1</priority>
+</url>
 </urlset>

@@ -153,4 +153,18 @@ if ($currentfile=='add.html' or $currentfile=='edit.html')
             return $protocol;
         }
     }
+    function addinfo_sitemap($currenturl, $lastmod)
+    {
+        $xmlFile='../../sitemap.xml';
+        $sxe=simplexml_load_file($xmlFile);
+    
+        //$sxe = new SimpleXMLElement($xmlstr);
+        
+        $url = $sxe->addChild('url');
+        $url->addChild('loc', $currenturl);
+        $url->addChild('lastmod', $lastmod);
+        $url->addChild('priority', '1');
+        
+        $sxe->asXML($xmlFile);
+    }
 ?>
