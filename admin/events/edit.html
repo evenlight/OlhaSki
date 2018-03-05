@@ -109,7 +109,7 @@ if ($_POST['command']=='go')
 
   if (basename($_FILES['protocol']['name'])=='')
   {
-    $protocol=0;
+    $protocol="";
   }
   else
   {
@@ -119,7 +119,7 @@ if ($_POST['command']=='go')
   $sql="update events set name='".$_POST['name']."', age='".$_POST['age']."', subject='".$_POST['type']."', eventDate='".$_POST['datem']."', location='".$_POST['location']."', 
   name='".$_POST['name']."', category='".$_POST['category']."' ".$doc." ".$protocol."  where id=".$_GET['pid']."";
   $execute=mysqli_query($conn, $sql);
-
+  echo $sql;
   if ($execute)
   {
     echo alert ('events', 1);

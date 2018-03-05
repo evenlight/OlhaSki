@@ -79,7 +79,7 @@ if ($_POST['command']=='go')
     $_POST['types']=1;
   }
   $sql="insert into events (name, age, eventDate, location, subject, filename, category, protocol, arc) values ('".$_POST['title']."', 
-  '".$_POST['age']."', '".$_POST['date']."', '".$_POST['location']."', '".$_POST['type']."', '".$doc."', '".$protocol."', '".$_POST['category']."', 0)";
+  '".$_POST['age']."', '".$_POST['date']."', '".$_POST['location']."', '".$_POST['type']."', '".$doc."', '".$_POST['category']."', '".$protocol."', 0)";
   $execute=mysqli_query($conn, $sql);
   //echo $sql;
   if ($execute)
