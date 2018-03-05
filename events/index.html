@@ -64,7 +64,15 @@
                                         {
                                             $protocol='<a href="'.$row['protocol'].'" target="_blank" class="btn btn-success">Открыть</a>';
                                         }
-                                        echo '<tr><td style="background-color: '.$color.';"><a href="'.$row['filename'].'" target="_blank">'.$row['name'].'</a></td>
+                                        if($row['filename']=='' or $row['filename']==0)
+                                        {
+                                            $filename=$row['name'];
+                                        }
+                                        else
+                                        {
+                                            $filename='<a href="'.$row['filename'].'" target="_blank">'.$row['name'].'</a>';
+                                        }
+                                        echo '<tr><td style="background-color: '.$color.';">'.$filename.'</td>
                                         <td style="background-color: '.$color.';">'.$row['age'].'</td>
                                         <td style="background-color: '.$color.';">'.$row['eventdate'].'</td>
                                         <td style="background-color: '.$color.';">'.$row['location'].'</td>
@@ -89,7 +97,8 @@
                                 <tbody>
                                     <?php
                                     $sql="select name, age, DATE_FORMAT(eventDate, '%d.%m.%Y') as eventdate, 
-                                    location, subject, filename, DATEDIFF(eventDate, now()) as checkDate, protocol from events where category=2 order by eventdate desc";
+                                    location, subject, filename, DATEDIFF(eventDate, now()) as checkDate, protocol from events where category=2 order by eventdate DESC";
+                                    //echo $sql;
                                     $result = mysqli_query($conn, $sql); 
                                     while($row = mysqli_fetch_assoc($result)) 
                                     {
@@ -110,7 +119,15 @@
                                         {
                                             $protocol='<a href="'.$row['protocol'].'" target="_blank" class="btn btn-success">Открыть</a>';
                                         }
-                                        echo '<tr><td style="background-color: '.$color.';"><a href="'.$row['filename'].'" target="_blank">'.$row['name'].'</a></td>
+                                        if($row['filename']=='' or $row['filename']==0)
+                                        {
+                                            $filename=$row['name'];
+                                        }
+                                        else
+                                        {
+                                            $filename='<a href="'.$row['filename'].'" target="_blank">'.$row['name'].'</a>';
+                                        }
+                                        echo '<tr><td style="background-color: '.$color.';">'.$filename.'</td>
                                         <td style="background-color: '.$color.';">'.$row['age'].'</td>
                                         <td style="background-color: '.$color.';">'.$row['eventdate'].'</td>
                                         <td style="background-color: '.$color.';">'.$row['location'].'</td>
