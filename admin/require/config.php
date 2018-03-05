@@ -15,5 +15,5 @@ if (!$conn) {
 mysqli_set_charset($conn, "utf8");
 $setupMySql = mysqli_query($conn, "SET SQL_BIG_SELECTS = 1" );
 $path=$_SERVER['DOCUMENT_ROOT'].'/';
-//ini_set('display_errors','OFF');
+ini_set('display_errors','OFF');
 ?>
