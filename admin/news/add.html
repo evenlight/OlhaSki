@@ -53,9 +53,11 @@ if ($_POST['command']=='go')
   }
   $sql="insert into news (publishDate, title, body, img, youtube) values (NOW(), '".$_POST['title']."', '".$_POST['body']."', '".$img."', '".$youtube."')";
   $execute=mysqli_query($conn, $sql);
+
   $id=mysqli_insert_id($conn);
   $currenturl="http://".$_SERVER['HTTP_HOST']."/news/properties.html?pid=".$id."";
   $lastmod=date('Y-m-d');
+  
   if ($execute)
   {
     echo alert ('news', 1);
