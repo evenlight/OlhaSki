@@ -10,10 +10,18 @@
             $result = mysqli_query($conn, $sql); 
             while($row = mysqli_fetch_assoc($result)) 
             {
+              if ($row['img']=='' or $row['img']==0)
+              {
+                $img="";
+              }
+              else
+              {
+                $img='<img class="img-thumbnail img-responsive" src="../content/img/'.$row['img'].'">';
+              }
                 echo '<div class="row" style="margin-top: 40px;">
                 <div class="col-md-3 col-sm-12">
                   <div align="center">
-                    <img class="img-thumbnail img-responsive" src="../content/img/'.$row['img'].'">
+                    '.$img.'
                   </div>
                 </div>
                 <div class="col-md-8">
